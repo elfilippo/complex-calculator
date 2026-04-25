@@ -7,7 +7,7 @@ package com.complexcalc;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println(Parser.parse("-x^6-14y*-2.5i"));
+        System.out.println(Character.isAlphabetic('-'));
+        System.out.println(Parser.parse("-sinx^6-14y*-2.5i"));
     }
 }

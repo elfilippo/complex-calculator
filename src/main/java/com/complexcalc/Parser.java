@@ -1,7 +1,9 @@
 package com.complexcalc;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Parser {
 
@@ -16,11 +18,20 @@ public class Parser {
         LPAR,
         RPAR,
         NUM,
+        SIN,
+        COS,
+        TAN,
+        LN,
+        LOG,
     }
+
+    //INFO: order by longest first for correct parsing
+    private static Map<String, TokenType> wordFunctions = new LinkedHashMap<>(
+        Map.of("log", TokenType.LOG, "sin", TokenType.SIN, "cos", TokenType.COS)
+    );
 
     private record Token(TokenType type, double value) {}
 
-    //TODO: add word functions like sin, cos, etc
     public static List<Token> parse(String s) {
         List<Token> tokens = new ArrayList<>();
 
@@ -47,9 +58,9 @@ public class Parser {
                     if (i == 0) tokens.add(new Token(TokenType.UN_SUB, 3));
                     else {
                         lastToken = tokens.getLast().type;
-                        if (lastToken != TokenType.NUM && lastToken != TokenType.VAR) tokens.add(
-                            new Token(TokenType.UN_SUB, 3)
-                        );
+                        if (
+                            lastToken != TokenType.NUM && lastToken != TokenType.VAR && lastToken != TokenType.RPAR
+                        ) tokens.add(new Token(TokenType.UN_SUB, 3));
                         else tokens.add(new Token(TokenType.SUB, 1));
                     }
                 }
@@ -59,8 +70,18 @@ public class Parser {
                 case '(' -> tokens.add(new Token(TokenType.LPAR, 5));
                 case ')' -> tokens.add(new Token(TokenType.RPAR, 5));
                 default -> {
-                    if (Character.isAlphabetic(c)) tokens.add(new Token(TokenType.VAR, c));
-                    else throw new IllegalArgumentException();
+                    if (Character.isAlphabetic(c)) {
+                        boolean wordFound = false;
+                        for (String function : wordFunctions.keySet()) {
+                            if (s.substring(i).startsWith(function)) {
+                                tokens.add(new Token(wordFunctions.get(function), 3));
+                                i += function.length() - 1;
+                                wordFound = true;
+                                break;
+                            }
+                        }
+                        if (!wordFound) tokens.add(new Token(TokenType.VAR, c));
+                    } else throw new IllegalArgumentException();
                 }
             }
         }
