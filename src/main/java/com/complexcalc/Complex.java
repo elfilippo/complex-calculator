@@ -34,7 +34,7 @@ public class Complex {
     public final double givenθ;
 
     /**
-     * creates a complex number in the form a + bi
+     * returns a new complex number from the cartesian form input a + bi
      * @param real the real part (a)
      * @param imaginary the imaginary part (b)
      */
@@ -45,10 +45,10 @@ public class Complex {
     /**
      * class-intern constructor for all parameters of complex number.
      * private to prevent value mismatches by user error.
-     * @param real
-     * @param imaginary
-     * @param magnitude
-     * @param argument
+     * @param real a
+     * @param imaginary b
+     * @param magnitude r
+     * @param argument θ
      */
     private Complex(double real, double imaginary, double magnitude, double argument) {
         a = real;
@@ -59,10 +59,9 @@ public class Complex {
     }
 
     /**
-     * returns a new Complex from a polar form input re^iθ
+     * returns a new complex from the polar form input re^(iθ)
      * @param magnitude r
      * @param argument θ
-     * @return Complex
      */
     public static Complex polar(double magnitude, double argument) {
         double a = magnitude * Math.cos(argument);
@@ -72,16 +71,18 @@ public class Complex {
 
     /**
      * returns the sum of two complex numbers
+     * @param z summand
+     * @param w summand
      */
     public static Complex add(Complex z, Complex w) {
         return new Complex(z.a + w.a, z.b + w.b);
     }
 
     /**
-     * adds a real number to a complex number
-     * @param z a complex number
-     * @param x a real double
-     * @return complex result
+     * returns the sum of a real number and a complex number
+     * @param z complex summand
+     * @param x real summand
+     * @return complex sum
      */
     public static Complex add(Complex z, double x) {
         return new Complex(z.a + x, z.b);
@@ -89,106 +90,118 @@ public class Complex {
 
     /**
      * returns the difference between two complex numbers
-     * @param z the minuend complex
-     * @param w the subtrahend complex
-     * @return the difference
+     * @param z complex minuend
+     * @param w complex subtrahend
+     * @return complex difference
      */
-    public static Complex subtract(Complex z, Complex w) {
+    public static Complex sub(Complex z, Complex w) {
         return new Complex(z.a - w.a, z.b - w.b);
     }
 
     /**
      * returns the difference between a complex and a real number
-     * @param z the minuend complex
-     * @param x the subtrahend real
-     * @return the difference
+     * @param z complex minuend
+     * @param x real subtrahend
+     * @return complex difference
      */
-    public static Complex subtract(Complex z, double x) {
+    public static Complex sub(Complex z, double x) {
         return new Complex(z.a - x, z.b);
     }
 
     /**
      * returns the difference between a real and a complex number
-     * @param x the minuend real
-     * @param z the subtrahend complex
-     * @return the difference
+     * @param x real minuend
+     * @param z complex subtrahend
+     * @return complex difference
      */
-    public static Complex subtract(double x, Complex z) {
+    public static Complex sub(double x, Complex z) {
         return new Complex(x - z.a, -z.b);
     }
 
     /**
-     * returns true if there is no imaginary part
+     * returns true if the number is fully real (no imaginary part)
      */
     public boolean isReal() {
         return b == 0;
     }
 
     /**
-     * multiplies two complex numbers with respect to the given arguments
+     * returns the int number of the quadrant of the complex number <p>
+     * considers numbers on the axes as part of the lowest numbered quadrant they're in <p>
+     * quadrants are numbered counterclockwise starting from the positive real and positive imaginary
+     */
+    public static int quadrant(Complex z) {
+        if (z.a >= 0 && z.b >= 0) return 1;
+        if (z.a < 0 && z.b >= 0) return 2;
+        if (z.a <= 0 && z.b <= 0) return 3;
+        return 4;
+    }
+
+    /**
+     * returns the product of two complex numbers with the arguments given at construction
      * @param z complex factor
      * @param w complex factor
-     * @return product
+     * @return complex product
      */
-    public static Complex multiply(Complex z, Complex w) {
+    public static Complex mult(Complex z, Complex w) {
         return polar(z.r * w.r, z.givenθ + w.givenθ);
     }
 
     /**
-     * multiplies a complex number with a scalar x
+     * returns the product of a complex factor with a real scalar x
      * @param z complex factor
      * @param x real scalar
-     * @return
+     * @return complex product
      */
-    public static Complex multiply(Complex z, double x) {
+    public static Complex mult(Complex z, double x) {
         return new Complex(x * z.a, x * z.b);
     }
 
     /**
-     * divides the complex number z by w
+     * returns the quotient of z / w
      * @param z complex dividend
      * @param w complex divisor
      * @return complex quotient
      */
-    public static Complex divide(Complex z, Complex w) {
+    public static Complex div(Complex z, Complex w) {
         double real = (z.a * w.a + z.b * w.b) / (w.a * w.a + w.b * w.b);
         double imaginary = (z.b * w.a - z.a * w.b) / (w.a * w.a + w.b * w.b);
         return new Complex(real, imaginary);
     }
 
     /**
-     * divides the complex number z by the real number x
+     * returns the quotient of z / x
      * @param z complex dividend
      * @param x real divisor
      * @return complex quotient
      */
-    public static Complex divide(Complex z, double x) {
+    public static Complex div(Complex z, double x) {
         return new Complex(z.a / x, z.b / x);
     }
 
     /**
-     * divides the real number x by the complex number z
+     * returns the quotient of x / z
      * @param x real dividend
      * @param z complex divisor
      * @return complex quotient
      */
-    public static Complex divide(double x, Complex z) {
+    public static Complex div(double x, Complex z) {
         return new Complex(x / z.a, x / z.b);
     }
 
     /**
-     * returns the complex logarithm based on givenθ <p>
-     * since the complex log is multi-valued, it can return different numbers for the same z based on the argument
-     * @param z complex number
+     * returns the complex logarithm based on givenθ to the base e <p>
+     * since the complex log is multi-valued, it can return different numbers for the same z
+     * based on the argument given at construction
+     * @param z complex argument
      */
-    public static Complex givenLog(Complex z) {
+    public static Complex logGiven(Complex z) {
         return new Complex(Math.log(z.r), z.givenθ);
     }
 
     /**
-     * returns the principal complex log
-     * @param z
-     * @return
+     * returns the principal complex log to the base e
+     * @param z complex argument
      */
     public static Complex log(Complex z) {
         return new Complex(Math.log(z.r), z.θ);
@@ -197,10 +210,10 @@ public class Complex {
     /**
      * returns all values of the complex logarithm in a range including the max term <p>
      * the principal log is term (value) 0
-     * @param z complex number
+     * @param z complex argument
      * @param min lowest term
      * @param max highest term
-     * @return an array of complex values
+     * @return array of complex values
      */
     public static Complex[] logRange(Complex z, int min, int max) {
         Complex[] result = new Complex[max - min + 1];
@@ -212,19 +225,18 @@ public class Complex {
     }
 
     /**
-     * returns a specific value of the complex logarithm at a term number <p>
+     * returns a specific value of the complex logarithm at a term number k <p>
      * the principal log is term (value) 0
-     * @param z
-     * @param term
-     * @return
+     * @param z complex argument
+     * @param k term number
      */
-    public static Complex logSpecific(Complex z, int term) {
-        return new Complex(Math.log(z.r), z.θ + 2 * term * Math.PI);
+    public static Complex log(Complex z, int k) {
+        return new Complex(Math.log(z.r), z.θ + 2 * k * Math.PI);
     }
 
     /**
-     *returns the complex principal logarithm of x
-     * @param x real number
+     * returns the complex principal logarithm of x
+     * @param x real
      * @return complex result
      */
     public static Complex log(double x) {
@@ -233,16 +245,123 @@ public class Complex {
     }
 
     /**
+     * returns the principal result of complex z raised to real x <p>
+     * since complex exponentiation is multi-valued for non-integers, this returns
+     * the principal result based on normalized θ (-π < θ <= π)
+     * @param z complex base
+     * @param x real exponent
+     */
+    public static Complex pow(Complex z, double x) {
+        return polar(Math.pow(z.r, x), z.θ * x);
+    }
+
+    /**
+     * returns the principal result of complex z raised to complex w <p>
+     * since complex exponentiation is multi-valued for non-integers, this returns
+     * the principal result based on normalized θ (-π < θ <= π)
+     * @param z complex base
+     * @param w complex exponent
+     */
+    public static Complex pow(Complex z, Complex w) {
+        return (polar(Math.exp(w.a * Math.log(z.r) - w.b * z.θ), w.b * Math.log(z.r) + w.a * z.θ));
+    }
+
+    /**
+     * returns term k of a complex raised to a complex <p>
+     * since complex exponentiation is multi-valued for non-integers, k is the distance of
+     * the term from the principal result (the principal result being k = 0)
+     * @param z complex base
+     * @param w complex exponent
+     * @param k term number
+     */
+    public static Complex pow(Complex z, Complex w, int k) {
+        return (
+            polar(
+                Math.exp(w.a * Math.log(z.r) - w.b * (z.θ + 2 * Math.PI * k)),
+                w.b * Math.log(z.r) + w.a * (z.θ + 2 * Math.PI * k)
+            )
+        );
+    }
+
+    /**
+     * returns the result of complex z raised to real x based on given θ <p>
+     * since complex exponentiation is multi-valued for non-integers, this can give different
+     * results for the same complex number based on the argument given at construction
+     * @param z the base
+     * @param x the exponent
+     */
+    public static Complex powGiven(Complex z, double x) {
+        return polar(Math.pow(z.r, x), z.givenθ * x);
+    }
+
+    /**
+     * returns term k of a complex raised to a real <p>
+     * since complex exponentiation is multi-valued for non-integers, k is the distance of
+     * the term from the principal result (the principal result being k = 0)
+     * @param z complex base
+     * @param x real exponent
+     * @param k term
+     */
+    public static Complex pow(Complex z, double x, int k) {
+        return polar(Math.pow(z.r, x), (z.θ + (Math.PI * 2 * k)) * x);
+    }
+
+    /**
+     * returns the principal square root of a complex
+     * since complex roots are multi-valued for non-integers, this returns
+     * the principal result based on normalized θ (-π < θ <= π)
+     * @param z complex
+     */
+    public static Complex sqrt(Complex z) {
+        return pow(z, 0.5);
+    }
+
+    /**
+     * returns the principal n-th root of a complex
+     * since complex roots are multi-valued, this returns
+     * the principal result based on normalized θ (-π < θ <= π)
+     * @param z complex radicand
+     * @param n real degree
+     */
+    public static Complex nRoot(Complex z, double n) {
+        if (n == 0) throw new IllegalArgumentException("trying to take 0th root");
+        return pow(z, 1 / n);
+    }
+
+    /**
+     * returns term k of the n-th complex root <p>
+     * since complex roots are multi-valued, k is the distance of
+     * the term from the principal result (the principal result being k = 0)
+     * @param z complex radicand
+     * @param n real degree
+     */
+    public static Complex nRoot(Complex z, double n, int k) {
+        if (n == 0) throw new IllegalArgumentException("trying to take 0th root");
+        return pow(z, 1 / n, k);
+    }
+
+    /**
+     * returns term k of the n-th complex root <p>
+     * since complex roots are multi-valued, k is the distance of
+     * the term from the principal result (the principal result being k = 0)
+     * @param z complex radicand
+     * @param n complex degree
+     */
+    public static Complex nRoot(Complex z, Complex w, int k) {
+        return pow(z, div(1, w), k);
+    }
+
+    /**
      * returns the conjugate of the number (inverse of b)
-     * @param z complex number
-     * @return complex conjugate
+     * @param z complex
+     * @return conjugate
      */
     public static Complex conjugate(Complex z) {
         return new Complex(z.a, -z.b);
     }
 
     /**
-     * returns a string in square form <p>
+     * returns a string in cartesian (square) form <p>
      * truncates decimals for whole numbers and omits empty values <p>
      */
     @Override
