@@ -275,6 +275,7 @@ public class Complex {
      * @param k term number
      */
     public static Complex pow(Complex z, Complex w, int k) {
+        if (w.isReal() && w.a % 1 == 0) return polar(Math.pow(z.r, w.a), z.θ * w.a);
         return (
             polar(
                 Math.exp(w.a * Math.log(z.r) - w.b * (z.θ + 2 * Math.PI * k)),
@@ -291,6 +292,7 @@ public class Complex {
      * @param x the exponent
      */
     public static Complex powGiven(Complex z, double x) {
+        if (x % 1 == 0) return polar(Math.pow(z.r, x), z.θ * x);
         return polar(Math.pow(z.r, x), z.givenθ * x);
     }
 
@@ -303,6 +305,7 @@ public class Complex {
      * @param k term
      */
     public static Complex pow(Complex z, double x, int k) {
+        if (x % 1 == 0) return polar(Math.pow(z.r, x), z.θ * x);
         return polar(Math.pow(z.r, x), (z.θ + (Math.PI * 2 * k)) * x);
     }
 
