@@ -193,7 +193,7 @@ public class Complex {
      * returns the complex logarithm based on givenθ to the base e <p>
      * since the complex log is multi-valued, it can return different numbers for the same z
      * based on the argument given at construction
-     * @param z complex argument
+     * @param z complex anti-logarithm
      */
     public static Complex logGiven(Complex z) {
         return new Complex(Math.log(z.r), z.givenθ);
@@ -201,7 +201,7 @@ public class Complex {
 
     /**
      * returns the principal complex log to the base e
-     * @param z complex argument
+     * @param z complex anti-logaritm
      */
     public static Complex log(Complex z) {
         return new Complex(Math.log(z.r), z.θ);
@@ -210,10 +210,10 @@ public class Complex {
     /**
      * returns all values of the complex logarithm in a range including the max term <p>
      * the principal log is term (value) 0
-     * @param z complex argument
+     * @param z complex anti-logarithm
      * @param min lowest term
      * @param max highest term
-     * @return array of complex values
+     * @return array of complex logarithms
      */
     public static Complex[] logRange(Complex z, int min, int max) {
         Complex[] result = new Complex[max - min + 1];
@@ -227,7 +227,7 @@ public class Complex {
     /**
      * returns a specific value of the complex logarithm at a term number k <p>
      * the principal log is term (value) 0
-     * @param z complex argument
+     * @param z complex anti-logarithm
      * @param k term number
      */
     public static Complex log(Complex z, int k) {
@@ -236,8 +236,8 @@ public class Complex {
 
     /**
      * returns the complex principal logarithm of x
-     * @param x real
-     * @return complex result
+     * @param x real anti-logarithm
+     * @return complex logarithm
      */
     public static Complex log(double x) {
         if (x == 0) throw new IllegalArgumentException();
