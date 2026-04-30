@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Parser {
 
-    private enum TokenType {
+    private static enum TokenType {
         ADD,
         SUB,
         UN_SUB,
@@ -19,40 +19,54 @@ public class Parser {
         RPAR,
         NUM,
         SIN,
+        SINH,
+        ASIN,
         COS,
+        COSH,
+        ACOS,
         TAN,
+        TANH,
+        ATAN,
+        ATAN2,
+        HYPOT,
         LN,
         LOG,
+        LOG10,
         FLOOR,
         CEIL,
         ROUND,
         SQRT,
         COMMA,
+        ABS,
+        ROOT,
     }
 
     //INFO: order by longest first for correct parsing
-    private static Map<String, TokenType> wordFunctions = new LinkedHashMap<>(
-        Map.of(
-            "floor",
-            TokenType.FLOOR,
-            "round",
-            TokenType.ROUND,
-            "ceil",
-            TokenType.CEIL,
-            "sqrt",
-            TokenType.SQRT,
-            "tan",
-            TokenType.TAN,
-            "sin",
-            TokenType.SIN,
-            "cos",
-            TokenType.COS,
-            "ln",
-            TokenType.LN
-        )
-    );
+    private static final Map<String, TokenType> wordFunctions = new LinkedHashMap<>();
 
-    private static Map<String, TokenType> multipleArguments = new LinkedHashMap<>(Map.of("log", TokenType.LOG));
+    static {
+        wordFunctions.put("log10", TokenType.LOG10);
+        wordFunctions.put("floor", TokenType.FLOOR);
+        wordFunctions.put("round", TokenType.ROUND);
+        wordFunctions.put("sinh", TokenType.SINH);
+        wordFunctions.put("cosh", TokenType.COSH);
+        wordFunctions.put("tanh", TokenType.TANH);
+        wordFunctions.put("asin", TokenType.ASIN);
+        wordFunctions.put("acos", TokenType.ACOS);
+        wordFunctions.put("atan", TokenType.ATAN);
+        wordFunctions.put("sqrt", TokenType.SQRT);
+        wordFunctions.put("ceil", TokenType.CEIL);
+        wordFunctions.put("abs", TokenType.ABS);
+        wordFunctions.put("exp", TokenType.EXP);
+        wordFunctions.put("sin", TokenType.SIN);
+        wordFunctions.put("cos", TokenType.COS);
+        wordFunctions.put("tan", TokenType.TAN);
+        wordFunctions.put("ln", TokenType.LN);
+    }
+
+    private static Map<String, TokenType> multipleArguments = new LinkedHashMap<>(
+        Map.of("atan2", TokenType.ATAN2, "hypot", TokenType.HYPOT, "log", TokenType.LOG, "root", TokenType.ROOT)
+    );
 
     private record Token(TokenType type, double value) {}
 
@@ -194,11 +208,28 @@ public class Parser {
                     args.add(evaluate());
                 }
                 expect(TokenType.RPAR);
-                if (args.size() < 2) throw new IllegalArgumentException(
-                    "too few arguments provided for multi-valued function"
-                );
+                //if (args.size() < 2) throw new IllegalArgumentException(
+                //    "too few arguments provided for multi-valued function"
+                //);
                 return switch (token) {
-                    case LOG -> Math.log(args.get(1)) / Math.log(args.get(0));
+                    case LOG -> {
+                        if (args.size() == 1) yield Math.log(args.get(0));
+                        argException(args.size(), 2, 2);
+                        yield Math.log(args.get(1)) / Math.log(args.get(0));
+                    }
+                    case ATAN2 -> {
+                        argException(args.size(), 2, 2);
+                        yield Math.atan2(args.get(0), args.get(1));
+                    }
+                    case HYPOT -> {
+                        argException(args.size(), 2, 2);
+                        yield Math.hypot(args.get(0), args.get(1));
+                    }
+                    case ROOT -> {
+                        argException(args.size(), 1, 2);
+                        if (args.size() == 1) yield Math.sqrt(args.get(0));
+                        yield Math.pow(args.get(1), 1 / args.get(0));
+                    }
                     default -> throw new IllegalArgumentException("unexpected multi-arg function: " + peek().type);
                 };
             }
@@ -212,6 +243,19 @@ public class Parser {
                 double result = par ? evaluate() : power4();
                 if (par) expect(TokenType.RPAR);
                 return switch (token) {
+                    case LOG10 -> Math.log10(result);
+                    case FLOOR -> Math.floor(result);
+                    case ROUND -> Math.round(result);
+                    case SINH -> Math.sinh(result);
+                    case COSH -> Math.cosh(result);
+                    case TANH -> Math.tanh(result);
+                    case ASIN -> Math.asin(result);
+                    case ACOS -> Math.acos(result);
+                    case ATAN -> Math.atan(result);
+                    case SQRT -> Math.sqrt(result);
+                    case CEIL -> Math.ceil(result);
+                    case ABS -> Math.abs(result);
+                    case EXP -> Math.exp(result);
                     case SIN -> Math.sin(result);
                     case COS -> Math.cos(result);
                     case LN -> Math.log(result);
@@ -220,6 +264,17 @@ public class Parser {
             }
         }
         throw new IllegalStateException("unexpected token: " + peek().type());
+    }
+
+    /**
+     * throws exceptions if there are too many or too few arguments
+     * @param amount the argument amount
+     * @param min the minimum value to not throw an exception
+     * @param max the max value to not throw an exception
+     */
+    private static void argException(int amount, int min, int max) {
+        if (amount < min) throw new IllegalArgumentException("too few arguments provided");
+        if (amount > max) throw new IllegalArgumentException("too many arguments provided");
     }
 
     private Token peek() {
