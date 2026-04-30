@@ -13,7 +13,7 @@ public class App {
         //System.out.println(Parser.tokenize("ln5"));
         //System.out.println(Parser.tokenize("sqrtxn"));
         //System.out.println(Parser.tokenize("(4*0.234^3-(exp833+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)"));
-        System.out.println(new Parser("(4*0.234^3-(exp83+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)").evaluate('x', 10));
+        System.out.println(new Parser("(4*0.234^3-(exp83+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)").eval('x', 10));
         //System.out.println(Complex.pow(new Complex(2, 0), -3, 0));
     }
 }

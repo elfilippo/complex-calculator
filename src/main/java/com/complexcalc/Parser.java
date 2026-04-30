@@ -180,7 +180,7 @@ public class Parser {
         tokens = tokenize(expression);
     }
 
-    public double evaluate(
+    public double eval(
         char var1,
         double var1val,
         char var2,
@@ -202,23 +202,24 @@ public class Parser {
         return depth1();
     }
 
-    public double evaluate() {
-        return evaluate((char) 0, 0, (char) 0, 0, (char) 0, 0, (char) 0, 0);
+    public double eval() {
+        return eval((char) 0, 0, (char) 0, 0, (char) 0, 0, (char) 0, 0);
     }
 
-    public double evaluate(char var1, double var1val) {
-        return evaluate(var1, var1val, (char) 0, 0, (char) 0, 0, (char) 0, 0);
+    public double eval(char var1, double var1val) {
+        return eval(var1, var1val, (char) 0, 0, (char) 0, 0, (char) 0, 0);
     }
 
-    public double evaluate(char var1, double var1val, char var2, double var2val) {
-        return evaluate(var1, var1val, var2, var2val, (char) 0, 0, (char) 0, 0);
+    public double eval(char var1, double var1val, char var2, double var2val) {
+        return eval(var1, var1val, var2, var2val, (char) 0, 0, (char) 0, 0);
     }
 
-    public double evaluate(char var1, double var1val, char var2, double var2val, char var3, double var3val) {
-        return evaluate(var1, var1val, var2, var2val, var3, var3val, (char) 0, 0);
+    public double eval(char var1, double var1val, char var2, double var2val, char var3, double var3val) {
+        return eval(var1, var1val, var2, var2val, var3, var3val, (char) 0, 0);
     }
 
     private double depth1() {
+        //DOES: evaluate expressions recursively based on binding power
         double result = depth2();
 
         while (check(TokenType.ADD) || check(TokenType.SUB)) {
@@ -230,7 +231,6 @@ public class Parser {
     }
 
     private double depth2() {
-        //DOES: evaluate expressions recursively based on binding power
         double result = depth3();
 
         while (check(TokenType.MULT) || check(TokenType.DIV)) {
