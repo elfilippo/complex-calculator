@@ -13,7 +13,7 @@ public class Parser {
         UN_SUB,
         MULT,
         DIV,
-        EXP,
+        POW,
         VAR,
         LPAR,
         RPAR,
@@ -39,6 +39,7 @@ public class Parser {
         COMMA,
         ABS,
         ROOT,
+        EXP,
     }
 
     private static final Map<String, TokenType> wordFunctions = new LinkedHashMap<>();
@@ -113,7 +114,7 @@ public class Parser {
                 }
                 case '*' -> tokens.add(new Token(TokenType.MULT, 2));
                 case '/' -> tokens.add(new Token(TokenType.DIV, 2));
-                case '^' -> tokens.add(new Token(TokenType.EXP, 4));
+                case '^' -> tokens.add(new Token(TokenType.POW, 4));
                 case '(' -> tokens.add(new Token(TokenType.LPAR, 5));
                 case ')' -> tokens.add(new Token(TokenType.RPAR, 5));
                 case ',' -> tokens.add(new Token(TokenType.COMMA, 0));
@@ -147,7 +148,7 @@ public class Parser {
             List.of(
                 TokenType.ADD,
                 TokenType.DIV,
-                TokenType.EXP,
+                TokenType.POW,
                 TokenType.MULT,
                 TokenType.SUB,
                 TokenType.UN_SUB,
@@ -198,14 +199,7 @@ public class Parser {
         this.var4 = var4;
         this.var4val = var4val;
 
-        double result = power1();
-
-        while (check(TokenType.ADD) || check(TokenType.SUB)) {
-            TokenType op = consume().type;
-            double right = power1();
-            result = op == TokenType.ADD ? result + right : result - right;
-        }
-        return result;
+        return depth1();
     }
 
     public double evaluate() {
@@ -224,40 +218,51 @@ public class Parser {
         return evaluate(var1, var1val, var2, var2val, var3, var3val, (char) 0, 0);
     }
 
-    private double power1() {
+    private double depth1() {
+        double result = depth2();
+
+        while (check(TokenType.ADD) || check(TokenType.SUB)) {
+            TokenType op = consume().type;
+            double right = depth2();
+            result = op == TokenType.ADD ? result + right : result - right;
+        }
+        return result;
+    }
+
+    private double depth2() {
         //DOES: evaluate expressions recursively based on binding power
-        double result = power2();
+        double result = depth3();
 
         while (check(TokenType.MULT) || check(TokenType.DIV)) {
             TokenType op = consume().type;
-            double right = power2();
+            double right = depth3();
             result = op == TokenType.MULT ? result * right : result / right;
         }
         return result;
     }
 
-    private double power2() {
+    private double depth3() {
         if (check(TokenType.UN_SUB)) {
             consume();
-            return -power2();
+            return -depth3();
         }
-        return power3();
+        return depth4();
     }
 
-    private double power3() {
-        double result = power4();
+    private double depth4() {
+        double result = depth5();
 
-        if (check(TokenType.EXP)) {
+        if (check(TokenType.POW)) {
             consume();
-            return Math.pow(result, power4());
+            return Math.pow(result, depth5());
         }
         return result;
     }
 
-    private double power4() {
+    private double depth5() {
         if (check(TokenType.LPAR)) {
             consume();
-            double result = evaluate();
+            double result = depth1();
             expect(TokenType.RPAR);
             return result;
         }
@@ -291,10 +296,10 @@ public class Parser {
                 consume();
                 expect(TokenType.LPAR);
                 List<Double> args = new ArrayList<>();
-                args.add(evaluate());
+                args.add(depth1());
                 while (check(TokenType.COMMA)) {
                     consume();
-                    args.add(evaluate());
+                    args.add(depth1());
                 }
                 expect(TokenType.RPAR);
 
@@ -327,7 +332,7 @@ public class Parser {
                 consume();
                 boolean par = check(TokenType.LPAR);
                 if (par) consume();
-                double result = par ? evaluate() : power4();
+                double result = par ? depth1() : depth5();
                 if (par) expect(TokenType.RPAR);
                 return switch (token) {
                     case LOG10 -> Math.log10(result);
