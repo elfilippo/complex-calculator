@@ -64,6 +64,15 @@ public class Parser {
         wordFunctions.put("ln", TokenType.LN);
     }
 
+    private char var1;
+    private double var1val;
+    private char var2;
+    private double var2val;
+    private char var3;
+    private double var3val;
+    private char var4;
+    private double var4val;
+
     private static Map<String, TokenType> multipleArguments = new LinkedHashMap<>(
         Map.of("atan2", TokenType.ATAN2, "hypot", TokenType.HYPOT, "log", TokenType.LOG, "root", TokenType.ROOT)
     );
@@ -133,6 +142,22 @@ public class Parser {
             }
         }
         if (digitStart != -1) tokens.add(new Token(TokenType.NUM, Double.parseDouble(s.substring(digitStart))));
+
+        List<TokenType> allowedToEnd = new ArrayList<>(
+            List.of(TokenType.ADD, TokenType.DIV, TokenType.EXP, TokenType.MULT, TokenType.SUB, TokenType.UN_SUB)
+        );
+
+        for (int i = 0; i < tokens.size() - 1; i++) {
+            if (!allowedToEnd.contains(tokens.get(i).type) && !allowedToEnd.contains(tokens.get(i + 1).type)) {
+                if (
+                    wordFunctions.containsValue(tokens.get(i).type) ||
+                    TokenType.LPAR == tokens.get(i).type ||
+                    TokenType.RPAR == tokens.get(i + 1).type
+                ) continue;
+                tokens.add(i + 1, new Token(TokenType.MULT, 2));
+                i++;
+            }
+        }
         return tokens;
     }
 
@@ -145,7 +170,25 @@ public class Parser {
         tokens = tokenize(expression);
     }
 
-    public double evaluate() {
+    public double evaluate(
+        char var1,
+        double var1val,
+        char var2,
+        double var2val,
+        char var3,
+        double var3val,
+        char var4,
+        double var4val
+    ) {
+        this.var1 = var1;
+        this.var1val = var1val;
+        this.var2 = var2;
+        this.var2val = var2val;
+        this.var3 = var3;
+        this.var3val = var3val;
+        this.var4 = var4;
+        this.var4val = var4val;
+
         double result = power1();
 
         while (check(TokenType.ADD) || check(TokenType.SUB)) {
@@ -156,8 +199,24 @@ public class Parser {
         return result;
     }
 
-    //DOES: evaluate expressions recursively based on binding power
+    public double evaluate() {
+        return evaluate((char) 0, 0, (char) 0, 0, (char) 0, 0, (char) 0, 0);
+    }
+
+    public double evaluate(char var1, double var1val) {
+        return evaluate(var1, var1val, (char) 0, 0, (char) 0, 0, (char) 0, 0);
+    }
+
+    public double evaluate(char var1, double var1val, char var2, double var2val) {
+        return evaluate(var1, var1val, var2, var2val, (char) 0, 0, (char) 0, 0);
+    }
+
+    public double evaluate(char var1, double var1val, char var2, double var2val, char var3, double var3val) {
+        return evaluate(var1, var1val, var2, var2val, var3, var3val, (char) 0, 0);
+    }
+
     private double power1() {
+        //DOES: evaluate expressions recursively based on binding power
         double result = power2();
 
         while (check(TokenType.MULT) || check(TokenType.DIV)) {
@@ -193,8 +252,29 @@ public class Parser {
             expect(TokenType.RPAR);
             return result;
         }
+
         if (check(TokenType.NUM)) {
             return consume().value;
+        }
+
+        if (check(TokenType.VAR)) {
+            if (peek().value == var1) {
+                consume();
+                return var1val;
+            }
+            if (peek().value == var2) {
+                consume();
+                return var2val;
+            }
+            if (peek().value == var3) {
+                consume();
+                return var3val;
+            }
+            if (peek().value == var4) {
+                consume();
+                return var4val;
+            }
+            throw new IllegalArgumentException("unknown variable: " + (char) peek().value);
         }
 
         for (TokenType token : multipleArguments.values()) {
@@ -208,9 +288,7 @@ public class Parser {
                     args.add(evaluate());
                 }
                 expect(TokenType.RPAR);
-                //if (args.size() < 2) throw new IllegalArgumentException(
-                //    "too few arguments provided for multi-valued function"
-                //);
+
                 return switch (token) {
                     case LOG -> {
                         if (args.size() == 1) yield Math.log(args.get(0));
