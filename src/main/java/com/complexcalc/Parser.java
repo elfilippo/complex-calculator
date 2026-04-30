@@ -41,10 +41,10 @@ public class Parser {
         ROOT,
     }
 
-    //INFO: order by longest first for correct parsing
     private static final Map<String, TokenType> wordFunctions = new LinkedHashMap<>();
 
     static {
+        //INFO: order by longest first for correct parsing
         wordFunctions.put("log10", TokenType.LOG10);
         wordFunctions.put("floor", TokenType.FLOOR);
         wordFunctions.put("round", TokenType.ROUND);
@@ -144,13 +144,22 @@ public class Parser {
         if (digitStart != -1) tokens.add(new Token(TokenType.NUM, Double.parseDouble(s.substring(digitStart))));
 
         List<TokenType> allowedToEnd = new ArrayList<>(
-            List.of(TokenType.ADD, TokenType.DIV, TokenType.EXP, TokenType.MULT, TokenType.SUB, TokenType.UN_SUB)
+            List.of(
+                TokenType.ADD,
+                TokenType.DIV,
+                TokenType.EXP,
+                TokenType.MULT,
+                TokenType.SUB,
+                TokenType.UN_SUB,
+                TokenType.COMMA
+            )
         );
 
         for (int i = 0; i < tokens.size() - 1; i++) {
             if (!allowedToEnd.contains(tokens.get(i).type) && !allowedToEnd.contains(tokens.get(i + 1).type)) {
                 if (
                     wordFunctions.containsValue(tokens.get(i).type) ||
+                    multipleArguments.containsValue(tokens.get(i).type) ||
                     TokenType.LPAR == tokens.get(i).type ||
                     TokenType.RPAR == tokens.get(i + 1).type
                 ) continue;
