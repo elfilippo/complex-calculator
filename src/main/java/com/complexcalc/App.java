@@ -65,11 +65,18 @@ public class App {
             System.out.println(new ComplexEvaluator(expression).eval());
         }
 
-        var expression = new ComplexEvaluator("((2-i)^(3+2i))/(1+i)^2");
+        var expression1 = new ComplexEvaluator("((2-i)^(3+2i))/(1+i)^2");
+        var expression2 = new Evaluator("((2-i)^(3+2i))/(1+i)^2");
 
         long startingTime = System.nanoTime();
-        for (int i = 0; i < 40; i++) {
-            expression.eval();
+        for (int i = 0; i < 400; i++) {
+            expression1.eval();
+        }
+        System.out.println((System.nanoTime() - startingTime) / 1000 + "ns");
+
+        startingTime = System.nanoTime();
+        for (int i = 0; i < 400; i++) {
+            expression2.eval('i', 5);
         }
         System.out.println((System.nanoTime() - startingTime) / 1000 + "ns");
     }

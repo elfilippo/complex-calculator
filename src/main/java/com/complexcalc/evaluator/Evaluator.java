@@ -42,6 +42,8 @@ public class Evaluator {
         this.var4 = var4;
         this.var4val = var4val;
 
+        pos = 0;
+
         return depth1();
     }
 
