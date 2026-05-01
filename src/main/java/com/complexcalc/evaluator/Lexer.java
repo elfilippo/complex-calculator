@@ -21,15 +21,29 @@ public class Lexer {
         SIN,
         SINH,
         ASIN,
+        ASINH,
         COS,
         COSH,
         ACOS,
+        ACOSH,
         TAN,
         TANH,
         ATAN,
+        ATANH,
+        COT,
+        COTH,
+        ACOT,
+        ACOTH,
+        CSC,
+        CSCH,
+        ACSC,
+        ACSCH,
+        SEC,
+        SECH,
+        ASEC,
+        ASECH,
         ATAN2,
         HYPOT,
-        LN,
         LOG,
         LOG10,
         FLOOR,
@@ -40,34 +54,76 @@ public class Lexer {
         ABS,
         ROOT,
         EXP,
+        CONJ,
     }
 
     static final Map<String, TokenType> wordFunctions = new LinkedHashMap<>();
 
     static {
         //INFO: order by longest first for correct parsing
+        wordFunctions.put("arcsinh", TokenType.ASINH);
+        wordFunctions.put("arccosh", TokenType.ACOSH);
+        wordFunctions.put("arctanh", TokenType.ATANH);
+        wordFunctions.put("arccoth", TokenType.ACOTH);
+        wordFunctions.put("arcsech", TokenType.ASECH);
+        wordFunctions.put("arccsch", TokenType.ACSCH);
+
+        wordFunctions.put("arcsin", TokenType.ASIN);
+        wordFunctions.put("arccos", TokenType.ACOS);
+        wordFunctions.put("arctan", TokenType.ATAN);
+        wordFunctions.put("arccot", TokenType.ACOT);
+        wordFunctions.put("arcsec", TokenType.ASEC);
+        wordFunctions.put("arccsc", TokenType.ACSC);
+
         wordFunctions.put("log10", TokenType.LOG10);
+
         wordFunctions.put("floor", TokenType.FLOOR);
         wordFunctions.put("round", TokenType.ROUND);
+
+        wordFunctions.put("asinh", TokenType.ASINH);
+        wordFunctions.put("acosh", TokenType.ACOSH);
+        wordFunctions.put("atanh", TokenType.ATANH);
+        wordFunctions.put("acoth", TokenType.ACOTH);
+        wordFunctions.put("asech", TokenType.ASECH);
+        wordFunctions.put("acsch", TokenType.ACSCH);
+
         wordFunctions.put("sinh", TokenType.SINH);
         wordFunctions.put("cosh", TokenType.COSH);
         wordFunctions.put("tanh", TokenType.TANH);
+        wordFunctions.put("coth", TokenType.COTH);
+        wordFunctions.put("sech", TokenType.SECH);
+        wordFunctions.put("csch", TokenType.CSCH);
+
         wordFunctions.put("asin", TokenType.ASIN);
         wordFunctions.put("acos", TokenType.ACOS);
         wordFunctions.put("atan", TokenType.ATAN);
+        wordFunctions.put("acot", TokenType.ACOT);
+        wordFunctions.put("asec", TokenType.ASEC);
+        wordFunctions.put("acsc", TokenType.ACSC);
+
         wordFunctions.put("sqrt", TokenType.SQRT);
         wordFunctions.put("ceil", TokenType.CEIL);
+        wordFunctions.put("conj", TokenType.CONJ);
+
         wordFunctions.put("abs", TokenType.ABS);
         wordFunctions.put("exp", TokenType.EXP);
+
         wordFunctions.put("sin", TokenType.SIN);
         wordFunctions.put("cos", TokenType.COS);
         wordFunctions.put("tan", TokenType.TAN);
-        wordFunctions.put("ln", TokenType.LN);
+        wordFunctions.put("cot", TokenType.COT);
+        wordFunctions.put("sec", TokenType.SEC);
+        wordFunctions.put("csc", TokenType.CSC);
+
+        wordFunctions.put("log", TokenType.LOG);
+        wordFunctions.put("ln", TokenType.LOG);
     }
 
     static Map<String, TokenType> multipleArguments = new LinkedHashMap<>(
         Map.of("atan2", TokenType.ATAN2, "hypot", TokenType.HYPOT, "log", TokenType.LOG, "root", TokenType.ROOT)
     );
+
+    static Map<String, TokenType> complexOperations = new LinkedHashMap<>(Map.of("conj", TokenType.CONJ));
 
     record Token(TokenType type, double value) {}
 

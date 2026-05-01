@@ -126,6 +126,22 @@ public class FastComplex {
     }
 
     /**
+     * returns a new complex with the floor of both parts of complex z
+     * @param z complex argument
+     */
+    public static FastComplex floor(FastComplex z) {
+        return new FastComplex(Math.floor(z.a), Math.floor(z.b));
+    }
+
+    /**
+     * returns a new complex with the ceiling of both parts of complex z
+     * @param z complex argument
+     */
+    public static FastComplex ceil(FastComplex z) {
+        return new FastComplex(Math.ceil(z.a), Math.ceil(z.b));
+    }
+
+    /**
      * returns the product of two complex numbers
      * @param z complex factor
      * @param w complex factor
@@ -368,19 +384,19 @@ public class FastComplex {
     }
 
     /**
-     * returns the cosine of a complex z
-     * @param z complex argument
-     */
-    public static FastComplex cos(FastComplex z) {
-        return sub(Math.cos(z.a) * Math.cosh(z.b), new FastComplex(0, Math.sin(z.a) * Math.sinh(z.b)));
-    }
-
-    /**
      * returns the sine of a complex z
      * @param z complex argument
      */
     public static FastComplex sin(FastComplex z) {
         return new FastComplex(Math.sin(z.a) * Math.cosh(z.b), Math.cos(z.a) * Math.sinh(z.b));
+    }
+
+    /**
+     * returns the cosine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex cos(FastComplex z) {
+        return sub(Math.cos(z.a) * Math.cosh(z.b), new FastComplex(0, Math.sin(z.a) * Math.sinh(z.b)));
     }
 
     /**
@@ -440,7 +456,7 @@ public class FastComplex {
      * @param z complex argument
      */
     public static FastComplex tanh(FastComplex z) {
-        return div(new FastComplex(Math.tanh(z.a), Math.tan(z.b)), new FastComplex(1, Math.tanh(z.a) * Math.tan(z.b)));
+        return div(sinh(z), cosh(z));
     }
 
     /**
@@ -488,7 +504,7 @@ public class FastComplex {
      * @param z complex argument
      */
     public static FastComplex atan(FastComplex z) {
-        return div(mult(new FastComplex(0, 0.5), log(add(i(), z))), sub(i(), z));
+        return mult(new FastComplex(0, 0.5), log(div(add(i(), z), sub(i(), z))));
     }
 
     /**
@@ -520,7 +536,7 @@ public class FastComplex {
      * @param z complex argument
      */
     public static FastComplex asinh(FastComplex z) {
-        return mult(new FastComplex(0, -1), asin(mult(i(), z)));
+        return log(add(z, sqrt(add(sqr(z), 1))));
     }
 
     /**
@@ -569,7 +585,7 @@ public class FastComplex {
      * @return conjugate
      */
     public static FastComplex conjugate(FastComplex z) {
-        return new FastComplex(z.a, -z.b);
+        return new FastComplex(z.a, z.b == 0 ? 0 : -z.b);
     }
 
     /**

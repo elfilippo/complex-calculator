@@ -194,6 +194,7 @@ public class Evaluator {
                 return switch (token) {
                     case LOG10 -> Math.log10(result);
                     case FLOOR -> Math.floor(result);
+                    case CEIL -> Math.ceil(result);
                     case ROUND -> Math.round(result);
                     case SINH -> Math.sinh(result);
                     case COSH -> Math.cosh(result);
@@ -202,13 +203,17 @@ public class Evaluator {
                     case ACOS -> Math.acos(result);
                     case ATAN -> Math.atan(result);
                     case SQRT -> Math.sqrt(result);
-                    case CEIL -> Math.ceil(result);
                     case ABS -> Math.abs(result);
                     case EXP -> Math.exp(result);
                     case SIN -> Math.sin(result);
                     case COS -> Math.cos(result);
-                    case LN -> Math.log(result);
-                    default -> throw new IllegalArgumentException("unexpected word function: got " + peek().type());
+                    case LOG -> Math.log(result);
+                    default -> {
+                        if (Lexer.complexOperations.containsValue(token)) throw new IllegalArgumentException(
+                            "encountered complex operation evaluating for real numbers"
+                        );
+                        else throw new IllegalArgumentException("unexpected word function: got " + peek().type());
+                    }
                 };
             }
         }
