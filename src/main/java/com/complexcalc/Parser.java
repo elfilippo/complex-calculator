@@ -171,12 +171,10 @@ public class Parser {
         return tokens;
     }
 
-    String s;
-    List<Token> tokens;
-    int pos = 0;
+    private List<Token> tokens;
+    private int pos = 0;
 
     public Parser(String expression) {
-        s = expression;
         tokens = tokenize(expression);
     }
 
@@ -272,6 +270,10 @@ public class Parser {
         }
 
         if (check(TokenType.VAR)) {
+            if (peek().value == 'e') {
+                consume();
+                return Math.E;
+            }
             if (peek().value == var1) {
                 consume();
                 return var1val;
