@@ -1,6 +1,8 @@
 package com.complexcalc;
 
+import com.complexcalc.evaluator.ComplexEvaluator;
 import com.complexcalc.evaluator.Evaluator;
+import com.complexcalc.evaluator.Lexer;
 
 /**
  * Hello world!
@@ -12,8 +14,63 @@ public class App {
         //System.out.println(Character.isAlphabetic('π'));
         //System.out.println(Parser.tokenize("sqrtxn"));
         //System.out.println(Parser.tokenize("(4*0.234^3-(exp833+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)"));
-        System.out.println(new Evaluator("(4*0.234^3-(exp83+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)").eval('x', 10));
+        //System.out.println(new Evaluator("(4*0.234^3-(exp83+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)").eval('x', 10));
         //System.out.println(Complex.pow(new Complex(2, 0), -3, 0));
         //System.out.println(new Parser("τ").eval());
+        String[] tests = {
+            "2+3",
+            "2+3*4",
+            "(2+3)*4",
+            "-5+2",
+            "--5",
+            "-(3+2)",
+            "i",
+            "2i",
+            "i*i",
+            "i^2",
+            "i^3",
+            "i^4",
+            "1/i",
+            "(i+1)(i-1)",
+            "(2+3i)+(4-5i)",
+            "(2+3i)-(4-5i)",
+            "(2+3i)(4-5i)",
+            "(3+4i)/(1-2i)",
+            "(5-2i)/(3+i)",
+            "(1+i)^2",
+            "(1+i)^3",
+            "(1+i)^4",
+            "(2-3i)^2",
+            "(2-3i)^3",
+            "(1+i)^0.5",
+            "(-1)^0.5",
+            "(-8)^(1.0/3)",
+            "(1+i)^i",
+            "i^i",
+            "(2+3i)^(1+i)",
+            "(1-i)^(2+i)",
+            "2^3^2",
+            "-2^2",
+            "(-2)^2",
+            "1+2*3^2",
+            "(1+2i)^2+3(2-i)",
+            "0^0",
+            "1/0",
+            "((2-i)^(3+2i))/(1+i)^2",
+        };
+
+        String[] problems = { "(-1)^0.5", "(-8)^(1/3)", "2^3^2" };
+
+        for (String expression : problems) {
+            System.out.println(new ComplexEvaluator(expression).eval());
+        }
+
+        var expression = new ComplexEvaluator("((2-i)^(3+2i))/(1+i)^2");
+
+        long startingTime = System.nanoTime();
+        for (int i = 0; i < 40; i++) {
+            expression.eval();
+        }
+        System.out.println((System.nanoTime() - startingTime) / 1000 + "ns");
     }
 }

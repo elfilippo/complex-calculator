@@ -38,6 +38,10 @@ public class FastComplex {
         return Math.atan2(b, a);
     }
 
+    public static FastComplex invert(FastComplex z) {
+        return new FastComplex(-z.a, z.b == 0 ? 0 : -z.b);
+    }
+
     /**
      * returns the sum of two complex numbers
      * @param z summand
@@ -222,7 +226,9 @@ public class FastComplex {
      * @param w complex exponent
      */
     public static FastComplex pow(FastComplex z, FastComplex w) {
-        return (polar(Math.exp(w.a * Math.log(z.mag()) - w.b * z.arg()), w.b * Math.log(z.mag()) + w.a * z.arg()));
+        double mag = z.mag();
+        double arg = z.arg();
+        return (polar(Math.exp(w.a * Math.log(mag) - w.b * arg), w.b * Math.log(mag) + w.a * arg));
     }
 
     /**
@@ -234,11 +240,13 @@ public class FastComplex {
      * @param k term number
      */
     public static FastComplex pow(FastComplex z, FastComplex w, int k) {
-        if (w.isReal() && w.a % 1 == 0) return polar(Math.pow(z.mag(), w.a), z.arg() * w.a);
+        double arg = z.arg();
+        double mag = z.mag();
+        if (w.isReal() && w.a % 1 == 0) return polar(Math.pow(mag, w.a), arg * w.a);
         return (
             polar(
-                Math.exp(w.a * Math.log(z.mag()) - w.b * (z.arg() + 2 * Math.PI * k)),
-                w.b * Math.log(z.mag()) + w.a * (z.arg() + 2 * Math.PI * k)
+                Math.exp(w.a * Math.log(mag) - w.b * (arg + 2 * Math.PI * k)),
+                w.b * Math.log(mag) + w.a * (arg + 2 * Math.PI * k)
             )
         );
     }
@@ -252,8 +260,10 @@ public class FastComplex {
      * @param k term
      */
     public static FastComplex pow(FastComplex z, double x, int k) {
-        if (x % 1 == 0) return polar(Math.pow(z.mag(), x), z.arg() * x);
-        return polar(Math.pow(z.mag(), x), (z.arg() + (Math.PI * 2 * k)) * x);
+        double mag = z.mag();
+        double arg = z.arg();
+        if (x % 1 == 0) return polar(Math.pow(mag, x), arg * x);
+        return polar(Math.pow(mag, x), (arg + (Math.PI * 2 * k)) * x);
     }
 
     /**
@@ -316,8 +326,12 @@ public class FastComplex {
      */
     @Override
     public String toString() {
+        double a = this.a;
+        double b = this.b;
+        if (Math.abs(this.a - Math.round(this.a)) < 1e-10) a = Math.round(a);
+        if (Math.abs(this.b - Math.round(this.b)) < 1e-10) b = Math.round(b);
         if (b == 0) return truncateWhole(a);
-        if (a == 0) return (b < 0 ? "-" : "") + truncateWhole(Math.abs(b)) + "i";
+        if (a == 0) return (b < 0 ? "-" : "") + (Math.abs(b) == 1 ? "" : truncateWhole(Math.abs(b))) + "i";
 
         if (b < 0) return truncateWhole(a) + " - " + truncateWhole(Math.abs(b)) + "i";
         return truncateWhole(a) + " + " + truncateWhole(Math.abs(b)) + "i";

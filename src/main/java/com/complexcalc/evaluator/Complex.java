@@ -2,6 +2,8 @@ package com.complexcalc.evaluator;
 
 import java.lang.Math;
 
+//TODO: carry over improvements from FastComplex
+
 public class Complex {
 
     /**

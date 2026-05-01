@@ -213,44 +213,6 @@ public class Evaluator {
         throw new IllegalStateException("unexpected token: " + peek().type());
     }
 
-    public double complexEval(
-        char var1,
-        double var1val,
-        char var2,
-        double var2val,
-        char var3,
-        double var3val,
-        char var4,
-        double var4val
-    ) {
-        this.var1 = var1;
-        this.var1val = var1val;
-        this.var2 = var2;
-        this.var2val = var2val;
-        this.var3 = var3;
-        this.var3val = var3val;
-        this.var4 = var4;
-        this.var4val = var4val;
-
-        return depth1();
-    }
-
-    public double complexEval() {
-        return complexEval((char) 0, 0, (char) 0, 0, (char) 0, 0, (char) 0, 0);
-    }
-
-    public double complexEval(char var1, double var1val) {
-        return complexEval(var1, var1val, (char) 0, 0, (char) 0, 0, (char) 0, 0);
-    }
-
-    public double complexEval(char var1, double var1val, char var2, double var2val) {
-        return complexEval(var1, var1val, var2, var2val, (char) 0, 0, (char) 0, 0);
-    }
-
-    public double complexEval(char var1, double var1val, char var2, double var2val, char var3, double var3val) {
-        return complexEval(var1, var1val, var2, var2val, var3, var3val, (char) 0, 0);
-    }
-
     /**
      * throws exceptions if there are too many or too few arguments
      * @param amount the argument amount
