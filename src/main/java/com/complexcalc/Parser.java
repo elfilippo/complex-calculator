@@ -274,6 +274,14 @@ public class Parser {
                 consume();
                 return Math.E;
             }
+            if (peek().value == 'π') {
+                consume();
+                return Math.PI;
+            }
+            if (peek().value == 'τ') {
+                consume();
+                return Math.TAU;
+            }
             if (peek().value == var1) {
                 consume();
                 return var1val;
