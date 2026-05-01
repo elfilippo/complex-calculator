@@ -24,6 +24,13 @@ public class FastComplex {
     }
 
     /**
+     * returns i in the form of a complex
+     */
+    public static FastComplex i() {
+        return new FastComplex(0, 1);
+    }
+
+    /**
      * returns a full Complex with polar coordinates
      */
     public Complex full() {
@@ -108,6 +115,14 @@ public class FastComplex {
         if (z.a < 0 && z.b >= 0) return 2;
         if (z.a <= 0 && z.b <= 0) return 3;
         return 4;
+    }
+
+    /**
+     * returns rounded real and imaginary parts of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex round(FastComplex z) {
+        return new FastComplex(Math.round(z.a), Math.round(z.b));
     }
 
     /**
@@ -208,6 +223,23 @@ public class FastComplex {
     }
 
     /**
+     * returns the principal logarithm of w to the base of z
+     * @param z complex base
+     * @param w complex anti-logarithm
+     */
+    public static FastComplex log(FastComplex z, FastComplex w) {
+        return div(log(w), log(z));
+    }
+
+    /**
+     * returns the principal logarithm of z to base 10
+     * @param z complex anti-logarithm
+     */
+    public static FastComplex log10(FastComplex z) {
+        return div(log(z), Math.log(10));
+    }
+
+    /**
      * returns the principal result of complex z raised to real x <p>
      * since complex exponentiation is multi-valued for non-integers, this returns
      * the principal result based on normalized θ (-π < θ <= π)
@@ -286,10 +318,18 @@ public class FastComplex {
 
     /**
      * returns the principal square root of a complex z
-     * @param z complex
+     * @param z complex radicand
      */
     public static FastComplex sqrt(FastComplex z) {
         return pow(z, 0.5);
+    }
+
+    /**
+     * returns the principal square of a complex z
+     * @param z complex base
+     */
+    public static FastComplex sqr(FastComplex z) {
+        return pow(z, 2);
     }
 
     /**
@@ -364,6 +404,22 @@ public class FastComplex {
     }
 
     /**
+     * returns the secant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex sec(FastComplex z) {
+        return div(1, cos(z));
+    }
+
+    /**
+     * returns the cosecant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex csc(FastComplex z) {
+        return div(1, sin(z));
+    }
+
+    /**
      * returns the hyperbolic sine of a complex z
      * @param z complex argument
      */
@@ -392,12 +448,124 @@ public class FastComplex {
      * @param z complex argument
      */
     public static FastComplex coth(FastComplex z) {
-        return div(1, tanh(z));
+        return div(cosh(z), sinh(z));
+    }
+
+    /**
+     * returns the hyperbolic secant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex sech(FastComplex z) {
+        return div(1, cosh(z));
+    }
+
+    /**
+     * returns the hyperbolic cosecant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex csch(FastComplex z) {
+        return div(1, sinh(z));
+    }
+
+    /**
+     * returns the inverse sine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex asin(FastComplex z) {
+        return mult(new FastComplex(0, -1), log(add(mult(i(), z), sqrt(sub(1, sqr(z))))));
+    }
+
+    /**
+     * returns the inverse cosine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex acos(FastComplex z) {
+        return mult(new FastComplex(0, -1), log(add(z, sqrt(sub(sqr(z), 1)))));
+    }
+
+    /**
+     * returns the inverse tangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex atan(FastComplex z) {
+        return div(mult(new FastComplex(0, 0.5), log(add(i(), z))), sub(i(), z));
+    }
+
+    /**
+     * returns the inverse cotangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex acot(FastComplex z) {
+        return div(mult(new FastComplex(0, 0.5), log(sub(z, i()))), add(i(), z));
+    }
+
+    /**
+     * returns the inverse secant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex asec(FastComplex z) {
+        return acos(div(1, z));
+    }
+
+    /**
+     * returns the inverse cosecant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex acsc(FastComplex z) {
+        return asin(div(1, z));
+    }
+
+    /**
+     * returns the inverse hyperbolic sine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex asinh(FastComplex z) {
+        return mult(new FastComplex(0, -1), asin(mult(i(), z)));
+    }
+
+    /**
+     * returns the inverse hyperbolic cotsine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex acosh(FastComplex z) {
+        return log(add(z, sqrt(sub(sqr(z), 1))));
+    }
+
+    /**
+     * returns the inverse hyperbolic tangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex atanh(FastComplex z) {
+        return mult(new FastComplex(0, -1), atan(mult(i(), z)));
+    }
+
+    /**
+     * returns the inverse hyperbolic cotangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex acoth(FastComplex z) {
+        return atanh(div(1, z));
+    }
+
+    /**
+     * returns the inverse hyperbolic secant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex asech(FastComplex z) {
+        return acosh(div(1, z));
+    }
+
+    /**
+     * returns the inverse hyperbolic cosecant of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex acsch(FastComplex z) {
+        return asinh(div(1, z));
     }
 
     /**
      * returns the conjugate of the number (inverse of b)
-     * @param z complex
+     * @param z complex argument
      * @return conjugate
      */
     public static FastComplex conjugate(FastComplex z) {

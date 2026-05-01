@@ -202,14 +202,14 @@ public class ComplexEvaluator {
                 FastComplex result = par ? depth1() : depth5();
                 if (par) expect(TokenType.RPAR);
                 return switch (token) {
-                    // case LOG10 -> FastComplex.log10(result);
+                    case LOG10 -> FastComplex.log10(result);
                     // case ROUND -> FastComplex.round(result);
                     case SINH -> FastComplex.sinh(result);
                     case COSH -> FastComplex.cosh(result);
                     case TANH -> FastComplex.tanh(result);
-                    // case ASIN -> FastComplex.asin(result);
-                    // case ACOS -> FastComplex.acos(result);
-                    // case ATAN -> FastComplex.atan(result);
+                    case ASIN -> FastComplex.asin(result);
+                    case ACOS -> FastComplex.acos(result);
+                    case ATAN -> FastComplex.atan(result);
                     case SQRT -> FastComplex.sqrt(result);
                     case ABS -> new FastComplex(result.mag(), 0);
                     case EXP -> FastComplex.exp(result);
