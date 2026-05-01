@@ -1,15 +1,61 @@
-package com.complexcalc;
+package com.complexcalc.evaluator;
 
-/**
- * complex number class that is faster by only calculating polar coordinates when needed
- */
-public class FastComplex {
+import java.lang.Math;
 
-    public final double a, b;
+public class Complex {
 
-    public FastComplex(double a, double b) {
-        this.a = a;
-        this.b = b;
+    /**
+     * the real part
+     */
+    public final double a;
+
+    /**
+     * the imaginary part
+     */
+    public final double b;
+
+    /**
+     * the magnitude
+     */
+    public final double r;
+
+    /**
+     * the normalized argument
+     */
+    public final double θ;
+
+    /**
+     * the argument given at construction time <p>
+     * relevant for multi-valued functions like the complex logarithm <p>
+     * default (normalized) if constructed in rectangular form <p>
+     * only to be used when created manually by polar form <p>
+     * NOT PRESERVED IN MOST OPERATIONS
+     */
+    public final double givenθ;
+
+    /**
+     * returns a new complex number from the cartesian form input a + bi
+     * @param real the real part (a)
+     * @param imaginary the imaginary part (b)
+     */
+    public Complex(double real, double imaginary) {
+        this(real, imaginary, Math.hypot(real, imaginary), Math.atan2(imaginary, real));
+    }
+
+    /**
+     * class-intern constructor for all parameters of complex number.
+     * private to prevent value mismatches by user error.
+     * @param real a
+     * @param imaginary b
+     * @param magnitude r
+     * @param argument θ
+     */
+    private Complex(double real, double imaginary, double magnitude, double argument) {
+        a = real;
+        b = imaginary;
+        r = magnitude;
+        givenθ = argument;
+        θ = Math.atan2(imaginary, real);
     }
 
     /**
@@ -17,25 +63,10 @@ public class FastComplex {
      * @param magnitude r
      * @param argument θ
      */
-    public static FastComplex polar(double magnitude, double argument) {
+    public static Complex polar(double magnitude, double argument) {
         double a = magnitude * Math.cos(argument);
         double b = magnitude * Math.sin(argument);
-        return new FastComplex(a, b);
-    }
-
-    /**
-     * returns a full Complex with polar coordinates
-     */
-    public Complex full() {
-        return new Complex(a, b);
-    }
-
-    public double mag() {
-        return Math.hypot(a, b);
-    }
-
-    public double arg() {
-        return Math.atan2(b, a);
+        return new Complex(a, b, magnitude, argument);
     }
 
     /**
@@ -43,8 +74,8 @@ public class FastComplex {
      * @param z summand
      * @param w summand
      */
-    public static FastComplex add(FastComplex z, FastComplex w) {
-        return new FastComplex(z.a + w.a, z.b + w.b);
+    public static Complex add(Complex z, Complex w) {
+        return new Complex(z.a + w.a, z.b + w.b);
     }
 
     /**
@@ -53,8 +84,8 @@ public class FastComplex {
      * @param x real summand
      * @return complex sum
      */
-    public static FastComplex add(FastComplex z, double x) {
-        return new FastComplex(z.a + x, z.b);
+    public static Complex add(Complex z, double x) {
+        return new Complex(z.a + x, z.b);
     }
 
     /**
@@ -63,8 +94,8 @@ public class FastComplex {
      * @param w complex subtrahend
      * @return complex difference
      */
-    public static FastComplex sub(FastComplex z, FastComplex w) {
-        return new FastComplex(z.a - w.a, z.b - w.b);
+    public static Complex sub(Complex z, Complex w) {
+        return new Complex(z.a - w.a, z.b - w.b);
     }
 
     /**
@@ -73,8 +104,8 @@ public class FastComplex {
      * @param x real subtrahend
      * @return complex difference
      */
-    public static FastComplex sub(FastComplex z, double x) {
-        return new FastComplex(z.a - x, z.b);
+    public static Complex sub(Complex z, double x) {
+        return new Complex(z.a - x, z.b);
     }
 
     /**
@@ -83,8 +114,8 @@ public class FastComplex {
      * @param z complex subtrahend
      * @return complex difference
      */
-    public static FastComplex sub(double x, FastComplex z) {
-        return new FastComplex(x - z.a, -z.b);
+    public static Complex sub(double x, Complex z) {
+        return new Complex(x - z.a, -z.b);
     }
 
     /**
@@ -99,7 +130,7 @@ public class FastComplex {
      * considers numbers on the axes as part of the lowest numbered quadrant they're in <p>
      * quadrants are numbered counterclockwise starting from the positive real and positive imaginary
      */
-    public static int quadrant(FastComplex z) {
+    public static int quadrant(Complex z) {
         if (z.a >= 0 && z.b >= 0) return 1;
         if (z.a < 0 && z.b >= 0) return 2;
         if (z.a <= 0 && z.b <= 0) return 3;
@@ -107,13 +138,13 @@ public class FastComplex {
     }
 
     /**
-     * returns the product of two complex numbers
+     * returns the product of two complex numbers with the arguments given at construction
      * @param z complex factor
      * @param w complex factor
      * @return complex product
      */
-    public static FastComplex mult(FastComplex z, FastComplex w) {
-        return new FastComplex(z.a * w.a - z.b * w.b, z.a * w.b + z.b * w.a);
+    public static Complex mult(Complex z, Complex w) {
+        return polar(z.r * w.r, z.givenθ + w.givenθ);
     }
 
     /**
@@ -122,8 +153,8 @@ public class FastComplex {
      * @param x real scalar
      * @return complex product
      */
-    public static FastComplex mult(FastComplex z, double x) {
-        return new FastComplex(x * z.a, x * z.b);
+    public static Complex mult(Complex z, double x) {
+        return new Complex(x * z.a, x * z.b);
     }
 
     /**
@@ -132,10 +163,10 @@ public class FastComplex {
      * @param w complex divisor
      * @return complex quotient
      */
-    public static FastComplex div(FastComplex z, FastComplex w) {
+    public static Complex div(Complex z, Complex w) {
         double real = (z.a * w.a + z.b * w.b) / (w.a * w.a + w.b * w.b);
         double imaginary = (z.b * w.a - z.a * w.b) / (w.a * w.a + w.b * w.b);
-        return new FastComplex(real, imaginary);
+        return new Complex(real, imaginary);
     }
 
     /**
@@ -144,8 +175,8 @@ public class FastComplex {
      * @param x real divisor
      * @return complex quotient
      */
-    public static FastComplex div(FastComplex z, double x) {
-        return new FastComplex(z.a / x, z.b / x);
+    public static Complex div(Complex z, double x) {
+        return new Complex(z.a / x, z.b / x);
     }
 
     /**
@@ -154,16 +185,26 @@ public class FastComplex {
      * @param z complex divisor
      * @return complex quotient
      */
-    public static FastComplex div(double x, FastComplex z) {
-        return new FastComplex(x / z.a, x / z.b);
+    public static Complex div(double x, Complex z) {
+        return new Complex(x / z.a, x / z.b);
+    }
+
+    /**
+     * returns the complex logarithm based on givenθ to the base e <p>
+     * since the complex log is multi-valued, it can return different numbers for the same z
+     * based on the argument given at construction
+     * @param z complex anti-logarithm
+     */
+    public static Complex logGiven(Complex z) {
+        return new Complex(Math.log(z.r), z.givenθ);
     }
 
     /**
      * returns the principal complex log to the base e
      * @param z complex anti-logaritm
      */
-    public static FastComplex log(FastComplex z) {
-        return new FastComplex(Math.log(z.mag()), z.arg());
+    public static Complex log(Complex z) {
+        return new Complex(Math.log(z.r), z.θ);
     }
 
     /**
@@ -174,11 +215,11 @@ public class FastComplex {
      * @param max highest term
      * @return array of complex logarithms
      */
-    public static FastComplex[] logRange(FastComplex z, int min, int max) {
-        FastComplex[] result = new FastComplex[max - min + 1];
-        double magnitude = Math.log(z.mag());
+    public static Complex[] logRange(Complex z, int min, int max) {
+        Complex[] result = new Complex[max - min + 1];
+        double magnitude = Math.log(z.r);
         for (int i = min; i <= max; i++) {
-            result[i - min] = new FastComplex(magnitude, z.arg() + (i * 2 * Math.PI));
+            result[i - min] = new Complex(magnitude, z.θ + (i * 2 * Math.PI));
         }
         return result;
     }
@@ -189,8 +230,8 @@ public class FastComplex {
      * @param z complex anti-logarithm
      * @param k term number
      */
-    public static FastComplex log(FastComplex z, int k) {
-        return new FastComplex(Math.log(z.mag()), z.arg() + 2 * k * Math.PI);
+    public static Complex log(Complex z, int k) {
+        return new Complex(Math.log(z.r), z.θ + 2 * k * Math.PI);
     }
 
     /**
@@ -198,9 +239,9 @@ public class FastComplex {
      * @param x real anti-logarithm
      * @return complex logarithm
      */
-    public static FastComplex log(double x) {
+    public static Complex log(double x) {
         if (x == 0) throw new IllegalArgumentException();
-        return new FastComplex(Math.log(Math.abs(x)), x > 0 ? 0 : Math.PI);
+        return new Complex(Math.log(Math.abs(x)), x > 0 ? 0 : Math.PI);
     }
 
     /**
@@ -210,8 +251,8 @@ public class FastComplex {
      * @param z complex base
      * @param x real exponent
      */
-    public static FastComplex pow(FastComplex z, double x) {
-        return polar(Math.pow(z.mag(), x), z.arg() * x);
+    public static Complex pow(Complex z, double x) {
+        return polar(Math.pow(z.r, x), z.θ * x);
     }
 
     /**
@@ -221,8 +262,8 @@ public class FastComplex {
      * @param z complex base
      * @param w complex exponent
      */
-    public static FastComplex pow(FastComplex z, FastComplex w) {
-        return (polar(Math.exp(w.a * Math.log(z.mag()) - w.b * z.arg()), w.b * Math.log(z.mag()) + w.a * z.arg()));
+    public static Complex pow(Complex z, Complex w) {
+        return (polar(Math.exp(w.a * Math.log(z.r) - w.b * z.θ), w.b * Math.log(z.r) + w.a * z.θ));
     }
 
     /**
@@ -233,14 +274,26 @@ public class FastComplex {
      * @param w complex exponent
      * @param k term number
      */
-    public static FastComplex pow(FastComplex z, FastComplex w, int k) {
-        if (w.isReal() && w.a % 1 == 0) return polar(Math.pow(z.mag(), w.a), z.arg() * w.a);
+    public static Complex pow(Complex z, Complex w, int k) {
+        if (w.isReal() && w.a % 1 == 0) return polar(Math.pow(z.r, w.a), z.θ * w.a);
         return (
             polar(
-                Math.exp(w.a * Math.log(z.mag()) - w.b * (z.arg() + 2 * Math.PI * k)),
-                w.b * Math.log(z.mag()) + w.a * (z.arg() + 2 * Math.PI * k)
+                Math.exp(w.a * Math.log(z.r) - w.b * (z.θ + 2 * Math.PI * k)),
+                w.b * Math.log(z.r) + w.a * (z.θ + 2 * Math.PI * k)
             )
         );
+    }
+
+    /**
+     * returns the result of complex z raised to real x based on given θ <p>
+     * since complex exponentiation is multi-valued for non-integers, this can give different
+     * results for the same complex number based on the argument given at construction
+     * @param z the base
+     * @param x the exponent
+     */
+    public static Complex powGiven(Complex z, double x) {
+        if (x % 1 == 0) return polar(Math.pow(z.r, x), z.θ * x);
+        return polar(Math.pow(z.r, x), z.givenθ * x);
     }
 
     /**
@@ -251,9 +304,9 @@ public class FastComplex {
      * @param x real exponent
      * @param k term
      */
-    public static FastComplex pow(FastComplex z, double x, int k) {
-        if (x % 1 == 0) return polar(Math.pow(z.mag(), x), z.arg() * x);
-        return polar(Math.pow(z.mag(), x), (z.arg() + (Math.PI * 2 * k)) * x);
+    public static Complex pow(Complex z, double x, int k) {
+        if (x % 1 == 0) return polar(Math.pow(z.r, x), z.θ * x);
+        return polar(Math.pow(z.r, x), (z.θ + (Math.PI * 2 * k)) * x);
     }
 
     /**
@@ -262,7 +315,7 @@ public class FastComplex {
      * the principal result based on normalized θ (-π < θ <= π)
      * @param z complex
      */
-    public static FastComplex sqrt(FastComplex z) {
+    public static Complex sqrt(Complex z) {
         return pow(z, 0.5);
     }
 
@@ -273,7 +326,7 @@ public class FastComplex {
      * @param z complex radicand
      * @param n real degree
      */
-    public static FastComplex nRoot(FastComplex z, double n) {
+    public static Complex nRoot(Complex z, double n) {
         if (n == 0) throw new IllegalArgumentException("trying to take 0th root");
         return pow(z, 1 / n);
     }
@@ -285,7 +338,7 @@ public class FastComplex {
      * @param z complex radicand
      * @param n real degree
      */
-    public static FastComplex nRoot(FastComplex z, double n, int k) {
+    public static Complex nRoot(Complex z, double n, int k) {
         if (n == 0) throw new IllegalArgumentException("trying to take 0th root");
         return pow(z, 1 / n, k);
     }
@@ -297,7 +350,7 @@ public class FastComplex {
      * @param z complex radicand
      * @param n complex degree
      */
-    public static FastComplex nRoot(FastComplex z, FastComplex w, int k) {
+    public static Complex nRoot(Complex z, Complex w, int k) {
         return pow(z, div(1, w), k);
     }
 
@@ -306,8 +359,8 @@ public class FastComplex {
      * @param z complex
      * @return conjugate
      */
-    public static FastComplex conjugate(FastComplex z) {
-        return new FastComplex(z.a, -z.b);
+    public static Complex conjugate(Complex z) {
+        return new Complex(z.a, -z.b);
     }
 
     /**
@@ -328,7 +381,19 @@ public class FastComplex {
      * truncates decimals for whole numbers and omits empty values <p>
      */
     public String toStringPolar() {
-        return full().toStringPolar();
+        if (r == 0) return "0";
+        if (θ == 0) return truncateWhole(r);
+        return ((r == 1 ? "" : truncateWhole(r)) + "e^(" + truncateWhole(θ) + "i)");
+    }
+
+    /**
+     * returns a string in polar form for the argument given at construction <p>
+     * truncates decimals for whole numbers and omits empty values <p>
+     */
+    public String toStringPolarGiven() {
+        if (r == 0) return "0";
+        if (givenθ == 0) return truncateWhole(r);
+        return ((r == 1 ? "" : truncateWhole(r)) + "e^(" + truncateWhole(givenθ) + "i)");
     }
 
     /**
