@@ -267,9 +267,25 @@ public class FastComplex {
     }
 
     /**
-     * returns the principal square root of a complex
-     * since complex roots are multi-valued for non-integers, this returns
-     * the principal result based on normalized θ (-π < θ <= π)
+     * returns the principal result of real x raised to complex z
+     * @param x real
+     * @param z complex
+     * @return
+     */
+    public static FastComplex pow(double x, FastComplex z) {
+        return new FastComplex(Math.pow(x, z.a) * Math.cos(z.b), Math.pow(x, z.a) * Math.sin(z.b));
+    }
+
+    /**
+     * returns the principal result of e raised to the power of the complex z
+     * @param z complex exponent
+     */
+    public static FastComplex exp(FastComplex z) {
+        return new FastComplex(Math.exp(z.a) * Math.cos(z.b), Math.exp(z.a) * Math.sin(z.b));
+    }
+
+    /**
+     * returns the principal square root of a complex z
      * @param z complex
      */
     public static FastComplex sqrt(FastComplex z) {
@@ -309,6 +325,74 @@ public class FastComplex {
      */
     public static FastComplex nRoot(FastComplex z, FastComplex w, int k) {
         return pow(z, div(1, w), k);
+    }
+
+    /**
+     * returns the cosine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex cos(FastComplex z) {
+        return sub(Math.cos(z.a) * Math.cosh(z.b), new FastComplex(0, Math.sin(z.a) * Math.sinh(z.b)));
+    }
+
+    /**
+     * returns the sine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex sin(FastComplex z) {
+        return new FastComplex(Math.sin(z.a) * Math.cosh(z.b), Math.cos(z.a) * Math.sinh(z.b));
+    }
+
+    /**
+     * returns the tangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex tan(FastComplex z) {
+        double tanA = Math.tan(z.a);
+        double tanhB = Math.tanh(z.b);
+        return div(new FastComplex(tanA, tanhB), sub(1, new FastComplex(0, tanA * tanhB)));
+    }
+
+    /**
+     * returns the cotangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex cot(FastComplex z) {
+        double tanA = Math.tan(z.a);
+        double tanhA = Math.tanh(z.b);
+        return invert(div(new FastComplex(1, (1 / tanA) * (1 / tanhA)), new FastComplex(1 / tanA, -(1 / tanhA))));
+    }
+
+    /**
+     * returns the hyperbolic sine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex sinh(FastComplex z) {
+        return new FastComplex(Math.sinh(z.a) * Math.cos(z.b), Math.cosh(z.a) * Math.sin(z.b));
+    }
+
+    /**
+     * returns the hyperbolic cosine of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex cosh(FastComplex z) {
+        return new FastComplex(Math.cosh(z.a) * Math.cos(z.b), Math.sinh(z.a) * Math.sin(z.b));
+    }
+
+    /**
+     * returns the hyperbolic tangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex tanh(FastComplex z) {
+        return div(new FastComplex(Math.tanh(z.a), Math.tan(z.b)), new FastComplex(1, Math.tanh(z.a) * Math.tan(z.b)));
+    }
+
+    /**
+     * returns the hyperbolic cotangent of a complex z
+     * @param z complex argument
+     */
+    public static FastComplex coth(FastComplex z) {
+        return div(1, tanh(z));
     }
 
     /**

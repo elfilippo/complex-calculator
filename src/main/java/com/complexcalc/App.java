@@ -2,6 +2,7 @@ package com.complexcalc;
 
 import com.complexcalc.evaluator.ComplexEvaluator;
 import com.complexcalc.evaluator.Evaluator;
+import com.complexcalc.evaluator.FastComplex;
 import com.complexcalc.evaluator.Lexer;
 
 /**
@@ -15,8 +16,10 @@ public class App {
         //System.out.println(Parser.tokenize("sqrtxn"));
         //System.out.println(Parser.tokenize("(4*0.234^3-(exp833+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)"));
         //System.out.println(new Evaluator("(4*0.234^3-(exp83+x)/-0.123^3)*2hypot(2^(1/2),sqrt2)").eval('x', 10));
-        //System.out.println(Complex.pow(new Complex(2, 0), -3, 0));
+        System.out.println(FastComplex.cos(new FastComplex(0, 4)));
+        System.exit(0);
         //System.out.println(new Parser("τ").eval());
+
         String[] tests = {
             "2+3",
             "2+3*4",

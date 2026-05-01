@@ -194,34 +194,32 @@ public class ComplexEvaluator {
         //     }
         // }
 
-        // for (TokenType token : Lexer.wordFunctions.values()) {
-        //     if (check(token)) {
-        //         consume();
-        //         boolean par = check(TokenType.LPAR);
-        //         if (par) consume();
-        //         double result = par ? depth1() : depth5();
-        //         if (par) expect(TokenType.RPAR);
-        //         return switch (token) {
-        //             case LOG10 -> Math.log10(result);
-        //             case FLOOR -> Math.floor(result);
-        //             case ROUND -> Math.round(result);
-        //             case SINH -> Math.sinh(result);
-        //             case COSH -> Math.cosh(result);
-        //             case TANH -> Math.tanh(result);
-        //             case ASIN -> Math.asin(result);
-        //             case ACOS -> Math.acos(result);
-        //             case ATAN -> Math.atan(result);
-        //             case SQRT -> Math.sqrt(result);
-        //             case CEIL -> Math.ceil(result);
-        //             case ABS -> Math.abs(result);
-        //             case EXP -> Math.exp(result);
-        //             case SIN -> Math.sin(result);
-        //             case COS -> Math.cos(result);
-        //             case LN -> Math.log(result);
-        //             default -> throw new IllegalArgumentException("unexpected word function: got " + peek().type());
-        //         };
-        //     }
-        // }
+        for (TokenType token : Lexer.wordFunctions.values()) {
+            if (check(token)) {
+                consume();
+                boolean par = check(TokenType.LPAR);
+                if (par) consume();
+                FastComplex result = par ? depth1() : depth5();
+                if (par) expect(TokenType.RPAR);
+                return switch (token) {
+                    // case LOG10 -> FastComplex.log10(result);
+                    // case ROUND -> FastComplex.round(result);
+                    case SINH -> FastComplex.sinh(result);
+                    case COSH -> FastComplex.cosh(result);
+                    case TANH -> FastComplex.tanh(result);
+                    // case ASIN -> FastComplex.asin(result);
+                    // case ACOS -> FastComplex.acos(result);
+                    // case ATAN -> FastComplex.atan(result);
+                    case SQRT -> FastComplex.sqrt(result);
+                    case ABS -> new FastComplex(result.mag(), 0);
+                    case EXP -> FastComplex.exp(result);
+                    case SIN -> FastComplex.sin(result);
+                    case COS -> FastComplex.cos(result);
+                    case LN -> FastComplex.log(result);
+                    default -> throw new IllegalArgumentException("unexpected word function: got " + peek().type());
+                };
+            }
+        }
         throw new IllegalStateException("unexpected token: " + peek().type());
     }
 
