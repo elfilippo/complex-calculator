@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="mathlive-static.css">
+</head>
+
+<body style="margin:0; padding:10px; background:white;">
+
+    <math-field id="mf" style="font-size:28px; width:100%;"></math-field>
+
+    <!-- Load AFTER the element is in the DOM, and use defer -->
+    <script src="mathlive.min.js" defer></script>
+
+    <script>
+        // Wait for MathLive to register and upgrade the element
+        document.addEventListener("DOMContentLoaded", () => {
+            customElements.whenDefined("math-field").then(() => {
+                const mf = document.getElementById("mf");
+
+                window.getExpr = () => mf.getValue("latex");
+                window.setExpr = (v) => { mf.value = v; };
+
+                // Optional: fire a Java callback so you know it's ready
+                if (window.javaConnector) {
+                    window.javaConnector.onReady();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
