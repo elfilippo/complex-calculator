@@ -22,6 +22,7 @@ public class App extends Application {
         Parent root = loader.load();
 
         scene = new Scene(root, 700, 800);
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("sigma");
         stage.show();
