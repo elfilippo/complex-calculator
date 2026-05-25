@@ -2,6 +2,7 @@ package com.complexcalc.evaluator;
 
 import com.complexcalc.evaluator.Lexer.Token;
 import com.complexcalc.evaluator.Lexer.TokenType;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComplexEvaluator {
@@ -158,41 +159,39 @@ public class ComplexEvaluator {
             throw new IllegalArgumentException("unknown variable: " + (char) peek().value());
         }
 
-        // for (TokenType token : Lexer.multipleArguments.values()) {
-        //     if (check(token)) {
-        //         consume();
-        //         expect(TokenType.LPAR);
-        //         List<Double> args = new ArrayList<>();
-        //         args.add(depth1());
-        //         while (check(TokenType.COMMA)) {
-        //             consume();
-        //             args.add(depth1());
-        //         }
-        //         expect(TokenType.RPAR);
+        for (TokenType token : Lexer.multipleArguments.values()) {
+            if (check(token)) {
+                consume();
+                expect(TokenType.LPAR);
+                List<FastComplex> args = new ArrayList<>();
+                args.add(depth1());
+                while (check(TokenType.COMMA)) {
+                    consume();
+                    args.add(depth1());
+                }
+                expect(TokenType.RPAR);
 
-        //         return switch (token) {
-        //             case LOG -> {
-        //                 if (args.size() == 1) yield Math.log(args.get(0));
-        //                 argException(args.size(), 2, 2);
-        //                 yield Math.log(args.get(1)) / Math.log(args.get(0));
-        //             }
-        //             case ATAN2 -> {
-        //                 argException(args.size(), 2, 2);
-        //                 yield Math.atan2(args.get(0), args.get(1));
-        //             }
-        //             case HYPOT -> {
-        //                 argException(args.size(), 2, 2);
-        //                 yield Math.hypot(args.get(0), args.get(1));
-        //             }
-        //             case ROOT -> {
-        //                 argException(args.size(), 1, 2);
-        //                 if (args.size() == 1) yield Math.sqrt(args.get(0));
-        //                 yield Math.pow(args.get(1), 1 / args.get(0));
-        //             }
-        //             default -> throw new IllegalArgumentException("unexpected multi-arg function: " + peek().type());
-        //         };
-        //     }
-        // }
+                return switch (token) {
+                    case LOG -> {
+                        if (args.size() == 1) yield FastComplex.log(args.get(0));
+                        argException(args.size(), 2, 2);
+                        yield FastComplex.div(FastComplex.log(args.get(1)), FastComplex.log(args.get(0)));
+                    }
+                    case HYPOT -> {
+                        argException(args.size(), 2, 2);
+                        yield FastComplex.sqrt(
+                            FastComplex.add(FastComplex.sqr(args.get(0)), FastComplex.sqr(args.get(1)))
+                        );
+                    }
+                    case ROOT -> {
+                        argException(args.size(), 1, 2);
+                        if (args.size() == 1) yield FastComplex.sqrt(args.get(0));
+                        yield FastComplex.nRoot(args.get(0), args.get(1));
+                    }
+                    default -> throw new IllegalArgumentException("unexpected multi-arg function: " + peek().type());
+                };
+            }
+        }
 
         for (TokenType token : Lexer.wordFunctions.values()) {
             if (check(token)) {

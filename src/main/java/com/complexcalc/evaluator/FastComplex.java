@@ -190,7 +190,8 @@ public class FastComplex {
      * @return complex quotient
      */
     public static FastComplex div(double x, FastComplex z) {
-        return new FastComplex(x / z.a, x / z.b);
+        double denom = z.a * z.a + z.b * z.b;
+        return new FastComplex((x * z.a) / denom, (-x * z.b) / denom);
     }
 
     /**
@@ -358,6 +359,10 @@ public class FastComplex {
     public static FastComplex nRoot(FastComplex z, double n) {
         if (n == 0) throw new IllegalArgumentException("trying to take 0th root");
         return pow(z, 1 / n);
+    }
+
+    public static FastComplex nRoot(FastComplex z, FastComplex w) {
+        return pow(z, div(1, w));
     }
 
     /**
