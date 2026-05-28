@@ -13,10 +13,8 @@ public class App extends Application {
     private static Scene scene;
 
     public static void main(String[] args) {
-        Dual test = new Dual(new double[] { 2.5, 1, 3, 1 });
-        System.out.println(test);
-        test = test.mult(new Dual(new double[] { 3, -2, -1, -4 }));
-        System.out.println(test);
+        Dual test = new Dual(new double[] { 4, 0, 0.0 });
+        test.sqrtTest();
         //launch(args);
     }
 
