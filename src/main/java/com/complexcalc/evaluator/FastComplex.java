@@ -350,7 +350,7 @@ public class FastComplex {
     }
 
     /**
-     * returns the principal n-th root of a complex
+     * returns the principal n-th root of a complex <p>
      * since complex roots are multi-valued, this returns
      * the principal result based on normalized θ (-π < θ <= π)
      * @param z complex radicand

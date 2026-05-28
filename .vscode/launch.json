@@ -9,7 +9,8 @@
             "name": "App",
             "request": "launch",
             "mainClass": "com.complexcalc/com.complexcalc.App",
-            "projectName": "complex-calculator"
+            "projectName": "complex-calculator",
+            "vmArgs": "-Dfile.encoding=UTF-8"
         },
         {
             "type": "java",
