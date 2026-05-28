@@ -14,7 +14,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         Dual test = new Dual(new double[] { 4, 0, 0.0 });
-        test.sqrtTest();
+        test.sqrt();
         //launch(args);
     }
 

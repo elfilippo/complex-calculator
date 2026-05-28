@@ -107,8 +107,30 @@ public class Dual {
         return (term * (0.5 - number)) / cs[0];
     }
 
-    public void sqrtTest() {
-        System.out.println(function(Math.sqrt(cs[0]), this::sqrtDeriv));
+    @Deprecated
+    @SuppressWarnings("unused")
+    private Dual sqrtShowcase() {
+        return function(Math.sqrt(cs[0]), this::sqrtDeriv);
+    }
+
+    //INFO: function takes the starting term and a BiFunction for the method that gets the derivatives
+    //INFO: example: f^n(a) * (0.5 - n) / a
+    //INFO: f^n(a) is the currentTerm, n is the term/derivative number (termN), a is the real part cs[0]
+    //INFO: the BiFunction takes the currentTerm and termN and has to return the new derivative at termN at cs[0] as a double
+    //INFO: here, lambdas are used instead of methods, but sqrtShowcase above should make it easier to understand
+
+    public Dual sqrt() {
+        return function(Math.sqrt(cs[0]), (currentTerm, termN) -> (currentTerm * (0.5 - termN)) / cs[0]);
+    }
+
+    public Dual pow(double exponent) {
+        return function(Math.pow(cs[0], exponent), (currentTerm, termN) -> (currentTerm * (exponent - termN)) / cs[0]);
+    }
+
+    public Dual ln() {
+        return function(Math.log(cs[0]), (currentTerm, termN) ->
+            termN == 0 ? 1.0 / cs[0] : (currentTerm * -(termN / cs[0]))
+        );
     }
 
     /**
