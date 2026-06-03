@@ -6,10 +6,16 @@ public class Dual {
 
     private final double[] cs;
 
+    /**
+     * creates a dual number with the grade given by the length of the coefficients array
+     */
     public Dual(double[] coefficients) {
         cs = coefficients.clone();
     }
 
+    /**
+     * returns a copy of the array of coefficients
+     */
     public double[] getCs() {
         return cs.clone();
     }
@@ -67,6 +73,11 @@ public class Dual {
         return new Dual(result);
     }
 
+    /**
+     * multiplies a dual with a real
+     * @param x real scalar
+     * @return dual product
+     */
     public Dual mult(double x) {
         double[] result = new double[cs.length];
         for (int i = 0; i < cs.length; i++) {
@@ -75,6 +86,13 @@ public class Dual {
         return new Dual(result);
     }
 
+    /**
+     * uses the truncated taylor series to compute functions of dual numbers
+     * @param term the function value of the real part, like sqrt(x) for the dual square root
+     * @param derivMethod a functional interface of a BiFunction method that gets the derivative
+     * of the current term double and term number int
+     * @return dual result
+     */
     private Dual function(double term, BiFunction<Double, Integer, Double> derivMethod) {
         double coefficient;
         Dual result = new Dual(new double[cs.length]);
@@ -103,10 +121,19 @@ public class Dual {
         return result;
     }
 
+    /**
+     * returns the derivative of a square root value using the term number
+     */
+    @Deprecated
     private double sqrtDeriv(double term, int number) {
         return (term * (0.5 - number)) / cs[0];
     }
 
+    /**
+     * deprecated method that showcases how function() is to be used with functional interfaces and
+     * the initial term
+     * @return the full function value
+     */
     @Deprecated
     @SuppressWarnings("unused")
     private Dual sqrtShowcase() {
@@ -119,14 +146,26 @@ public class Dual {
     //INFO: the BiFunction takes the currentTerm and termN and has to return the new derivative at termN at cs[0] as a double
     //INFO: here, lambdas are used instead of methods, but sqrtShowcase above should make it easier to understand
 
+    /**
+     * returns the square root of the dual number
+     */
     public Dual sqrt() {
         return function(Math.sqrt(cs[0]), (currentTerm, termN) -> (currentTerm * (0.5 - termN)) / cs[0]);
     }
 
+    /**
+     * returns the power of a double raised to a real
+     * @param exponent real exponent
+     * @return dual result
+     */
     public Dual pow(double exponent) {
         return function(Math.pow(cs[0], exponent), (currentTerm, termN) -> (currentTerm * (exponent - termN)) / cs[0]);
     }
 
+    /**
+     * returns the natural logarithm, that is, the logarithm to base e, of a dual number.
+     * @return dual logarithm
+     */
     public Dual ln() {
         return function(Math.log(cs[0]), (currentTerm, termN) ->
             termN == 0 ? 1.0 / cs[0] : (currentTerm * -(termN / cs[0]))
@@ -141,6 +180,11 @@ public class Dual {
         return cs.length;
     }
 
+    /**
+     * returns the order, that is, the last exponent that is defined as ε^x ≠ 0, or the highest power
+     * epsilon can have
+     * @return
+     */
     public int order() {
         return cs.length - 1;
     }
