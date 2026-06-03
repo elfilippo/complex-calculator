@@ -1,6 +1,5 @@
 package com.complexcalc;
 
-import com.complexcalc.evaluator.Dual;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +12,8 @@ public class App extends Application {
     private static Scene scene;
 
     public static void main(String[] args) {
-        Dual test = new Dual(new double[] { 4, 0, 0.0 });
-        test.sqrt();
-        //launch(args);
+        System.setProperty("prism.lcdtext", "false");
+        launch(args);
     }
 
     @Override

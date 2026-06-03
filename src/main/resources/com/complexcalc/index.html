@@ -12,7 +12,17 @@
         };
     </script>
 
-    <script src="./node_modules/mathjax/tex-chtml.js"></script>
+    <script>
+        (function () {
+            const origFetch = window.fetch;
+            window.fetch = function (...args) {
+                console.log("FETCH:", args[0]);
+                return origFetch.apply(this, args);
+            };
+        })();
+    </script>
+
+    <script src="./mathjax/tex-chtml.js"></script>
 </head>
 
 <body>

@@ -49,886 +49,892 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="135.0" minWidth="240.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.complexcalc.ui.Controller">
   <children>
-      <BorderPane maxWidth="100000.0" minHeight="135.0" minWidth="240.0" prefHeight="10000.0" prefWidth="10000.0">
-         <top>
-            <Label id="title" text="Calculator" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="85.0" />
-               </font>
-            </Label>
-         </top>
-         <left>
-            <SplitPane dividerPositions="0.212461695607763" minHeight="200.0" minWidth="100.0" orientation="VERTICAL" prefHeight="1043.0" prefWidth="650.0" BorderPane.alignment="CENTER">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="648.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="158.0">
-                     <children>
-                        <GridPane fx:id="keyboardGrid" hgap="8.0" layoutX="7.0" layoutY="11.0" prefHeight="660.0" prefWidth="837.0" vgap="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                            <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                              <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
-                          </rowConstraints>
-                           <children>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/history.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
-                                </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/trig.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/integral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/integralInfty.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/doubleIntegral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/contourIntegral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                </items>
-                                 <graphic>
+    <BorderPane maxWidth="100000.0" minHeight="135.0" minWidth="240.0" prefHeight="10000.0" prefWidth="10000.0">
+      <top>
+        <Label id="title" text="Calculator" BorderPane.alignment="CENTER">
+          <font>
+            <Font name="Arial Rounded MT Bold" size="85.0" />
+          </font>
+        </Label>
+      </top>
+
+      <left>
+        <SplitPane dividerPositions="0.212461695607763" minHeight="200.0" minWidth="100.0" orientation="VERTICAL" prefHeight="1043.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="648.0">
+              <children>
+                <WebView fx:id="latexWebPreview" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="158.0">
+              <children>
+                <GridPane fx:id="keyboardGrid" hgap="8.0" layoutX="7.0" layoutY="11.0" prefHeight="660.0" prefWidth="837.0" vgap="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="95.0" prefWidth="100.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    <RowConstraints minHeight="10.0" percentHeight="95.0" prefHeight="30.0" vgrow="ALWAYS" />
+                  </rowConstraints>
+                  <children>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/history.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/trig.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </MenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@textures/integral.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@textures/integralInfty.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@textures/doubleIntegral.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@textures/contourIntegral.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/indefIntegral.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/pi.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/1.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/7.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/4.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/8.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/9.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/5.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/6.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/2.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/0.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/3.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-button" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/equals.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/delete.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/ac.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/product.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/sum.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/div.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/minus.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/times.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/plus.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/factorial.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/ln.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                      <font>
+                        <Font name="Cambria Math" size="65.0" />
+                      </font>
+                      <opaqueInsets>
+                        <Insets />
+                      </opaqueInsets>
+                      <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/period.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/partialDeriv.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/d.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/partialDerivSymbol.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/deriv.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="3">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/cuberoot.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/nroot.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/sqrt.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="7">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@textures/log10.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@textures/log2.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/log.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="2">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/pm.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/mp.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/infty.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/floor.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/ceil.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/abs.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/y.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/z.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/i.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/lbrace.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/lbracket.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/lparen.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/rbrace.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/rbracket.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/rparen.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="5">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/subscript.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/power.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="4">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/cube.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/power4.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/square.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <ImageView fitHeight="70.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                      <image>
+                        <Image url="@textures/functions.png" />
+                      </image>
+                      <GridPane.margin>
+                        <Insets right="15.0" />
+                      </GridPane.margin>
+                    </ImageView>
+                    <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/functions.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </MenuButton>
+                    <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/alpha.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </MenuButton>
+                    <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                      <items>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/pm.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                        <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                              <image>
+                                <Image url="@textures/mp.png" />
+                              </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/vec.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </SplitMenuButton>
+                    <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                      <items>
+                        <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
+                          <content>
+                            <GridPane>
+                              <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                              <children>
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1">
+                                  <graphic>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/indefIntegral.png" />
-                                       </image>
+                                      <image>
+                                        <Image url="@textures/square.png" />
+                                      </image>
                                     </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/pi.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/1.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/7.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/4.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/8.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/9.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/5.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/6.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/2.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/0.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/3.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-button" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/equals.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/delete.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/ac.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/product.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/sum.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/div.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/minus.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/times.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/plus.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/factorial.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/ln.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                 <font>
-                                    <Font name="Cambria Math" size="65.0" />
-                                 </font>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/period.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/partialDeriv.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/d.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/partialDerivSymbol.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
+                                  </graphic>
+                                </Button>
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn">
+                                  <graphic>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/deriv.png" />
-                                       </image>
+                                      <image>
+                                        <Image url="@textures/square.png" />
+                                      </image>
                                     </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="3">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/cuberoot.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/nroot.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
+                                  </graphic>
+                                </Button>
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="1">
+                                  <graphic>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/sqrt.png" />
-                                       </image>
+                                      <image>
+                                        <Image url="@textures/square.png" />
+                                      </image>
                                     </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="7">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/log10.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/log2.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
+                                  </graphic>
+                                </Button>
+                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                  <graphic>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/log.png" />
-                                       </image>
+                                      <image>
+                                        <Image url="@textures/square.png" />
+                                      </image>
                                     </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="2">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/pm.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/mp.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/infty.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/floor.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/ceil.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/abs.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/y.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/z.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/i.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/lbrace.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/lbracket.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/lparen.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/rbrace.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/rbracket.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/rparen.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="5">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/subscript.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/power.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="4">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/cube.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/power4.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/square.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <ImageView fitHeight="70.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <image>
-                                    <Image url="@textures/functions.png" />
-                                 </image>
-                                 <GridPane.margin>
-                                    <Insets right="15.0" />
-                                 </GridPane.margin>
-                              </ImageView>
-                              <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/functions.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MenuButton>
-                              <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/alpha.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MenuButton>
-                              <SplitMenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/pm.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/mp.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/vec.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <items>
-                                    <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
-                                       <content>
-                                          <GridPane>
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1">
-                                                   <graphic>
-                                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@textures/square.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn">
-                                                   <graphic>
-                                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@textures/square.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="1">
-                                                   <graphic>
-                                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@textures/square.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                   <graphic>
-                                                      <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@textures/square.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </graphic>
-                                                </Button>
-                                             </children>
-                                          </GridPane>
-                                       </content>
-                                    </CustomMenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@textures/fancyR.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </MenuButton>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
-         </left>
-      </BorderPane>
+                                  </graphic>
+                                </Button>
+                              </children>
+                            </GridPane>
+                          </content>
+                        </CustomMenuItem>
+                      </items>
+                      <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@textures/fancyR.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </MenuButton>
+                  </children>
+                </GridPane>
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+      </left>
+    </BorderPane>
   </children>
 </VBox>

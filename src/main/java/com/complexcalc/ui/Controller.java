@@ -7,6 +7,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.web.WebView;
 
 public class Controller {
 
@@ -14,7 +15,13 @@ public class Controller {
     private GridPane keyboardGrid;
 
     @FXML
+    private WebView latexWebPreview;
+
+    @FXML
     public void initialize() {
+        String url = getClass().getResource("/com/complexcalc/index.html").toExternalForm();
+        latexWebPreview.getEngine().load(url);
+
         for (Node node : keyboardGrid.getChildren()) {
             if (node instanceof Button button) {
                 ImageView icon = (ImageView) button.getGraphic();
