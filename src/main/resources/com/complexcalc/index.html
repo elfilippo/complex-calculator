@@ -35,6 +35,100 @@
     f(x) = \sum_{n=0}^{\infty} \frac{f^n(a)}{n!} \times (x-a)^n
     \]
 
+    <!-- Quartic equation -->
+    \[
+    ax^4 + bx^3 + cx^2 + dx + e = 0
+    \]
+
+    <!-- Block A -->
+    \[
+    A = 2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace
+    \]
+
+    <!-- Block B -->
+    \[
+    B = c^2 - 3bd + 12ae
+    \]
+
+    <!-- Block C (Cardano cube-root structure) -->
+    \[
+    C =
+    \sqrt[3]{\frac{A + \sqrt{A^2 - 4B^3}}{2}}
+    +
+    \sqrt[3]{\frac{A - \sqrt{A^2 - 4B^3}}{2}}
+    \]
+
+    <!-- Block D (Ferrari core term) -->
+    \[
+    D =
+    \sqrt{
+    -\frac{2c}{3a}
+    +
+    \frac{C}{3a}
+    }
+    \]
+
+    <!-- Block E (asymmetry correction term) -->
+    \[
+    E =
+    \frac{\frac{bc}{2a^2} - \frac{d}{a}}{D}
+    \]
+
+    <!-- Block F (inner discriminant) -->
+    \[
+    F =
+    \sqrt{
+    -4D^2
+    -\frac{2c}{a}
+    +2E
+    }
+    \]
+
+    <!-- Final roots -->
+    \[
+    x =
+    -\frac{b}{4a}
+    \pm \frac{D}{2}
+    \pm \frac{F}{2}
+    \]
+
+    \[
+    x =
+    -\frac{b}{4a}
+    \pm \frac{
+    \sqrt{
+    -\frac{2c}{3a}
+    +
+    \frac{\sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) +
+    \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+    4(c^2 - 3bd + 12ae)^3}}{2}}
+    +
+    \sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) -
+    \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+    4(c^2 - 3bd + 12ae)^3}}{2}}}{3a}
+    }
+    }{2}
+    \pm \frac{\sqrt{
+    -4(\sqrt{
+    -\frac{2c}{3a}
+    +
+    \frac{\sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) + \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+    4(c^2 - 3bd + 12ae)^3}}{2}}
+    +
+    \sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) - \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 - 4(c^2 -
+    3bd + 12ae)^3}}{2}}}{3a}
+    })^2
+    -\frac{2c}{a}
+    +2(\frac{\frac{bc}{2a^2} - \frac{d}{a}}{\sqrt{
+    -\frac{2c}{3a}
+    +
+    \frac{\sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) + \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+    4(c^2 - 3bd + 12ae)^3}}{2}}
+    +
+    \sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) - \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 - 4(c^2 -
+    3bd + 12ae)^3}}{2}}}{3a}
+    }})}}{2}
+    \]
 </body>
 
 </html>
