@@ -40,6 +40,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -54,23 +56,17 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="135.0" minWidth="240.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.complexcalc.ui.Controller">
   <children>
     <BorderPane maxWidth="100000.0" minHeight="135.0" minWidth="240.0" prefHeight="10000.0" prefWidth="10000.0">
-      <top>
-        <Label id="title" text="Calculator" BorderPane.alignment="CENTER">
-          <font>
-            <Font name="Arial Rounded MT Bold" size="85.0" />
-          </font>
-        </Label>
-      </top>
 
       <left>
-        <SplitPane dividerPositions="0.212461695607763" minHeight="200.0" minWidth="100.0" orientation="VERTICAL" prefHeight="1043.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+        <SplitPane fx:id="calcSplitPane" dividerPositions="0.212461695607763, 0.2982635342185904" minHeight="200.0" minWidth="100.0" orientation="VERTICAL" prefHeight="1184.0" prefWidth="650.0" BorderPane.alignment="CENTER">
           <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="193.0" prefWidth="648.0">
+            <AnchorPane prefHeight="193.0" prefWidth="648.0">
               <children>
-                <WebView fx:id="latexWebPreview" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <WebView fx:id="latexWebPreview" minHeight="50.0" minWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="158.0">
+                  <TextArea prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane minHeight="196.0" minWidth="0.0" prefHeight="593.0" prefWidth="158.0">
               <children>
                 <GridPane fx:id="keyboardGrid" hgap="8.0" layoutX="7.0" layoutY="11.0" prefHeight="660.0" prefWidth="837.0" vgap="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                   <columnConstraints>
@@ -935,6 +931,26 @@
           </items>
         </SplitPane>
       </left>
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="menu-bar" BorderPane.alignment="CENTER">
+              <items>
+              <Label id="title" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="140.0" styleClass="menu-bar" text=" Calculator" textFill="WHITE">
+                <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+                </font>
+              </Label>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" styleClass="secondary-menu-button" text="File" textAlignment="CENTER" textFill="WHITE">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Save" />
+                      <MenuItem mnemonicParsing="false" text="Load" />
+                    </items>
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="17.0" />
+                     </font>
+                  </MenuButton>
+              </items>
+            </ToolBar>
+         </top>
     </BorderPane>
   </children>
 </VBox>

@@ -58,12 +58,39 @@
     -fx-background-radius: 6;
 }
 
+.menu-bar {
+    -fx-background-color: #24547f;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 0 0;
+    -fx-cursor: hand;
+}
+.secondary-menu-button {
+    -fx-background-color: #24547f;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #153d5e;
+    -fx-border-color: #266fab;
+    -fx-border-width: 1;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #ffffff;
+}
+.secondary-menu-button .arrow-button {
+    -fx-padding: 0;
+}
+
 .context-menu {
     -fx-background-color: rgba(30, 72, 108, 0.95);
     -fx-background-radius: 16;
     -fx-padding: 10;
     -fx-border-color: rgba(255, 255, 255, 0.08);
     -fx-border-radius: 16;
+    -fx-text-fill: white;
 }
 .context-menu .menu-item {
     -fx-background-color: transparent;
