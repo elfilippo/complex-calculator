@@ -1,14 +1,15 @@
 package com.complexcalc.ui;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.scene.web.WebView;
 
 public class Controller {
@@ -21,6 +22,9 @@ public class Controller {
 
     @FXML
     private SplitPane calcSplitPane;
+
+    @FXML
+    private TextArea latexInput;
 
     @FXML
     public void initialize() {
@@ -44,8 +48,25 @@ public class Controller {
             }
         });
 
+        latexInput.setOnScroll(event -> {
+            if (event.isControlDown()) {
+                double fontSize = latexInput.getFont().getSize();
+
+                if (event.getDeltaY() > 0) {
+                    fontSize *= 1.05;
+                } else {
+                    fontSize /= 1.05;
+                }
+
+                fontSize = Math.max(10, Math.min(72, fontSize));
+                latexInput.setFont(new Font("Cambria Math", fontSize));
+
+                event.consume();
+            }
+        });
+
         calcSplitPane.setDividerPosition(0, 0.30);
-        calcSplitPane.setDividerPosition(1, 0.35);
+        calcSplitPane.setDividerPosition(1, 0.40);
 
         for (Node node : keyboardGrid.getChildren()) {
             if (node instanceof Button button) {

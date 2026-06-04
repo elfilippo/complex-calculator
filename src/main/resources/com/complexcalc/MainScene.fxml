@@ -65,7 +65,10 @@
                 <WebView fx:id="latexWebPreview" minHeight="50.0" minWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               </children>
             </AnchorPane>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="latexInput" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" promptText="Type LaTeX here">
+                     <font>
+                        <Font name="Cambria Math" size="34.0" />
+                     </font></TextArea>
             <AnchorPane minHeight="196.0" minWidth="0.0" prefHeight="593.0" prefWidth="158.0">
               <children>
                 <GridPane fx:id="keyboardGrid" hgap="8.0" layoutX="7.0" layoutY="11.0" prefHeight="660.0" prefWidth="837.0" vgap="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
