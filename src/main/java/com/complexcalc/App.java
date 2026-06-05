@@ -15,7 +15,7 @@ public class App extends Application {
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
         System.out.println(LatexLexer.tokenize("\\frac{3+\\sqrt{\\frac{b}{2}+8}}{4}"));
-        System.exit(0);
+        //System.exit(0);
         launch(args);
     }
 

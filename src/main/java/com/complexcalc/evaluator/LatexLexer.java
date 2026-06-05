@@ -116,8 +116,8 @@ public class LatexLexer {
         }
     }
 
-    static Map<String, LatexToken> multipleArguments = new LinkedHashMap<>(
-        Map.of("atan2", LatexToken.ATAN2, "hypot", LatexToken.HYPOT, "log", LatexToken.LOG, "root", LatexToken.ROOT)
+    static Map<String, LatexToken> braceArguments = new LinkedHashMap<>(
+        Map.of("atan2", LatexToken.ATAN2, "hypot", LatexToken.HYPOT, "root", LatexToken.ROOT)
     );
 
     static Map<String, LatexToken> complexOperations = new LinkedHashMap<>(Map.of("conj", LatexToken.CONJ));
@@ -172,9 +172,9 @@ public class LatexLexer {
                             break;
                         }
                     }
-                    for (String function : multipleArguments.keySet()) {
+                    for (String function : braceArguments.keySet()) {
                         if (s.substring(i).startsWith(function)) {
-                            tokens.add(new Token(multipleArguments.get(function), 3));
+                            tokens.add(new Token(braceArguments.get(function), 3));
                             i += function.length() - 1;
                             break;
                         }
@@ -225,7 +225,7 @@ public class LatexLexer {
             if (!allowedToEnd.contains(tokens.get(i).type) && !allowedToEnd.contains(tokens.get(i + 1).type)) {
                 if (
                     wordFunctions.containsValue(tokens.get(i).type) ||
-                    multipleArguments.containsValue(tokens.get(i).type) ||
+                    braceArguments.containsValue(tokens.get(i).type) ||
                     LatexToken.LPAR == tokens.get(i).type ||
                     LatexToken.RPAR == tokens.get(i + 1).type ||
                     LatexToken.LBRACE == tokens.get(i).type ||

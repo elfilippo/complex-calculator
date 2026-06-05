@@ -1,11 +1,11 @@
 package com.complexcalc.evaluator;
 
-import com.complexcalc.evaluator.PlaintextLexer.PlainToken;
-import com.complexcalc.evaluator.PlaintextLexer.Token;
+import com.complexcalc.evaluator.LatexLexer.LatexToken;
+import com.complexcalc.evaluator.LatexLexer.Token;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComplexEvaluator {
+public class LatexComplexEvaluator {
 
     private List<Token> tokens;
     private int pos = 0;
@@ -19,8 +19,8 @@ public class ComplexEvaluator {
     private char var4;
     private FastComplex var4val;
 
-    public ComplexEvaluator(String expression) {
-        tokens = PlaintextLexer.tokenize(expression);
+    public LatexComplexEvaluator(String expression) {
+        tokens = LatexLexer.tokenize(expression);
     }
 
     public FastComplex eval(
@@ -74,10 +74,10 @@ public class ComplexEvaluator {
         //DOES: evaluate expressions recursively based on binding power
         FastComplex result = depth2();
 
-        while (check(PlainToken.ADD) || check(PlainToken.MINUS)) {
-            PlainToken op = consume().type();
+        while (check(LatexToken.ADD) || check(LatexToken.MINUS)) {
+            LatexToken op = consume().type();
             FastComplex right = depth2();
-            result = op == PlainToken.ADD ? FastComplex.add(result, right) : FastComplex.sub(result, right);
+            result = op == LatexToken.ADD ? FastComplex.add(result, right) : FastComplex.sub(result, right);
         }
         return result;
     }
@@ -85,16 +85,16 @@ public class ComplexEvaluator {
     private FastComplex depth2() {
         FastComplex result = depth3();
 
-        while (check(PlainToken.MULT) || check(PlainToken.DIV)) {
-            PlainToken op = consume().type();
+        while (check(LatexToken.MULT) || check(LatexToken.DIV)) {
+            LatexToken op = consume().type();
             FastComplex right = depth3();
-            result = op == PlainToken.MULT ? FastComplex.mult(result, right) : FastComplex.div(result, right);
+            result = op == LatexToken.MULT ? FastComplex.mult(result, right) : FastComplex.div(result, right);
         }
         return result;
     }
 
     private FastComplex depth3() {
-        if (check(PlainToken.UMINUS)) {
+        if (check(LatexToken.UMINUS)) {
             consume();
             return FastComplex.invert(depth3());
         }
@@ -104,7 +104,7 @@ public class ComplexEvaluator {
     private FastComplex depth4() {
         FastComplex result = depth5();
 
-        if (check(PlainToken.POW)) {
+        if (check(LatexToken.POW)) {
             consume();
             return FastComplex.pow(result, depth3());
         }
@@ -112,18 +112,25 @@ public class ComplexEvaluator {
     }
 
     private FastComplex depth5() {
-        if (check(PlainToken.LPAR)) {
+        if (check(LatexToken.LPAR)) {
             consume();
             FastComplex result = depth1();
-            expect(PlainToken.RPAR);
+            expect(LatexToken.RPAR);
             return result;
         }
 
-        if (check(PlainToken.NUM)) {
+        if (check(LatexToken.LBRACE)) {
+            consume();
+            FastComplex result = depth1();
+            expect(LatexToken.RBRACE);
+            return result;
+        }
+
+        if (check(LatexToken.NUM)) {
             return new FastComplex(consume().value(), 0);
         }
 
-        if (check(PlainToken.VAR)) {
+        if (check(LatexToken.VAR)) {
             if (peek().value() == 'i') {
                 consume();
                 return new FastComplex(0, 1);
@@ -159,24 +166,19 @@ public class ComplexEvaluator {
             throw new IllegalArgumentException("unknown variable: " + (char) peek().value());
         }
 
-        for (PlainToken token : PlaintextLexer.multipleArguments.values()) {
+        for (LatexToken token : LatexLexer.braceArguments.values()) {
             if (check(token)) {
                 consume();
-                expect(PlainToken.LPAR);
+                expect(LatexToken.LBRACE);
                 List<FastComplex> args = new ArrayList<>();
                 args.add(depth1());
-                while (check(PlainToken.COMMA)) {
+                while (check(LatexToken.LBRACE)) {
                     consume();
                     args.add(depth1());
                 }
-                expect(PlainToken.RPAR);
+                expect(LatexToken.RBRACE);
 
                 return switch (token) {
-                    case LOG -> {
-                        if (args.size() == 1) yield FastComplex.log(args.get(0));
-                        argException(args.size(), 2, 2);
-                        yield FastComplex.div(FastComplex.log(args.get(1)), FastComplex.log(args.get(0)));
-                    }
                     case HYPOT -> {
                         argException(args.size(), 2, 2);
                         yield FastComplex.sqrt(
@@ -193,13 +195,29 @@ public class ComplexEvaluator {
             }
         }
 
-        for (PlainToken token : PlaintextLexer.wordFunctions.values()) {
+        if (check(LatexToken.LOG)) {
+            consume();
+            FastComplex base = null;
+            if (check(LatexToken.SUBS)) {
+                expect(LatexToken.LBRACE);
+                base = depth1();
+                expect(LatexToken.RBRACE);
+            }
+            expect(LatexToken.LBRACE);
+            FastComplex antiLog = depth1();
+            expect(LatexToken.RBRACE);
+            return base == null
+                ? FastComplex.log(antiLog)
+                : FastComplex.div(FastComplex.log(antiLog), FastComplex.log(base));
+        }
+
+        for (LatexToken token : LatexLexer.wordFunctions.values()) {
             if (check(token)) {
                 consume();
-                boolean par = check(PlainToken.LPAR);
+                boolean par = check(LatexToken.LPAR);
                 if (par) consume();
                 FastComplex result = par ? depth1() : depth5();
-                if (par) expect(PlainToken.RPAR);
+                if (par) expect(LatexToken.RPAR);
                 return switch (token) {
                     case LOG10 -> FastComplex.log10(result);
                     case FLOOR -> FastComplex.floor(result);
@@ -260,11 +278,11 @@ public class ComplexEvaluator {
         return tokens.get(pos++);
     }
 
-    private boolean check(PlainToken t) {
+    private boolean check(LatexToken t) {
         return pos < tokens.size() && tokens.get(pos).type() == t;
     }
 
-    private void expect(PlainToken t) {
+    private void expect(LatexToken t) {
         if (!check(t)) throw new IllegalArgumentException("missing " + t);
         consume();
     }
