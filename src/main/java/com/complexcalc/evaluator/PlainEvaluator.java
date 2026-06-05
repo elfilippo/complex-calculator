@@ -1,11 +1,11 @@
 package com.complexcalc.evaluator;
 
-import com.complexcalc.evaluator.Lexer.Token;
-import com.complexcalc.evaluator.Lexer.TokenType;
+import com.complexcalc.evaluator.PlaintextLexer.PlainToken;
+import com.complexcalc.evaluator.PlaintextLexer.Token;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Evaluator {
+public class PlainEvaluator {
 
     private List<Token> tokens;
     private int pos = 0;
@@ -19,8 +19,8 @@ public class Evaluator {
     private char var4;
     private double var4val;
 
-    public Evaluator(String expression) {
-        tokens = Lexer.tokenize(expression);
+    public PlainEvaluator(String expression) {
+        tokens = PlaintextLexer.tokenize(expression);
     }
 
     public double eval(
@@ -67,10 +67,10 @@ public class Evaluator {
         //DOES: evaluate expressions recursively based on binding power
         double result = depth2();
 
-        while (check(TokenType.ADD) || check(TokenType.SUB)) {
-            TokenType op = consume().type();
+        while (check(PlainToken.ADD) || check(PlainToken.MINUS)) {
+            PlainToken op = consume().type();
             double right = depth2();
-            result = op == TokenType.ADD ? result + right : result - right;
+            result = op == PlainToken.ADD ? result + right : result - right;
         }
         return result;
     }
@@ -78,16 +78,16 @@ public class Evaluator {
     private double depth2() {
         double result = depth3();
 
-        while (check(TokenType.MULT) || check(TokenType.DIV)) {
-            TokenType op = consume().type();
+        while (check(PlainToken.MULT) || check(PlainToken.DIV)) {
+            PlainToken op = consume().type();
             double right = depth3();
-            result = op == TokenType.MULT ? result * right : result / right;
+            result = op == PlainToken.MULT ? result * right : result / right;
         }
         return result;
     }
 
     private double depth3() {
-        if (check(TokenType.UN_SUB)) {
+        if (check(PlainToken.UMINUS)) {
             consume();
             return -depth3();
         }
@@ -97,7 +97,7 @@ public class Evaluator {
     private double depth4() {
         double result = depth5();
 
-        if (check(TokenType.POW)) {
+        if (check(PlainToken.POW)) {
             consume();
             return Math.pow(result, depth5());
         }
@@ -105,18 +105,18 @@ public class Evaluator {
     }
 
     private double depth5() {
-        if (check(TokenType.LPAR)) {
+        if (check(PlainToken.LPAR)) {
             consume();
             double result = depth1();
-            expect(TokenType.RPAR);
+            expect(PlainToken.RPAR);
             return result;
         }
 
-        if (check(TokenType.NUM)) {
+        if (check(PlainToken.NUM)) {
             return consume().value();
         }
 
-        if (check(TokenType.VAR)) {
+        if (check(PlainToken.VAR)) {
             if (peek().value() == 'e') {
                 consume();
                 return Math.E;
@@ -148,17 +148,17 @@ public class Evaluator {
             throw new IllegalArgumentException("unknown variable: " + (char) peek().value());
         }
 
-        for (TokenType token : Lexer.multipleArguments.values()) {
+        for (PlainToken token : PlaintextLexer.multipleArguments.values()) {
             if (check(token)) {
                 consume();
-                expect(TokenType.LPAR);
+                expect(PlainToken.LPAR);
                 List<Double> args = new ArrayList<>();
                 args.add(depth1());
-                while (check(TokenType.COMMA)) {
+                while (check(PlainToken.COMMA)) {
                     consume();
                     args.add(depth1());
                 }
-                expect(TokenType.RPAR);
+                expect(PlainToken.RPAR);
 
                 return switch (token) {
                     case LOG -> {
@@ -184,13 +184,13 @@ public class Evaluator {
             }
         }
 
-        for (TokenType token : Lexer.wordFunctions.values()) {
+        for (PlainToken token : PlaintextLexer.wordFunctions.values()) {
             if (check(token)) {
                 consume();
-                boolean par = check(TokenType.LPAR);
+                boolean par = check(PlainToken.LPAR);
                 if (par) consume();
                 double result = par ? depth1() : depth5();
-                if (par) expect(TokenType.RPAR);
+                if (par) expect(PlainToken.RPAR);
                 return switch (token) {
                     case LOG10 -> Math.log10(result);
                     case FLOOR -> Math.floor(result);
@@ -209,7 +209,7 @@ public class Evaluator {
                     case COS -> Math.cos(result);
                     case LOG -> Math.log(result);
                     default -> {
-                        if (Lexer.complexOperations.containsValue(token)) throw new IllegalArgumentException(
+                        if (PlaintextLexer.complexOperations.containsValue(token)) throw new IllegalArgumentException(
                             "encountered complex operation evaluating for real numbers"
                         );
                         else throw new IllegalArgumentException("unexpected word function: got " + peek().type());
@@ -239,11 +239,11 @@ public class Evaluator {
         return tokens.get(pos++);
     }
 
-    private boolean check(TokenType t) {
+    private boolean check(PlainToken t) {
         return pos < tokens.size() && tokens.get(pos).type() == t;
     }
 
-    private void expect(TokenType t) {
+    private void expect(PlainToken t) {
         if (!check(t)) throw new IllegalArgumentException("missing " + t);
         consume();
     }
