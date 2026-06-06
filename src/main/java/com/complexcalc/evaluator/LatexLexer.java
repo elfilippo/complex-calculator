@@ -8,56 +8,54 @@ import java.util.Map;
 public class LatexLexer {
 
     public static enum LatexToken {
+        ABS,
         ADD,
-        MINUS,
-        UMINUS,
-        MULT,
+        COS,
+        COT,
+        CSC,
         DIV,
-        FRAC,
+        EXP,
+        LOG,
+        NUM,
         POW,
-        SUBS,
+        SEC,
+        SIN,
+        TAN,
         VAR,
+        ACOS,
+        ACOT,
+        ACSC,
+        ASEC,
+        ASIN,
+        ATAN,
+        CEIL,
+        CONJ,
+        COSH,
+        COTH,
+        CSCH,
+        FRAC,
         LPAR,
+        MULT,
+        ROOT,
         RPAR,
+        SECH,
+        SINH,
+        SUBS,
+        TANH,
+        ACOSH,
+        ACOTH,
+        ACSCH,
+        ASECH,
+        ASINH,
+        ATAN2,
+        ATANH,
+        FLOOR,
+        HYPOT,
+        MINUS,
+        ROUND,
         LBRACE,
         RBRACE,
-        NUM,
-        SIN,
-        SINH,
-        ASIN,
-        ASINH,
-        COS,
-        COSH,
-        ACOS,
-        ACOSH,
-        TAN,
-        TANH,
-        ATAN,
-        ATANH,
-        COT,
-        COTH,
-        ACOT,
-        ACOTH,
-        CSC,
-        CSCH,
-        ACSC,
-        ACSCH,
-        SEC,
-        SECH,
-        ASEC,
-        ASECH,
-        ATAN2,
-        HYPOT,
-        LOG,
-        LOG10,
-        FLOOR,
-        CEIL,
-        ROUND,
-        SQRT,
-        ABS,
-        ROOT,
-        EXP,
-        CONJ,
+        UMINUS,
     }
 
     static final Map<String, LatexToken> wordFunctions = new LinkedHashMap<>();
@@ -67,57 +65,60 @@ public class LatexLexer {
             //INFO: order by longest first for correct parsing
             { "floor-pair", "FLOOR" },
             { "ceil-pair", "CEIL" },
-            { "arcsinh", "ASINH" },
             { "arccosh", "ACOSH" },
-            { "arctanh", "ATANH" },
             { "arccoth", "ACOTH" },
-            { "arcsech", "ASECH" },
             { "arccsch", "ACSCH" },
-            { "arcsin", "ASIN" },
-            { "arccos", "ACOS" },
-            { "arctan", "ATAN" },
-            { "arccot", "ACOT" },
-            { "arcsec", "ASEC" },
-            { "arccsc", "ACSC" },
-            { "asinh", "ASINH" },
+            { "arcsech", "ASECH" },
+            { "arcsinh", "ASINH" },
+            { "arctanh", "ATANH" },
             { "acosh", "ACOSH" },
-            { "atanh", "ATANH" },
             { "acoth", "ACOTH" },
-            { "asech", "ASECH" },
             { "acsch", "ACSCH" },
-            { "sinh", "SINH" },
-            { "cosh", "COSH" },
-            { "tanh", "TANH" },
-            { "coth", "COTH" },
-            { "sech", "SECH" },
-            { "csch", "CSCH" },
-            { "asin", "ASIN" },
+            { "arccos", "ACOS" },
+            { "arccot", "ACOT" },
+            { "arccsc", "ACSC" },
+            { "arcsec", "ASEC" },
+            { "arcsin", "ASIN" },
+            { "arctan", "ATAN" },
+            { "asech", "ASECH" },
+            { "asinh", "ASINH" },
+            { "atanh", "ATANH" },
+            { "minus", "MINUS" },
+            { "times", "MULT" },
             { "acos", "ACOS" },
-            { "atan", "ATAN" },
             { "acot", "ACOT" },
-            { "asec", "ASEC" },
             { "acsc", "ACSC" },
-            { "sqrt", "SQRT" },
+            { "asec", "ASEC" },
+            { "asin", "ASIN" },
+            { "atan", "ATAN" },
+            { "cosh", "COSH" },
+            { "coth", "COTH" },
+            { "csch", "CSCH" },
             { "frac", "FRAC" },
+            { "sech", "SECH" },
+            { "sinh", "SINH" },
+            { "tanh", "TANH" },
+            { "plus", "ADD" },
             { "abs", "ABS" },
-            { "exp", "EXP" },
-            { "sin", "SIN" },
             { "cos", "COS" },
-            { "tan", "TAN" },
             { "cot", "COT" },
-            { "sec", "SEC" },
             { "csc", "CSC" },
+            { "div", "DIV" },
+            { "exp", "EXP" },
             { "log", "LOG" },
+            { "sec", "SEC" },
+            { "sin", "SIN" },
+            { "tan", "TAN" },
             { "ln", "LOG" },
         };
 
-        for (var e : entries) {
+        for (String[] e : entries) {
             wordFunctions.put(e[0], LatexToken.valueOf(e[1]));
         }
     }
 
     static Map<String, LatexToken> braceArguments = new LinkedHashMap<>(
-        Map.of("atan2", LatexToken.ATAN2, "hypot", LatexToken.HYPOT, "root", LatexToken.ROOT)
+        Map.of("atan2", LatexToken.ATAN2, "hypot", LatexToken.HYPOT, "sqrt", LatexToken.ROOT, "frac", LatexToken.FRAC)
     );
 
     static Map<String, LatexToken> complexOperations = new LinkedHashMap<>(Map.of("conj", LatexToken.CONJ));
@@ -145,7 +146,7 @@ public class LatexLexer {
 
             switch (c) {
                 case '+' -> tokens.add(new Token(LatexToken.ADD, 1));
-                case '-' -> {
+                case '-', '−' -> {
                     LatexToken lastToken;
                     if (i == 0) tokens.add(new Token(LatexToken.UMINUS, 3));
                     else {
@@ -156,13 +157,13 @@ public class LatexLexer {
                         else tokens.add(new Token(LatexToken.MINUS, 1));
                     }
                 }
-                case '*' -> tokens.add(new Token(LatexToken.MULT, 2));
-                case '/' -> tokens.add(new Token(LatexToken.DIV, 2));
+                case '*', '×' -> tokens.add(new Token(LatexToken.MULT, 2));
+                case '/', '÷' -> tokens.add(new Token(LatexToken.DIV, 2));
                 case '^' -> tokens.add(new Token(LatexToken.POW, 4));
                 case '(' -> tokens.add(new Token(LatexToken.LPAR, 5));
                 case ')' -> tokens.add(new Token(LatexToken.RPAR, 5));
-                case '{' -> tokens.add(new Token(LatexToken.LBRACE, 5));
-                case '}' -> tokens.add(new Token(LatexToken.RBRACE, 5));
+                case '{', '[' -> tokens.add(new Token(LatexToken.LBRACE, 5));
+                case '}', ']' -> tokens.add(new Token(LatexToken.RBRACE, 5));
                 case '_' -> tokens.add(new Token(LatexToken.SUBS, 5));
                 case '\\' -> {
                     for (String function : wordFunctions.keySet()) {
@@ -173,9 +174,9 @@ public class LatexLexer {
                         }
                     }
                     for (String function : braceArguments.keySet()) {
-                        if (s.substring(i).startsWith(function)) {
+                        if (s.substring(i + 1).startsWith(function)) {
                             tokens.add(new Token(braceArguments.get(function), 3));
-                            i += function.length() - 1;
+                            i += function.length();
                             break;
                         }
                     }

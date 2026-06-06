@@ -203,7 +203,6 @@ public class LatexEvaluator {
                     case ASIN -> Math.asin(result);
                     case ACOS -> Math.acos(result);
                     case ATAN -> Math.atan(result);
-                    case SQRT -> Math.sqrt(result);
                     case ABS -> Math.abs(result);
                     case EXP -> Math.exp(result);
                     case SIN -> Math.sin(result);

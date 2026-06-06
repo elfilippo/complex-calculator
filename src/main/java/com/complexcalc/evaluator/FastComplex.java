@@ -361,6 +361,13 @@ public class FastComplex {
         return pow(z, 1 / n);
     }
 
+    /**
+     * returns the principal n-th root of a complex <p>
+     * since complex roots are multi-valued, this returns
+     * the principal result based on normalized θ (-π < θ <= π)
+     * @param z complex radicand
+     * @param w complex degree
+     */
     public static FastComplex nRoot(FastComplex z, FastComplex w) {
         return pow(z, div(1, w));
     }

@@ -1,5 +1,6 @@
 package com.complexcalc;
 
+import com.complexcalc.evaluator.LatexComplexEvaluator;
 import com.complexcalc.evaluator.LatexLexer;
 import java.io.IOException;
 import javafx.application.Application;
@@ -14,8 +15,9 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
-        System.out.println(LatexLexer.tokenize("\\frac{3+\\sqrt{\\frac{b}{2}+8}}{4}"));
-        //System.exit(0);
+        //System.out.println(LatexLexer.tokenize("\\log_{2}{8}"));
+        System.out.println(new LatexComplexEvaluator("\\sqrt[2]{16}").eval());
+        System.exit(0);
         launch(args);
     }
 

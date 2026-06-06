@@ -2,7 +2,6 @@ package com.complexcalc.evaluator;
 
 import com.complexcalc.evaluator.LatexLexer.LatexToken;
 import com.complexcalc.evaluator.LatexLexer.Token;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LatexComplexEvaluator {
@@ -170,25 +169,31 @@ public class LatexComplexEvaluator {
             if (check(token)) {
                 consume();
                 expect(LatexToken.LBRACE);
-                List<FastComplex> args = new ArrayList<>();
-                args.add(depth1());
-                while (check(LatexToken.LBRACE)) {
-                    consume();
-                    args.add(depth1());
-                }
+                FastComplex arg1 = depth1();
                 expect(LatexToken.RBRACE);
 
+                FastComplex arg2 = null;
+                if (check(LatexToken.LBRACE)) {
+                    consume();
+                    arg2 = depth2();
+                    expect(LatexToken.RBRACE);
+                }
+
                 return switch (token) {
-                    case HYPOT -> {
-                        argException(args.size(), 2, 2);
-                        yield FastComplex.sqrt(
-                            FastComplex.add(FastComplex.sqr(args.get(0)), FastComplex.sqr(args.get(1)))
-                        );
+                    case FRAC -> {
+                        secondArgException(arg2, "FRAC");
+                        yield FastComplex.div(arg1, arg2);
                     }
+                    // case HYPOT -> {
+                    //     argException(args.size(), 2, 2);
+                    //     yield FastComplex.sqrt(
+                    //         FastComplex.add(FastComplex.sqr(args.get(0)), FastComplex.sqr(args.get(1)))
+                    //     );
+                    // }
                     case ROOT -> {
-                        argException(args.size(), 1, 2);
-                        if (args.size() == 1) yield FastComplex.sqrt(args.get(0));
-                        yield FastComplex.nRoot(args.get(0), args.get(1));
+                        secondArgException(arg2, "ROOT");
+                        if (arg2 == null) yield FastComplex.sqrt(arg1);
+                        yield FastComplex.nRoot(arg2, arg1);
                     }
                     default -> throw new IllegalArgumentException("unexpected multi-arg function: " + peek().type());
                 };
@@ -199,6 +204,7 @@ public class LatexComplexEvaluator {
             consume();
             FastComplex base = null;
             if (check(LatexToken.SUBS)) {
+                consume();
                 expect(LatexToken.LBRACE);
                 base = depth1();
                 expect(LatexToken.RBRACE);
@@ -242,7 +248,6 @@ public class LatexComplexEvaluator {
                     case ASECH -> FastComplex.asech(result);
                     case ACSCH -> FastComplex.acsch(result);
                     case CONJ -> FastComplex.conjugate(result);
-                    case SQRT -> FastComplex.sqrt(result);
                     case ABS -> new FastComplex(result.mag(), 0);
                     case EXP -> FastComplex.exp(result);
                     case SIN -> FastComplex.sin(result);
@@ -257,17 +262,6 @@ public class LatexComplexEvaluator {
             }
         }
         throw new IllegalStateException("unexpected token: " + peek().type());
-    }
-
-    /**
-     * throws exceptions if there are too many or too few arguments
-     * @param amount the argument amount
-     * @param min the minimum value to not throw an exception
-     * @param max the max value to not throw an exception
-     */
-    private static void argException(int amount, int min, int max) {
-        if (amount < min) throw new IllegalArgumentException("too few arguments provided");
-        if (amount > max) throw new IllegalArgumentException("too many arguments provided");
     }
 
     private Token peek() {
@@ -285,5 +279,9 @@ public class LatexComplexEvaluator {
     private void expect(LatexToken t) {
         if (!check(t)) throw new IllegalArgumentException("missing " + t);
         consume();
+    }
+
+    private void secondArgException(Object arg2, String name) {
+        if (arg2 == null) throw new IllegalArgumentException("no second argument provided for " + name);
     }
 }
