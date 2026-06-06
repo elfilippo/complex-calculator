@@ -264,6 +264,10 @@ public class FastComplex {
      * @param x real exponent
      */
     public static FastComplex pow(FastComplex z, double x) {
+        if (z.a == 0 && z.b == 0) {
+            return x == 0 ? new FastComplex(1, 0) : new FastComplex(0, 0);
+        }
+
         return polar(Math.pow(z.mag(), x), z.arg() * x);
     }
 
@@ -275,6 +279,20 @@ public class FastComplex {
      * @param w complex exponent
      */
     public static FastComplex pow(FastComplex z, FastComplex w) {
+        if (z.a == 0 && z.b == 0) {
+            return w.a == 0 && w.b == 0 ? new FastComplex(1, 0) : new FastComplex(0, 0);
+        }
+
+        if (w.b == 0 && w.a == Math.floor(w.a)) {
+            int n = (int) w.a;
+            if (n == 0) return new FastComplex(1, 0);
+            if (n > 0) {
+                FastComplex result = new FastComplex(1, 0);
+                for (int i = 0; i < n; i++) result = mult(result, z);
+                return result;
+            }
+        }
+
         double mag = z.mag();
         double arg = z.arg();
         return (polar(Math.exp(w.a * Math.log(mag) - w.b * arg), w.b * Math.log(mag) + w.a * arg));
@@ -289,6 +307,10 @@ public class FastComplex {
      * @param k term number
      */
     public static FastComplex pow(FastComplex z, FastComplex w, int k) {
+        if (z.a == 0 && z.b == 0) {
+            return w.a == 0 && w.b == 0 ? new FastComplex(1, 0) : new FastComplex(0, 0);
+        }
+
         double arg = z.arg();
         double mag = z.mag();
         if (w.isReal() && w.a % 1 == 0) return polar(Math.pow(mag, w.a), arg * w.a);
@@ -309,6 +331,10 @@ public class FastComplex {
      * @param k term
      */
     public static FastComplex pow(FastComplex z, double x, int k) {
+        if (z.a == 0 && z.b == 0) {
+            return x == 0 ? new FastComplex(1, 0) : new FastComplex(0, 0);
+        }
+
         double mag = z.mag();
         double arg = z.arg();
         if (x % 1 == 0) return polar(Math.pow(mag, x), arg * x);

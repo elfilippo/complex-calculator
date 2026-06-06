@@ -1,7 +1,6 @@
 package com.complexcalc;
 
 import com.complexcalc.evaluator.LatexComplexEvaluator;
-import com.complexcalc.evaluator.LatexLexer;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,8 +14,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
-        System.out.println(LatexLexer.tokenize("\\sum_{n=10}^{20}{4x}"));
-        System.out.println(new LatexComplexEvaluator("\\sqrt[2]{16}").eval());
+        System.out.println(new LatexComplexEvaluator("\\prod_{n=1}^{0}{n}").eval());
         System.exit(0);
         launch(args);
     }

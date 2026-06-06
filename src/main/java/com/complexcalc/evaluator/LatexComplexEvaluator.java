@@ -88,6 +88,8 @@ public class LatexComplexEvaluator {
     private FastComplex depth2() {
         FastComplex result = depth3();
 
+        //TODO: add factorials
+
         while (check(LatexToken.MULT) || check(LatexToken.DIV)) {
             LatexToken op = consume().type();
             FastComplex right = depth3();
@@ -154,19 +156,19 @@ public class LatexComplexEvaluator {
                 consume();
                 return new FastComplex(Math.TAU, 0);
             }
-            if (peek().value() == var1) {
+            if (var1 != 0 && peek().value() == var1) {
                 consume();
                 return var1val;
             }
-            if (peek().value() == var2) {
+            if (var2 != 0 && peek().value() == var2) {
                 consume();
                 return var2val;
             }
-            if (peek().value() == var3) {
+            if (var3 != 0 && peek().value() == var3) {
                 consume();
                 return var3val;
             }
-            if (peek().value() == var4) {
+            if (var4 != 0 && peek().value() == var4) {
                 consume();
                 return var4val;
             }
@@ -184,7 +186,7 @@ public class LatexComplexEvaluator {
                 FastComplex arg2 = null;
                 if (check(LatexToken.LBRACE)) {
                     consume();
-                    arg2 = depth2();
+                    arg2 = depth1();
                     expect(LatexToken.RBRACE);
                 }
 
@@ -200,7 +202,6 @@ public class LatexComplexEvaluator {
                     //     );
                     // }
                     case ROOT -> {
-                        secondArgException(arg2, "ROOT");
                         if (arg2 == null) yield FastComplex.sqrt(arg1);
                         yield FastComplex.nRoot(arg2, arg1);
                     }
@@ -227,30 +228,92 @@ public class LatexComplexEvaluator {
                 : FastComplex.div(FastComplex.log(antiLog), FastComplex.log(base));
         }
 
-        if (check(LatexToken.SUM)) {
+        if (check(LatexToken.SUM) || check(LatexToken.PROD)) {
+            boolean isSum = check(LatexToken.SUM);
             consume();
-            int finalIndex;
-            boolean hasFinalIndex;
-            int startingIndex;
-            boolean hasStartingIndex;
-            LatexComplexEvaluator expression;
+            double finalIndex = -1;
+            double startingIndex = 0;
+            char var = 0;
 
-            for (int i = 0; i < 3; i++) {
-                if (check(LatexToken.POW)) {
+            FastComplex result = null;
+
+            boolean hasStartingIndex = false;
+            boolean hasFinalIndex = false;
+
+            //DOES: check for upper and lower bounds of sum or product (can be in any order)
+            for (int i = 0; i < 2; i++) {
+                if (check(LatexToken.SUBS) && !hasStartingIndex) {
                     consume();
                     expect(LatexToken.LBRACE);
+
+                    //DOES: get variable to increment in sum or product
+                    if (!check(LatexToken.VAR)) throw new IllegalArgumentException(
+                        "expected variable in lower bound of " + (isSum ? "sum" : "product")
+                    );
+                    var = (char) consume().value();
+
+                    //DOES: calculate starting index
+                    expect(LatexToken.EQUALS);
                     FastComplex arg = depth1();
-                    if (arg.isReal()) finalIndex = (int) Math.floor(arg.a);
-                    else throw new IllegalArgumentException("final index of SUM is complex");
-                    hasFinalIndex = true;
-                } else if (check(LatexToken.SUBS)) {
+                    expect(LatexToken.RBRACE);
+
+                    //DOES: convert starting index to double (can't be complex)
+                    if (!arg.isReal()) throw new IllegalArgumentException(
+                        "starting index of " + (isSum ? "sum" : "product") + " is complex"
+                    );
+                    startingIndex = arg.a;
+                    hasStartingIndex = true;
+                } else if (check(LatexToken.POW) && !hasFinalIndex) {
                     consume();
                     expect(LatexToken.LBRACE);
-                    //TODO:
-                } else if (check(LatexToken.LBRACE)) {
-                    expression = new LatexComplexEvaluator(tokens.subList(pos, tokens.size()));
-                } else throw new IllegalArgumentException("missing arguments for SUM");
+
+                    //DOES: calculate ending index & convert it to double (can't be complex)
+                    FastComplex arg = depth1();
+                    if (!arg.isReal()) throw new IllegalArgumentException(
+                        "final index of " + (isSum ? "sum" : "product") + " is complex"
+                    );
+                    finalIndex = arg.a;
+
+                    hasFinalIndex = true;
+                    expect(LatexToken.RBRACE);
+                } else throw new IllegalArgumentException(
+                    "missing " +
+                        (hasStartingIndex ? "final index" : "starting index") +
+                        " of " +
+                        (isSum ? "sum" : "product")
+                );
             }
+
+            //DOES: find out what tokens belong to argument of sum or product
+            int bodyStart = pos;
+            int depth = 0;
+            int bodyEnd = bodyStart;
+            while (bodyEnd < tokens.size()) {
+                if (tokens.get(bodyEnd).type() == LatexToken.LBRACE) depth++;
+                else if (tokens.get(bodyEnd).type() == LatexToken.RBRACE) depth--;
+                if (depth == 0) break;
+                bodyEnd++;
+            }
+
+            //DOES: create evaluator from list of tokens that belong to sum or product argument
+            LatexComplexEvaluator expression = new LatexComplexEvaluator(tokens.subList(bodyStart + 1, bodyEnd));
+
+            //DOES: calculate sum or product
+            if (isSum) {
+                result = new FastComplex(0, 0);
+                for (double i = startingIndex; i <= finalIndex; i++) {
+                    result = FastComplex.add(result, expression.eval(var, new FastComplex(i, 0)));
+                }
+            } else {
+                result = new FastComplex(1, 0);
+                for (double i = startingIndex; i <= finalIndex; i++) {
+                    result = FastComplex.mult(result, expression.eval(var, new FastComplex(i, 0)));
+                }
+            }
+
+            pos = bodyEnd + 1;
+
+            return result;
         }
 
         for (LatexToken token : LatexLexer.wordFunctions.values()) {

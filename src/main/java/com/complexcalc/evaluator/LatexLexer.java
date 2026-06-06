@@ -37,6 +37,7 @@ public class LatexLexer {
         FRAC,
         LPAR,
         MULT,
+        PROD,
         ROOT,
         RPAR,
         SECH,
@@ -63,6 +64,8 @@ public class LatexLexer {
     static final Map<String, LatexToken> wordFunctions = new LinkedHashMap<>();
 
     static {
+        //IS: word functions
+        //USAGE: string that should be parsed as the function first, then name of the LatexToken
         String[][] entries = {
             //INFO: order by longest first for correct parsing
             { "floor-pair", "FLOOR" },
@@ -97,6 +100,7 @@ public class LatexLexer {
             { "coth", "COTH" },
             { "csch", "CSCH" },
             { "frac", "FRAC" },
+            { "prod", "PROD" },
             { "sech", "SECH" },
             { "sinh", "SINH" },
             { "tanh", "TANH" },
@@ -120,10 +124,15 @@ public class LatexLexer {
         }
     }
 
+    //IS: word functions that take two arguments with no special behavior
     static Map<String, LatexToken> braceArguments = new LinkedHashMap<>(
         Map.of("atan2", LatexToken.ATAN2, "hypot", LatexToken.HYPOT, "sqrt", LatexToken.ROOT, "frac", LatexToken.FRAC)
     );
 
+    //IS: word functions that shouldn't parse to a token, but directly to a number
+    static Map<String, Double> numbers = new LinkedHashMap<>(Map.of("pi", Math.PI, "tau", Math.TAU));
+
+    //TODO: add with other custom function, expand
     static Map<String, LatexToken> complexOperations = new LinkedHashMap<>(Map.of("conj", LatexToken.CONJ));
 
     record valueToken(LatexToken type, double value) {}
@@ -181,6 +190,13 @@ public class LatexLexer {
                         if (s.substring(i + 1).startsWith(function)) {
                             tokens.add(new valueToken(braceArguments.get(function), 3));
                             i += function.length();
+                            break;
+                        }
+                    }
+                    for (String number : numbers.keySet()) {
+                        if (s.substring(i + 1).startsWith(number)) {
+                            tokens.add(new valueToken(LatexToken.NUM, numbers.get(number)));
+                            i += number.length();
                             break;
                         }
                     }
