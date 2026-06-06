@@ -1,12 +1,12 @@
 package com.complexcalc.evaluator;
 
 import com.complexcalc.evaluator.LatexLexer.LatexToken;
-import com.complexcalc.evaluator.LatexLexer.Token;
+import com.complexcalc.evaluator.LatexLexer.valueToken;
 import java.util.List;
 
 public class LatexComplexEvaluator {
 
-    private List<Token> tokens;
+    private List<valueToken> tokens;
     private int pos = 0;
 
     private char var1;
@@ -20,6 +20,10 @@ public class LatexComplexEvaluator {
 
     public LatexComplexEvaluator(String expression) {
         tokens = LatexLexer.tokenize(expression);
+    }
+
+    public LatexComplexEvaluator(List<valueToken> tokens) {
+        this.tokens = tokens;
     }
 
     public FastComplex eval(
@@ -111,6 +115,7 @@ public class LatexComplexEvaluator {
     }
 
     private FastComplex depth5() {
+        //DOES: evaluate parentheses
         if (check(LatexToken.LPAR)) {
             consume();
             FastComplex result = depth1();
@@ -118,6 +123,7 @@ public class LatexComplexEvaluator {
             return result;
         }
 
+        //DOES: evaluate braces
         if (check(LatexToken.LBRACE)) {
             consume();
             FastComplex result = depth1();
@@ -125,10 +131,12 @@ public class LatexComplexEvaluator {
             return result;
         }
 
+        //DOES: evaluate numbers
         if (check(LatexToken.NUM)) {
             return new FastComplex(consume().value(), 0);
         }
 
+        //DOES: evaluate variables
         if (check(LatexToken.VAR)) {
             if (peek().value() == 'i') {
                 consume();
@@ -165,6 +173,7 @@ public class LatexComplexEvaluator {
             throw new IllegalArgumentException("unknown variable: " + (char) peek().value());
         }
 
+        //DOES: evaluate simple brace arguments like sqrt
         for (LatexToken token : LatexLexer.braceArguments.values()) {
             if (check(token)) {
                 consume();
@@ -200,6 +209,7 @@ public class LatexComplexEvaluator {
             }
         }
 
+        //DOES: evaluate logarithms
         if (check(LatexToken.LOG)) {
             consume();
             FastComplex base = null;
@@ -217,6 +227,32 @@ public class LatexComplexEvaluator {
                 : FastComplex.div(FastComplex.log(antiLog), FastComplex.log(base));
         }
 
+        if (check(LatexToken.SUM)) {
+            consume();
+            int finalIndex;
+            boolean hasFinalIndex;
+            int startingIndex;
+            boolean hasStartingIndex;
+            LatexComplexEvaluator expression;
+
+            for (int i = 0; i < 3; i++) {
+                if (check(LatexToken.POW)) {
+                    consume();
+                    expect(LatexToken.LBRACE);
+                    FastComplex arg = depth1();
+                    if (arg.isReal()) finalIndex = (int) Math.floor(arg.a);
+                    else throw new IllegalArgumentException("final index of SUM is complex");
+                    hasFinalIndex = true;
+                } else if (check(LatexToken.SUBS)) {
+                    consume();
+                    expect(LatexToken.LBRACE);
+                    //TODO:
+                } else if (check(LatexToken.LBRACE)) {
+                    expression = new LatexComplexEvaluator(tokens.subList(pos, tokens.size()));
+                } else throw new IllegalArgumentException("missing arguments for SUM");
+            }
+        }
+
         for (LatexToken token : LatexLexer.wordFunctions.values()) {
             if (check(token)) {
                 consume();
@@ -225,7 +261,6 @@ public class LatexComplexEvaluator {
                 FastComplex result = par ? depth1() : depth5();
                 if (par) expect(LatexToken.RPAR);
                 return switch (token) {
-                    case LOG10 -> FastComplex.log10(result);
                     case FLOOR -> FastComplex.floor(result);
                     case CEIL -> FastComplex.ceil(result);
                     case ROUND -> FastComplex.round(result);
@@ -264,11 +299,11 @@ public class LatexComplexEvaluator {
         throw new IllegalStateException("unexpected token: " + peek().type());
     }
 
-    private Token peek() {
+    private valueToken peek() {
         return tokens.get(pos);
     }
 
-    private Token consume() {
+    private valueToken consume() {
         return tokens.get(pos++);
     }
 

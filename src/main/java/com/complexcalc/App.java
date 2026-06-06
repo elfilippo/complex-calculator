@@ -15,7 +15,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
-        //System.out.println(LatexLexer.tokenize("\\log_{2}{8}"));
+        System.out.println(LatexLexer.tokenize("\\sum_{n=10}^{20}{4x}"));
         System.out.println(new LatexComplexEvaluator("\\sqrt[2]{16}").eval());
         System.exit(0);
         launch(args);

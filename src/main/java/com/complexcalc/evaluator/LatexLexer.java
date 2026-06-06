@@ -20,6 +20,7 @@ public class LatexLexer {
         POW,
         SEC,
         SIN,
+        SUM,
         TAN,
         VAR,
         ACOS,
@@ -53,6 +54,7 @@ public class LatexLexer {
         HYPOT,
         MINUS,
         ROUND,
+        EQUALS,
         LBRACE,
         RBRACE,
         UMINUS,
@@ -108,6 +110,7 @@ public class LatexLexer {
             { "log", "LOG" },
             { "sec", "SEC" },
             { "sin", "SIN" },
+            { "sum", "SUM" },
             { "tan", "TAN" },
             { "ln", "LOG" },
         };
@@ -123,10 +126,10 @@ public class LatexLexer {
 
     static Map<String, LatexToken> complexOperations = new LinkedHashMap<>(Map.of("conj", LatexToken.CONJ));
 
-    record Token(LatexToken type, double value) {}
+    record valueToken(LatexToken type, double value) {}
 
-    public static List<Token> tokenize(String s) {
-        List<Token> tokens = new ArrayList<>();
+    public static List<valueToken> tokenize(String s) {
+        List<valueToken> tokens = new ArrayList<>();
 
         int digitStart = -1;
         for (int i = 0; i < s.length(); i++) {
@@ -140,42 +143,43 @@ public class LatexLexer {
             }
 
             if (digitStart != -1) {
-                tokens.add(new Token(LatexToken.NUM, Double.parseDouble(s.substring(digitStart, i))));
+                tokens.add(new valueToken(LatexToken.NUM, Double.parseDouble(s.substring(digitStart, i))));
                 digitStart = -1;
             }
 
             switch (c) {
-                case '+' -> tokens.add(new Token(LatexToken.ADD, 1));
+                case '+' -> tokens.add(new valueToken(LatexToken.ADD, 1));
                 case '-', '−' -> {
                     LatexToken lastToken;
-                    if (i == 0) tokens.add(new Token(LatexToken.UMINUS, 3));
+                    if (i == 0) tokens.add(new valueToken(LatexToken.UMINUS, 3));
                     else {
                         lastToken = tokens.getLast().type;
                         if (
                             lastToken != LatexToken.NUM && lastToken != LatexToken.VAR && lastToken != LatexToken.RPAR
-                        ) tokens.add(new Token(LatexToken.UMINUS, 3));
-                        else tokens.add(new Token(LatexToken.MINUS, 1));
+                        ) tokens.add(new valueToken(LatexToken.UMINUS, 3));
+                        else tokens.add(new valueToken(LatexToken.MINUS, 1));
                     }
                 }
-                case '*', '×' -> tokens.add(new Token(LatexToken.MULT, 2));
-                case '/', '÷' -> tokens.add(new Token(LatexToken.DIV, 2));
-                case '^' -> tokens.add(new Token(LatexToken.POW, 4));
-                case '(' -> tokens.add(new Token(LatexToken.LPAR, 5));
-                case ')' -> tokens.add(new Token(LatexToken.RPAR, 5));
-                case '{', '[' -> tokens.add(new Token(LatexToken.LBRACE, 5));
-                case '}', ']' -> tokens.add(new Token(LatexToken.RBRACE, 5));
-                case '_' -> tokens.add(new Token(LatexToken.SUBS, 5));
+                case '*', '×' -> tokens.add(new valueToken(LatexToken.MULT, 2));
+                case '/', '÷' -> tokens.add(new valueToken(LatexToken.DIV, 2));
+                case '^' -> tokens.add(new valueToken(LatexToken.POW, 4));
+                case '(' -> tokens.add(new valueToken(LatexToken.LPAR, 5));
+                case ')' -> tokens.add(new valueToken(LatexToken.RPAR, 5));
+                case '{', '[' -> tokens.add(new valueToken(LatexToken.LBRACE, 5));
+                case '}', ']' -> tokens.add(new valueToken(LatexToken.RBRACE, 5));
+                case '_' -> tokens.add(new valueToken(LatexToken.SUBS, 5));
+                case '=' -> tokens.add(new valueToken(LatexToken.EQUALS, 6));
                 case '\\' -> {
                     for (String function : wordFunctions.keySet()) {
                         if (s.substring(i + 1).startsWith(function)) {
-                            tokens.add(new Token(wordFunctions.get(function), 3));
+                            tokens.add(new valueToken(wordFunctions.get(function), 3));
                             i += function.length();
                             break;
                         }
                     }
                     for (String function : braceArguments.keySet()) {
                         if (s.substring(i + 1).startsWith(function)) {
-                            tokens.add(new Token(braceArguments.get(function), 3));
+                            tokens.add(new valueToken(braceArguments.get(function), 3));
                             i += function.length();
                             break;
                         }
@@ -203,13 +207,15 @@ public class LatexLexer {
                             }
                         }
                         */
-                        if (!wordFound) tokens.add(new Token(LatexToken.VAR, c));
+                        if (!wordFound) tokens.add(new valueToken(LatexToken.VAR, c));
                     } else throw new IllegalArgumentException();
                 }
             }
         }
-        if (digitStart != -1) tokens.add(new Token(LatexToken.NUM, Double.parseDouble(s.substring(digitStart))));
+        if (digitStart != -1) tokens.add(new valueToken(LatexToken.NUM, Double.parseDouble(s.substring(digitStart))));
 
+        //IS: list of tokens that are allowed between two expressions
+        //INFO: implied multiplication doesn't add mult tokens after these
         List<LatexToken> allowedToEnd = new ArrayList<>(
             List.of(
                 LatexToken.ADD,
@@ -217,6 +223,7 @@ public class LatexLexer {
                 LatexToken.POW,
                 LatexToken.MULT,
                 LatexToken.MINUS,
+                LatexToken.EQUALS,
                 LatexToken.UMINUS
             )
         );
@@ -234,7 +241,7 @@ public class LatexLexer {
                     LatexToken.RBRACE == tokens.get(i + 1).type ||
                     (LatexToken.RBRACE == tokens.get(i).type && LatexToken.LBRACE == tokens.get(i + 1).type)
                 ) continue;
-                tokens.add(i + 1, new Token(LatexToken.MULT, 2));
+                tokens.add(i + 1, new valueToken(LatexToken.MULT, 2));
                 i++;
             }
         }

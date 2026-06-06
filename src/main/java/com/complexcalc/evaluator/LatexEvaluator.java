@@ -1,12 +1,12 @@
 package com.complexcalc.evaluator;
 
 import com.complexcalc.evaluator.LatexLexer.LatexToken;
-import com.complexcalc.evaluator.LatexLexer.Token;
+import com.complexcalc.evaluator.LatexLexer.valueToken;
 import java.util.List;
 
 public class LatexEvaluator {
 
-    private List<Token> tokens;
+    private List<valueToken> tokens;
     private int pos = 0;
 
     private char var1;
@@ -193,7 +193,6 @@ public class LatexEvaluator {
                 double result = par ? depth1() : depth5();
                 if (par) expect(LatexToken.RPAR);
                 return switch (token) {
-                    case LOG10 -> Math.log10(result);
                     case FLOOR -> Math.floor(result);
                     case CEIL -> Math.ceil(result);
                     case ROUND -> Math.round(result);
@@ -231,11 +230,11 @@ public class LatexEvaluator {
         if (amount > max) throw new IllegalArgumentException("too many arguments provided");
     }
 
-    private Token peek() {
+    private valueToken peek() {
         return tokens.get(pos);
     }
 
-    private Token consume() {
+    private valueToken consume() {
         return tokens.get(pos++);
     }
 
