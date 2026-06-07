@@ -277,7 +277,7 @@ public class LatexComplexEvaluator {
     private FastComplex depth3() {
         if (check(LatexToken.UMINUS)) {
             consume();
-            return FastComplex.invert(depth3());
+            return FastComplex.negate(depth3());
         }
 
         return depth4();
@@ -294,6 +294,12 @@ public class LatexComplexEvaluator {
             consume();
             return FastComplex.pow(result, depth3());
         }
+
+        if (check(LatexToken.FACT)) {
+            consume();
+            return FastComplex.factorial(result);
+        }
+
         return result;
     }
 
@@ -544,7 +550,7 @@ public class LatexComplexEvaluator {
                     case ACOTH -> FastComplex.acoth(result);
                     case ASECH -> FastComplex.asech(result);
                     case ACSCH -> FastComplex.acsch(result);
-                    case CONJ -> FastComplex.conjugate(result);
+                    case CONJ -> FastComplex.conj(result);
                     case ABS -> new FastComplex(result.mag(), 0);
                     case EXP -> FastComplex.exp(result);
                     case SIN -> FastComplex.sin(result);

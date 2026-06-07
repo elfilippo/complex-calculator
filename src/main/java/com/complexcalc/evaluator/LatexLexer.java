@@ -34,6 +34,7 @@ public class LatexLexer {
         COSH,
         COTH,
         CSCH,
+        FACT,
         FRAC,
         LPAR,
         MULT,
@@ -155,7 +156,6 @@ public class LatexLexer {
                 tokens.add(new valueToken(LatexToken.NUM, Double.parseDouble(s.substring(digitStart, i))));
                 digitStart = -1;
             }
-
             switch (c) {
                 case '+' -> tokens.add(new valueToken(LatexToken.ADD, 1));
                 case '-', '−' -> {
@@ -164,13 +164,18 @@ public class LatexLexer {
                     else {
                         lastToken = tokens.getLast().type;
                         if (
-                            lastToken != LatexToken.NUM && lastToken != LatexToken.VAR && lastToken != LatexToken.RPAR
+                            lastToken != LatexToken.NUM &&
+                            lastToken != LatexToken.VAR &&
+                            lastToken != LatexToken.RPAR &&
+                            lastToken != LatexToken.RBRACE &&
+                            lastToken != LatexToken.FACT
                         ) tokens.add(new valueToken(LatexToken.UMINUS, 3));
                         else tokens.add(new valueToken(LatexToken.MINUS, 1));
                     }
                 }
                 case '*', '×' -> tokens.add(new valueToken(LatexToken.MULT, 2));
                 case '/', '÷' -> tokens.add(new valueToken(LatexToken.DIV, 2));
+                case '!' -> tokens.add(new valueToken(LatexToken.FACT, 4));
                 case '^' -> tokens.add(new valueToken(LatexToken.POW, 4));
                 case '(' -> tokens.add(new valueToken(LatexToken.LPAR, 5));
                 case ')' -> tokens.add(new valueToken(LatexToken.RPAR, 5));
@@ -255,7 +260,8 @@ public class LatexLexer {
                     LatexToken.LBRACE == tokens.get(i).type ||
                     LatexToken.LBRACE == tokens.get(i + 1).type ||
                     LatexToken.RBRACE == tokens.get(i + 1).type ||
-                    (LatexToken.RBRACE == tokens.get(i).type && LatexToken.LBRACE == tokens.get(i + 1).type)
+                    (LatexToken.RBRACE == tokens.get(i).type && LatexToken.LBRACE == tokens.get(i + 1).type) ||
+                    LatexToken.FACT == tokens.get(i + 1).type
                 ) continue;
                 tokens.add(i + 1, new valueToken(LatexToken.MULT, 2));
                 i++;

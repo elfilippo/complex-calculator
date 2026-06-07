@@ -14,7 +14,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
-        System.out.println(new LatexComplexEvaluator("\\sum_{n=1}^{5}{\\sum_{k=1}^{5}{nk}}").eval());
+        System.out.println(new LatexComplexEvaluator("\\sum_{n=0}^{100}{\\frac{1}{n!}}").eval());
         System.exit(0);
         launch(args);
     }

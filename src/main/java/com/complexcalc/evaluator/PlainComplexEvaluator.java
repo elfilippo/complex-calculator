@@ -96,7 +96,7 @@ public class PlainComplexEvaluator {
     private FastComplex depth3() {
         if (check(PlainToken.UMINUS)) {
             consume();
-            return FastComplex.invert(depth3());
+            return FastComplex.negate(depth3());
         }
         return depth4();
     }
@@ -223,7 +223,7 @@ public class PlainComplexEvaluator {
                     case ACOTH -> FastComplex.acoth(result);
                     case ASECH -> FastComplex.asech(result);
                     case ACSCH -> FastComplex.acsch(result);
-                    case CONJ -> FastComplex.conjugate(result);
+                    case CONJ -> FastComplex.conj(result);
                     case SQRT -> FastComplex.sqrt(result);
                     case ABS -> new FastComplex(result.mag(), 0);
                     case EXP -> FastComplex.exp(result);

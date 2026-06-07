@@ -1,19 +1,25 @@
 package com.complexcalc.evaluator;
 
 /**
- * complex number class that is faster by only calculating polar coordinates when needed
+ * complex number class that saves computations by only calculating polar coordinates when needed <p>
+ * only returns principal results since it doesn't preserve non-normalized argument information
  */
 public class FastComplex {
 
     public final double a, b;
 
+    /**
+     * constructor for a complex in cartesian (or square) form
+     * @param a real part
+     * @param b imaginary part
+     */
     public FastComplex(double a, double b) {
         this.a = a;
         this.b = b;
     }
 
     /**
-     * returns a new complex from the polar form input re^(iθ)
+     * returns a new FastComplex from the polar form input re^(iθ)
      * @param magnitude r
      * @param argument θ
      */
@@ -37,16 +43,38 @@ public class FastComplex {
         return new Complex(a, b);
     }
 
+    /**
+     * returns the magnitude of the complex
+     * @return double magnitude
+     */
     public double mag() {
         return Math.hypot(a, b);
     }
 
+    /**
+     * returns the argument of the complex
+     * @return double argument in radians
+     */
     public double arg() {
         return Math.atan2(b, a);
     }
 
-    public static FastComplex invert(FastComplex z) {
+    /**
+     * returns the negated complex unless it is 0 to preserve branch correctness
+     * @param z complex argument
+     * @return complex result
+     */
+    public static FastComplex negate(FastComplex z) {
         return new FastComplex(-z.a, z.b == 0 ? 0 : -z.b);
+    }
+
+    /**
+     * returns the reciprocal of the complex
+     * @param z complex argument
+     * @return complex result
+     */
+    public static FastComplex recip(FastComplex z) {
+        return div(1, z);
     }
 
     /**
@@ -454,7 +482,7 @@ public class FastComplex {
     public static FastComplex cot(FastComplex z) {
         double tanA = Math.tan(z.a);
         double tanhA = Math.tanh(z.b);
-        return invert(div(new FastComplex(1, (1 / tanA) * (1 / tanhA)), new FastComplex(1 / tanA, -(1 / tanhA))));
+        return negate(div(new FastComplex(1, (1 / tanA) * (1 / tanhA)), new FastComplex(1 / tanA, -(1 / tanhA))));
     }
 
     /**
@@ -622,8 +650,81 @@ public class FastComplex {
      * @param z complex argument
      * @return conjugate
      */
-    public static FastComplex conjugate(FastComplex z) {
+    public static FastComplex conj(FastComplex z) {
         return new FastComplex(z.a, z.b == 0 ? 0 : -z.b);
+    }
+
+    /**
+     * Lanczos approximation of gamma function
+     * @author Claude Sonnet
+     * @param z complex argument
+     * @return complex result
+     */
+    public static FastComplex gamma(FastComplex z) {
+        if (z.a > 0 && z.isReal() && z.a == Math.rint(z.a)) return new FastComplex(factorial((int) z.a - 1), 0);
+
+        double[] p = {
+            676.5203681218851,
+            -1259.1392167224028,
+            771.32342877765313,
+            -176.61502916214059,
+            12.507343278686905,
+            -0.13857109526572012,
+            9.9843695780195716e-6,
+            1.5056327351493116e-7,
+        };
+
+        if (z.a < 0.5) {
+            return FastComplex.div(
+                new FastComplex(Math.PI, 0),
+                FastComplex.mult(
+                    FastComplex.sin(FastComplex.mult(new FastComplex(Math.PI, 0), z)),
+                    gamma(FastComplex.sub(new FastComplex(1, 0), z))
+                )
+            );
+        }
+
+        z = FastComplex.sub(z, new FastComplex(1, 0));
+
+        FastComplex x = new FastComplex(0.99999999999980993, 0);
+        for (int i = 0; i < p.length; i++) {
+            x = FastComplex.add(
+                x,
+                FastComplex.div(new FastComplex(p[i], 0), FastComplex.add(z, new FastComplex(i + 1, 0)))
+            );
+        }
+
+        FastComplex t = FastComplex.add(z, new FastComplex(p.length - 0.5, 0));
+
+        return FastComplex.mult(
+            FastComplex.mult(
+                new FastComplex(Math.sqrt(2 * Math.PI), 0),
+                FastComplex.pow(t, FastComplex.add(z, new FastComplex(0.5, 0)))
+            ),
+            FastComplex.mult(FastComplex.exp(FastComplex.negate(t)), x)
+        );
+    }
+
+    /**
+     * returns the factorial of arguments that fall outside the standard factorial definition like
+     * non-integer or complex arguments. <p> uses the gamma function
+     * @param z complex argument
+     */
+    public static FastComplex factorial(FastComplex z) {
+        return gamma(FastComplex.add(z, new FastComplex(1, 0)));
+    }
+
+    /**
+     * returns the factorial of a positive integer
+     * @param x real argument
+     * @return double to avoid integer overflow
+     */
+    public static double factorial(int x) {
+        double y = 1;
+        if (x < 0) throw new IllegalArgumentException("trying to take negative factorial with int method");
+        if (x == 0) return 1;
+        for (int i = 2; i <= x; i++) y *= i;
+        return y;
     }
 
     /**
