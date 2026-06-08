@@ -1,6 +1,5 @@
 package com.complexcalc.evaluator;
 
-import com.complexcalc.evaluator.LatexLexer.LatexToken;
 import com.complexcalc.evaluator.LatexLexer.valueToken;
 import java.util.Arrays;
 import java.util.List;
@@ -243,10 +242,10 @@ public class LatexComplexEvaluator {
         //IS: have been performed on it
         FastComplex result = depth2();
 
-        while (check(LatexToken.ADD) || check(LatexToken.MINUS)) {
-            LatexToken op = consume().type();
+        while (check(Token.ADD) || check(Token.MINUS)) {
+            Token op = consume().type();
             FastComplex right = depth2();
-            result = op == LatexToken.ADD ? FastComplex.add(result, right) : FastComplex.sub(result, right);
+            result = op == Token.ADD ? FastComplex.add(result, right) : FastComplex.sub(result, right);
         }
 
         return result;
@@ -260,10 +259,10 @@ public class LatexComplexEvaluator {
     private FastComplex depth2() {
         FastComplex result = depth3();
 
-        while (check(LatexToken.MULT) || check(LatexToken.DIV)) {
-            LatexToken op = consume().type();
+        while (check(Token.MULT) || check(Token.DIV)) {
+            Token op = consume().type();
             FastComplex right = depth3();
-            result = op == LatexToken.MULT ? FastComplex.mult(result, right) : FastComplex.div(result, right);
+            result = op == Token.MULT ? FastComplex.mult(result, right) : FastComplex.div(result, right);
         }
 
         return result;
@@ -275,7 +274,7 @@ public class LatexComplexEvaluator {
      * @return
      */
     private FastComplex depth3() {
-        if (check(LatexToken.UMINUS)) {
+        if (check(Token.UMINUS)) {
             consume();
             return FastComplex.negate(depth3());
         }
@@ -290,12 +289,12 @@ public class LatexComplexEvaluator {
     private FastComplex depth4() {
         FastComplex result = depth5();
 
-        if (check(LatexToken.POW)) {
+        if (check(Token.POW)) {
             consume();
             return FastComplex.pow(result, depth3());
         }
 
-        if (check(LatexToken.FACT)) {
+        if (check(Token.FACT)) {
             consume();
             return FastComplex.factorial(result);
         }
@@ -311,29 +310,29 @@ public class LatexComplexEvaluator {
      */
     private FastComplex depth5() {
         //DOES: evaluate parentheses
-        if (check(LatexToken.LPAR)) {
+        if (check(Token.LPAR)) {
             consume();
             FastComplex result = depth1();
-            expect(LatexToken.RPAR);
+            expect(Token.RPAR);
             return result;
         }
 
         //DOES: evaluate braces
-        if (check(LatexToken.LBRACE)) {
+        if (check(Token.LBRACE)) {
             consume();
             FastComplex result = depth1();
-            expect(LatexToken.RBRACE);
+            expect(Token.RBRACE);
             return result;
         }
 
         //DOES: evaluate numbers (return the value of the number token)
-        if (check(LatexToken.NUM)) {
+        if (check(Token.NUM)) {
             return new FastComplex(consume().value(), 0);
         }
 
         //DOES: evaluate numbers like i and e and variables (return the value given to the evaluator for the
         //DOES: variable)
-        if (check(LatexToken.VAR)) {
+        if (check(Token.VAR)) {
             if (peek().value() == 'i') {
                 consume();
                 return new FastComplex(0, 1);
@@ -361,19 +360,19 @@ public class LatexComplexEvaluator {
 
         //DOES: evaluate simple brace arguments like roots that don't have special behavior like superscripting
         //INFO: braces and brackets are treated interchangably, the order of arguments determines which is which
-        for (LatexToken token : LatexLexer.braceArguments.values()) {
+        for (Token token : LatexLexer.braceArguments.values()) {
             if (check(token)) {
                 consume();
-                expect(LatexToken.LBRACE);
+                expect(Token.LBRACE);
                 FastComplex arg1 = depth1();
-                expect(LatexToken.RBRACE);
+                expect(Token.RBRACE);
 
                 //DOES: check for a second argument and leave it blank if there is none
                 FastComplex arg2 = null;
-                if (check(LatexToken.LBRACE)) {
+                if (check(Token.LBRACE)) {
                     consume();
                     arg2 = depth1();
-                    expect(LatexToken.RBRACE);
+                    expect(Token.RBRACE);
                 }
 
                 return switch (token) {
@@ -399,22 +398,22 @@ public class LatexComplexEvaluator {
         //DOES: evaluate logarithms
         //INFO: logarithms need to be evaluated separately due to the base being in subscript
         //INFO: defaults to ln (base e) if no base is found
-        if (check(LatexToken.LOG)) {
+        if (check(Token.LOG)) {
             consume();
             FastComplex base = null;
 
             //DOES: check for base (base has to be before antilog in LaTeX)
-            if (check(LatexToken.SUBS)) {
+            if (check(Token.SUBS)) {
                 consume();
-                expect(LatexToken.LBRACE);
+                expect(Token.LBRACE);
                 base = depth1();
-                expect(LatexToken.RBRACE);
+                expect(Token.RBRACE);
             }
 
             //DOES: get the antilog
-            expect(LatexToken.LBRACE);
+            expect(Token.LBRACE);
             FastComplex antiLog = depth1();
-            expect(LatexToken.RBRACE);
+            expect(Token.RBRACE);
 
             return base == null
                 ? FastComplex.log(antiLog)
@@ -422,8 +421,8 @@ public class LatexComplexEvaluator {
         }
 
         //DOES: evaluate sums and products
-        if (check(LatexToken.SUM) || check(LatexToken.PROD)) {
-            boolean isSum = check(LatexToken.SUM);
+        if (check(Token.SUM) || check(Token.PROD)) {
+            boolean isSum = check(Token.SUM);
             consume();
             double finalIndex = -1;
             double startingIndex = 0;
@@ -436,12 +435,12 @@ public class LatexComplexEvaluator {
 
             //DOES: check for upper and lower bounds of sum or product (can be in any order)
             for (int i = 0; i < 2; i++) {
-                if (check(LatexToken.SUBS) && !hasStartingIndex) {
+                if (check(Token.SUBS) && !hasStartingIndex) {
                     consume();
-                    expect(LatexToken.LBRACE);
+                    expect(Token.LBRACE);
 
                     //DOES: get variable to increment in sum or product
-                    if (!check(LatexToken.VAR)) throw new IllegalArgumentException(
+                    if (!check(Token.VAR)) throw new IllegalArgumentException(
                         "expected variable in lower bound of " + (isSum ? "sum" : "product")
                     );
                     var = (char) consume().value();
@@ -454,9 +453,9 @@ public class LatexComplexEvaluator {
                     }
 
                     //DOES: calculate starting index
-                    expect(LatexToken.EQUALS);
+                    expect(Token.EQUALS);
                     FastComplex arg = depth1();
-                    expect(LatexToken.RBRACE);
+                    expect(Token.RBRACE);
 
                     //DOES: convert starting index to double (can't be complex)
                     if (!arg.isReal()) throw new IllegalArgumentException(
@@ -464,9 +463,9 @@ public class LatexComplexEvaluator {
                     );
                     startingIndex = arg.a;
                     hasStartingIndex = true;
-                } else if (check(LatexToken.POW) && !hasFinalIndex) {
+                } else if (check(Token.POW) && !hasFinalIndex) {
                     consume();
-                    expect(LatexToken.LBRACE);
+                    expect(Token.LBRACE);
 
                     //DOES: calculate ending index & convert it to double (can't be complex)
                     FastComplex arg = depth1();
@@ -476,7 +475,7 @@ public class LatexComplexEvaluator {
                     finalIndex = arg.a;
 
                     hasFinalIndex = true;
-                    expect(LatexToken.RBRACE);
+                    expect(Token.RBRACE);
                 } else throw new IllegalArgumentException(
                     "missing " +
                         (hasStartingIndex ? "final index" : "starting index") +
@@ -490,8 +489,8 @@ public class LatexComplexEvaluator {
             int depth = 0;
             int bodyEnd = bodyStart;
             while (bodyEnd < tokens.size()) {
-                if (tokens.get(bodyEnd).type() == LatexToken.LBRACE) depth++;
-                else if (tokens.get(bodyEnd).type() == LatexToken.RBRACE) depth--;
+                if (tokens.get(bodyEnd).type() == Token.LBRACE) depth++;
+                else if (tokens.get(bodyEnd).type() == Token.RBRACE) depth--;
                 if (depth == 0) break;
                 bodyEnd++;
             }
@@ -521,13 +520,13 @@ public class LatexComplexEvaluator {
         }
 
         //DOES: evaluate single-argument word functions like trig or abs
-        for (LatexToken token : LatexLexer.wordFunctions.values()) {
+        for (Token token : LatexLexer.wordFunctions.values()) {
             if (check(token)) {
                 consume();
-                boolean par = check(LatexToken.LPAR);
+                boolean par = check(Token.LPAR);
                 if (par) consume();
                 FastComplex result = par ? depth1() : depth5();
-                if (par) expect(LatexToken.RPAR);
+                if (par) expect(Token.RPAR);
                 return switch (token) {
                     case FLOOR -> FastComplex.floor(result);
                     case CEIL -> FastComplex.ceil(result);
@@ -584,10 +583,10 @@ public class LatexComplexEvaluator {
 
     /**
      * checks if there is a certain token at the current position or if there are any tokens left
-     * @param token the LatexToken to be checked
+     * @param token the Token to be checked
      * @return false when there are no tokens left or the current token is not the same as the provided one
      */
-    private boolean check(LatexToken token) {
+    private boolean check(Token token) {
         return pos < tokens.size() && tokens.get(pos).type() == token;
     }
 
@@ -595,7 +594,7 @@ public class LatexComplexEvaluator {
      * consumes the current token and throws an exception if it wasn't the provided token
      * @param token the token to be expected
      */
-    private void expect(LatexToken token) {
+    private void expect(Token token) {
         if (!check(token)) throw new IllegalArgumentException("missing " + token);
         consume();
     }

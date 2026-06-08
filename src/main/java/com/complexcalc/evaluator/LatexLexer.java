@@ -7,66 +7,11 @@ import java.util.Map;
 
 public class LatexLexer {
 
-    public static enum LatexToken {
-        ABS,
-        ADD,
-        COS,
-        COT,
-        CSC,
-        DIV,
-        EXP,
-        LOG,
-        NUM,
-        POW,
-        SEC,
-        SIN,
-        SUM,
-        TAN,
-        VAR,
-        ACOS,
-        ACOT,
-        ACSC,
-        ASEC,
-        ASIN,
-        ATAN,
-        CEIL,
-        CONJ,
-        COSH,
-        COTH,
-        CSCH,
-        FACT,
-        FRAC,
-        LPAR,
-        MULT,
-        PROD,
-        ROOT,
-        RPAR,
-        SECH,
-        SINH,
-        SUBS,
-        TANH,
-        ACOSH,
-        ACOTH,
-        ACSCH,
-        ASECH,
-        ASINH,
-        ATAN2,
-        ATANH,
-        FLOOR,
-        HYPOT,
-        MINUS,
-        ROUND,
-        EQUALS,
-        LBRACE,
-        RBRACE,
-        UMINUS,
-    }
-
-    static final Map<String, LatexToken> wordFunctions = new LinkedHashMap<>();
+    static final Map<String, Token> wordFunctions = new LinkedHashMap<>();
 
     static {
         //IS: word functions
-        //USAGE: string that should be parsed as the function first, then name of the LatexToken
+        //USAGE: string that should be parsed as the function first, then name of the Token
         String[][] entries = {
             //INFO: order by longest first for correct parsing
             { "floor-pair", "FLOOR" },
@@ -121,22 +66,22 @@ public class LatexLexer {
         };
 
         for (String[] e : entries) {
-            wordFunctions.put(e[0], LatexToken.valueOf(e[1]));
+            wordFunctions.put(e[0], Token.valueOf(e[1]));
         }
     }
 
     //IS: word functions that take two arguments with no special behavior
-    static Map<String, LatexToken> braceArguments = new LinkedHashMap<>(
-        Map.of("atan2", LatexToken.ATAN2, "hypot", LatexToken.HYPOT, "sqrt", LatexToken.ROOT, "frac", LatexToken.FRAC)
+    static Map<String, Token> braceArguments = new LinkedHashMap<>(
+        Map.of("atan2", Token.ATAN2, "hypot", Token.HYPOT, "sqrt", Token.ROOT, "frac", Token.FRAC)
     );
 
     //IS: word functions that shouldn't parse to a token, but directly to a number
     static Map<String, Double> numbers = new LinkedHashMap<>(Map.of("pi", Math.PI, "tau", Math.TAU));
 
     //TODO: add with other custom function, expand
-    static Map<String, LatexToken> complexOperations = new LinkedHashMap<>(Map.of("conj", LatexToken.CONJ));
+    static Map<String, Token> complexOperations = new LinkedHashMap<>(Map.of("conj", Token.CONJ));
 
-    record valueToken(LatexToken type, double value) {}
+    record valueToken(Token type, double value) {}
 
     public static List<valueToken> tokenize(String s) {
         List<valueToken> tokens = new ArrayList<>();
@@ -153,36 +98,36 @@ public class LatexLexer {
             }
 
             if (digitStart != -1) {
-                tokens.add(new valueToken(LatexToken.NUM, Double.parseDouble(s.substring(digitStart, i))));
+                tokens.add(new valueToken(Token.NUM, Double.parseDouble(s.substring(digitStart, i))));
                 digitStart = -1;
             }
             switch (c) {
-                case '+' -> tokens.add(new valueToken(LatexToken.ADD, 1));
+                case '+' -> tokens.add(new valueToken(Token.ADD, 1));
                 case '-', '−' -> {
-                    LatexToken lastToken;
-                    if (i == 0) tokens.add(new valueToken(LatexToken.UMINUS, 3));
+                    Token lastToken;
+                    if (i == 0) tokens.add(new valueToken(Token.UMINUS, 3));
                     else {
                         lastToken = tokens.getLast().type;
                         if (
-                            lastToken != LatexToken.NUM &&
-                            lastToken != LatexToken.VAR &&
-                            lastToken != LatexToken.RPAR &&
-                            lastToken != LatexToken.RBRACE &&
-                            lastToken != LatexToken.FACT
-                        ) tokens.add(new valueToken(LatexToken.UMINUS, 3));
-                        else tokens.add(new valueToken(LatexToken.MINUS, 1));
+                            lastToken != Token.NUM &&
+                            lastToken != Token.VAR &&
+                            lastToken != Token.RPAR &&
+                            lastToken != Token.RBRACE &&
+                            lastToken != Token.FACT
+                        ) tokens.add(new valueToken(Token.UMINUS, 3));
+                        else tokens.add(new valueToken(Token.MINUS, 1));
                     }
                 }
-                case '*', '×' -> tokens.add(new valueToken(LatexToken.MULT, 2));
-                case '/', '÷' -> tokens.add(new valueToken(LatexToken.DIV, 2));
-                case '!' -> tokens.add(new valueToken(LatexToken.FACT, 4));
-                case '^' -> tokens.add(new valueToken(LatexToken.POW, 4));
-                case '(' -> tokens.add(new valueToken(LatexToken.LPAR, 5));
-                case ')' -> tokens.add(new valueToken(LatexToken.RPAR, 5));
-                case '{', '[' -> tokens.add(new valueToken(LatexToken.LBRACE, 5));
-                case '}', ']' -> tokens.add(new valueToken(LatexToken.RBRACE, 5));
-                case '_' -> tokens.add(new valueToken(LatexToken.SUBS, 5));
-                case '=' -> tokens.add(new valueToken(LatexToken.EQUALS, 6));
+                case '*', '×' -> tokens.add(new valueToken(Token.MULT, 2));
+                case '/', '÷' -> tokens.add(new valueToken(Token.DIV, 2));
+                case '!' -> tokens.add(new valueToken(Token.FACT, 4));
+                case '^' -> tokens.add(new valueToken(Token.POW, 4));
+                case '(' -> tokens.add(new valueToken(Token.LPAR, 5));
+                case ')' -> tokens.add(new valueToken(Token.RPAR, 5));
+                case '{', '[' -> tokens.add(new valueToken(Token.LBRACE, 5));
+                case '}', ']' -> tokens.add(new valueToken(Token.RBRACE, 5));
+                case '_' -> tokens.add(new valueToken(Token.SUBS, 5));
+                case '=' -> tokens.add(new valueToken(Token.EQUALS, 6));
                 case '\\' -> {
                     for (String function : wordFunctions.keySet()) {
                         if (s.substring(i + 1).startsWith(function)) {
@@ -200,7 +145,7 @@ public class LatexLexer {
                     }
                     for (String number : numbers.keySet()) {
                         if (s.substring(i + 1).startsWith(number)) {
-                            tokens.add(new valueToken(LatexToken.NUM, numbers.get(number)));
+                            tokens.add(new valueToken(Token.NUM, numbers.get(number)));
                             i += number.length();
                             break;
                         }
@@ -228,25 +173,17 @@ public class LatexLexer {
                             }
                         }
                         */
-                        if (!wordFound) tokens.add(new valueToken(LatexToken.VAR, c));
+                        if (!wordFound) tokens.add(new valueToken(Token.VAR, c));
                     } else throw new IllegalArgumentException();
                 }
             }
         }
-        if (digitStart != -1) tokens.add(new valueToken(LatexToken.NUM, Double.parseDouble(s.substring(digitStart))));
+        if (digitStart != -1) tokens.add(new valueToken(Token.NUM, Double.parseDouble(s.substring(digitStart))));
 
         //IS: list of tokens that are allowed between two expressions
         //INFO: implied multiplication doesn't add mult tokens after these
-        List<LatexToken> allowedToEnd = new ArrayList<>(
-            List.of(
-                LatexToken.ADD,
-                LatexToken.DIV,
-                LatexToken.POW,
-                LatexToken.MULT,
-                LatexToken.MINUS,
-                LatexToken.EQUALS,
-                LatexToken.UMINUS
-            )
+        List<Token> allowedToEnd = new ArrayList<>(
+            List.of(Token.ADD, Token.DIV, Token.POW, Token.MULT, Token.MINUS, Token.EQUALS, Token.UMINUS)
         );
 
         //DOES: insert mult tokens for implied multiplication
@@ -255,15 +192,15 @@ public class LatexLexer {
                 if (
                     wordFunctions.containsValue(tokens.get(i).type) ||
                     braceArguments.containsValue(tokens.get(i).type) ||
-                    LatexToken.LPAR == tokens.get(i).type ||
-                    LatexToken.RPAR == tokens.get(i + 1).type ||
-                    LatexToken.LBRACE == tokens.get(i).type ||
-                    LatexToken.LBRACE == tokens.get(i + 1).type ||
-                    LatexToken.RBRACE == tokens.get(i + 1).type ||
-                    (LatexToken.RBRACE == tokens.get(i).type && LatexToken.LBRACE == tokens.get(i + 1).type) ||
-                    LatexToken.FACT == tokens.get(i + 1).type
+                    Token.LPAR == tokens.get(i).type ||
+                    Token.RPAR == tokens.get(i + 1).type ||
+                    Token.LBRACE == tokens.get(i).type ||
+                    Token.LBRACE == tokens.get(i + 1).type ||
+                    Token.RBRACE == tokens.get(i + 1).type ||
+                    (Token.RBRACE == tokens.get(i).type && Token.LBRACE == tokens.get(i + 1).type) ||
+                    Token.FACT == tokens.get(i + 1).type
                 ) continue;
-                tokens.add(i + 1, new valueToken(LatexToken.MULT, 2));
+                tokens.add(i + 1, new valueToken(Token.MULT, 2));
                 i++;
             }
         }
