@@ -1,6 +1,8 @@
-package com.complexcalc.evaluator;
+package com.complexcalc.parser;
 
-import com.complexcalc.evaluator.LatexLexer.valueToken;
+import static com.complexcalc.parser.registry.Functions.*;
+
+import com.complexcalc.parser.registry.Token;
 import java.util.Arrays;
 import java.util.List;
 
@@ -360,7 +362,7 @@ public class LatexComplexEvaluator {
 
         //DOES: evaluate simple brace arguments like roots that don't have special behavior like superscripting
         //INFO: braces and brackets are treated interchangably, the order of arguments determines which is which
-        for (Token token : LatexLexer.braceArguments.values()) {
+        for (Token token : braceArguments.values()) {
             if (check(token)) {
                 consume();
                 expect(Token.LBRACE);
@@ -520,7 +522,7 @@ public class LatexComplexEvaluator {
         }
 
         //DOES: evaluate single-argument word functions like trig or abs
-        for (Token token : LatexLexer.wordFunctions.values()) {
+        for (Token token : wordFunctions.values()) {
             if (check(token)) {
                 consume();
                 boolean par = check(Token.LPAR);

@@ -1,6 +1,6 @@
 package com.complexcalc;
 
-import com.complexcalc.evaluator.LatexComplexEvaluator;
+import com.complexcalc.parser.LatexComplexEvaluator;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

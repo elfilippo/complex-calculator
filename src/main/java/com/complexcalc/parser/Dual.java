@@ -1,4 +1,4 @@
-package com.complexcalc.evaluator;
+package com.complexcalc.parser;
 
 import java.util.function.BiFunction;
 

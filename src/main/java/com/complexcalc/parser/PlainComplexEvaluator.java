@@ -1,7 +1,7 @@
-package com.complexcalc.evaluator;
+package com.complexcalc.parser;
 
-import com.complexcalc.evaluator.PlaintextLexer.PlainToken;
-import com.complexcalc.evaluator.PlaintextLexer.Token;
+import com.complexcalc.parser.PlaintextLexer.PlainToken;
+import com.complexcalc.parser.PlaintextLexer.Token;
 import java.util.ArrayList;
 import java.util.List;
 

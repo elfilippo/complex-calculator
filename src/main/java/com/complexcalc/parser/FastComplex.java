@@ -1,4 +1,4 @@
-package com.complexcalc.evaluator;
+package com.complexcalc.parser;
 
 /**
  * complex number class that saves computations by only calculating polar coordinates when needed <p>

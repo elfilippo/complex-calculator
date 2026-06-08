@@ -1,4 +1,4 @@
-package com.complexcalc.evaluator;
+package com.complexcalc.parser.registry;
 
 public enum Token {
     ABS,

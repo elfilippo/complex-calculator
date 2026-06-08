@@ -1,4 +1,4 @@
-package com.complexcalc.evaluator;
+package com.complexcalc.parser;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class PlaintextLexer {
+
+    //TODO: merge registry with LatexLexer and tokenize for LatexComplexEvaluator
 
     public static enum PlainToken {
         ADD,
