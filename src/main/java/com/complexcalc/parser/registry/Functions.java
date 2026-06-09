@@ -7,7 +7,7 @@ public final class Functions {
 
     private Functions() {}
 
-    public static final Map<String, Token> wordFunctions = new LinkedHashMap<>();
+    public static final Map<String, Token> wordOperations = new LinkedHashMap<>();
 
     static {
         //IS: word functions
@@ -42,6 +42,7 @@ public final class Functions {
             { "asec", "ASEC" },
             { "asin", "ASIN" },
             { "atan", "ATAN" },
+            { "conj", "CONJ" },
             { "cosh", "COSH" },
             { "coth", "COTH" },
             { "csch", "CSCH" },
@@ -66,19 +67,19 @@ public final class Functions {
         };
 
         for (String[] e : entries) {
-            wordFunctions.put(e[0], Token.valueOf(e[1]));
+            wordOperations.put(e[0], Token.valueOf(e[1]));
         }
     }
 
     //IS: word functions that take two arguments with no special behavior
-    public static final Map<String, Token> braceArguments = new LinkedHashMap<>(
+    public static final Map<String, Token> multipleArgOperations = new LinkedHashMap<>(
         Map.of("atan2", Token.ATAN2, "hypot", Token.HYPOT, "sqrt", Token.ROOT, "frac", Token.FRAC)
     );
 
     //IS: word functions that shouldn't parse to a token, but directly to a number
-    public static final Map<String, Double> numbers = new LinkedHashMap<>(Map.of("pi", Math.PI, "tau", Math.TAU));
+    public static final Map<String, Double> numberSymbols = new LinkedHashMap<>(Map.of("pi", Math.PI, "tau", Math.TAU));
 
-    //TODO: add with other custom function, expand
+    //INFO: only used for throwing errors when evaluating with non-complex numbers
     public static final Map<String, Token> complexOperations = new LinkedHashMap<>(Map.of("conj", Token.CONJ));
 
     public record valueToken(Token type, double value) {}

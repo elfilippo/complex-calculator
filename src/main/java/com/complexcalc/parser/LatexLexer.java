@@ -54,23 +54,23 @@ public class LatexLexer {
                 case '_' -> tokens.add(new valueToken(Token.SUBS, 5));
                 case '=' -> tokens.add(new valueToken(Token.EQUALS, 6));
                 case '\\' -> {
-                    for (String function : wordFunctions.keySet()) {
-                        if (s.substring(i + 1).startsWith(function)) {
-                            tokens.add(new valueToken(wordFunctions.get(function), 3));
-                            i += function.length();
+                    for (String operation : wordOperations.keySet()) {
+                        if (s.substring(i + 1).startsWith(operation)) {
+                            tokens.add(new valueToken(wordOperations.get(operation), 3));
+                            i += operation.length();
                             break;
                         }
                     }
-                    for (String function : braceArguments.keySet()) {
-                        if (s.substring(i + 1).startsWith(function)) {
-                            tokens.add(new valueToken(braceArguments.get(function), 3));
-                            i += function.length();
+                    for (String operation : multipleArgOperations.keySet()) {
+                        if (s.substring(i + 1).startsWith(operation)) {
+                            tokens.add(new valueToken(multipleArgOperations.get(operation), 3));
+                            i += operation.length();
                             break;
                         }
                     }
-                    for (String number : numbers.keySet()) {
+                    for (String number : numberSymbols.keySet()) {
                         if (s.substring(i + 1).startsWith(number)) {
-                            tokens.add(new valueToken(Token.NUM, numbers.get(number)));
+                            tokens.add(new valueToken(Token.NUM, numberSymbols.get(number)));
                             i += number.length();
                             break;
                         }
@@ -78,27 +78,7 @@ public class LatexLexer {
                 }
                 default -> {
                     if (Character.isAlphabetic(c)) {
-                        boolean wordFound = false;
-                        //TODO: add support for custom functions (atan2, etc)
-                        /**
-                        for (String function : wordFunctions.keySet()) {
-                            if (s.substring(i).startsWith(function)) {
-                                tokens.add(new Token(wordFunctions.get(function), 3));
-                                i += function.length() - 1;
-                                wordFound = true;
-                                break;
-                            }
-                        }
-                        for (String function : multipleArguments.keySet()) {
-                            if (s.substring(i).startsWith(function)) {
-                                tokens.add(new Token(multipleArguments.get(function), 3));
-                                i += function.length() - 1;
-                                wordFound = true;
-                                break;
-                            }
-                        }
-                        */
-                        if (!wordFound) tokens.add(new valueToken(Token.VAR, c));
+                        tokens.add(new valueToken(Token.VAR, c));
                     } else throw new IllegalArgumentException();
                 }
             }
@@ -115,8 +95,8 @@ public class LatexLexer {
         for (int i = 0; i < tokens.size() - 1; i++) {
             if (!allowedToEnd.contains(tokens.get(i).type()) && !allowedToEnd.contains(tokens.get(i + 1).type())) {
                 if (
-                    wordFunctions.containsValue(tokens.get(i).type()) ||
-                    braceArguments.containsValue(tokens.get(i).type()) ||
+                    wordOperations.containsValue(tokens.get(i).type()) ||
+                    multipleArgOperations.containsValue(tokens.get(i).type()) ||
                     Token.LPAR == tokens.get(i).type() ||
                     Token.RPAR == tokens.get(i + 1).type() ||
                     Token.LBRACE == tokens.get(i).type() ||

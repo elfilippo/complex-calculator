@@ -186,7 +186,7 @@ public class LatexEvaluator {
         }
         */
 
-        for (Token token : wordFunctions.values()) {
+        for (Token token : wordOperations.values()) {
             if (check(token)) {
                 consume();
                 boolean par = check(Token.LPAR);

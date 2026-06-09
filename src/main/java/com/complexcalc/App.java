@@ -1,6 +1,7 @@
 package com.complexcalc;
 
 import com.complexcalc.parser.LatexComplexEvaluator;
+import com.complexcalc.parser.LatexLexer;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,8 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
-        System.out.println(new LatexComplexEvaluator("\\sum_{n=0}^{100}{\\frac{1}{n!}}").eval());
+        System.out.println(new LatexComplexEvaluator("\\conj{4-i}").eval());
+        //System.out.println(new LatexComplexEvaluator("\\sum_{n=0}^{100}{\\frac{1}{n!}}").eval());
         System.exit(0);
         launch(args);
     }

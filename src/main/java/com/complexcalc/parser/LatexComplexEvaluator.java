@@ -362,7 +362,7 @@ public class LatexComplexEvaluator {
 
         //DOES: evaluate simple brace arguments like roots that don't have special behavior like superscripting
         //INFO: braces and brackets are treated interchangably, the order of arguments determines which is which
-        for (Token token : braceArguments.values()) {
+        for (Token token : multipleArgOperations.values()) {
             if (check(token)) {
                 consume();
                 expect(Token.LBRACE);
@@ -522,7 +522,7 @@ public class LatexComplexEvaluator {
         }
 
         //DOES: evaluate single-argument word functions like trig or abs
-        for (Token token : wordFunctions.values()) {
+        for (Token token : wordOperations.values()) {
             if (check(token)) {
                 consume();
                 boolean par = check(Token.LPAR);

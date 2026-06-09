@@ -738,6 +738,7 @@ public class FastComplex {
         if (Math.abs(this.a - Math.round(this.a)) < 1e-10) a = Math.round(a);
         if (Math.abs(this.b - Math.round(this.b)) < 1e-10) b = Math.round(b);
         if (b == 0) return truncateWhole(a);
+        if (b == 1) return truncateWhole(a) + " + i";
         if (a == 0) return (b < 0 ? "-" : "") + (Math.abs(b) == 1 ? "" : truncateWhole(Math.abs(b))) + "i";
 
         if (b < 0) return truncateWhole(a) + " - " + truncateWhole(Math.abs(b)) + "i";
