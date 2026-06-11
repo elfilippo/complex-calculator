@@ -1,7 +1,8 @@
 package com.complexcalc;
 
-import com.complexcalc.parser.LatexComplexEvaluator;
-import com.complexcalc.parser.LatexLexer;
+import com.complexcalc.ui.Bridge;
+import com.complexcalc.ui.Controller;
+import com.complexcalc.ui.RenderService;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +16,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
         System.setProperty("prism.lcdtext", "false");
-        System.out.println(new LatexComplexEvaluator("\\conj{4-i}").eval());
-        //System.out.println(new LatexComplexEvaluator("\\sum_{n=0}^{100}{\\frac{1}{n!}}").eval());
-        System.exit(0);
         launch(args);
     }
 
@@ -26,6 +24,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
         Parent root = loader.load();
+        Controller controller = loader.getController();
+        var bridge = new Bridge();
+        var renderService = new RenderService(controller.getLatexPreviewWebEngine());
+        controller.setRenderService(renderService);
 
         scene = new Scene(root, 700, 800);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());

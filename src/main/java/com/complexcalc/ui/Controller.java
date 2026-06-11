@@ -10,9 +10,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 public class Controller {
+
+    private RenderService renderService;
+    private WebEngine latexPreviewWebEngine;
 
     @FXML
     private GridPane keyboardGrid;
@@ -27,9 +31,13 @@ public class Controller {
     private TextArea latexInput;
 
     @FXML
+    private Button eqalsButton;
+
+    @FXML
     public void initialize() {
         String url = getClass().getResource("/com/complexcalc/index.html").toExternalForm();
-        latexWebPreview.getEngine().load(url);
+        latexPreviewWebEngine = latexWebPreview.getEngine();
+        latexPreviewWebEngine.load(url);
 
         latexWebPreview.setOnScroll(event -> {
             if (event.isControlDown()) {
@@ -94,5 +102,21 @@ public class Controller {
                 }
             }
         }
+    }
+
+    @FXML
+    private void hEquals() {
+        System.out.println("sigma");
+        System.out.println(latexPreviewWebEngine);
+        renderService.render("\\frac{3}{4}");
+    }
+
+    @SuppressWarnings("exports")
+    public WebEngine getLatexPreviewWebEngine() {
+        return latexPreviewWebEngine;
+    }
+
+    public void setRenderService(RenderService renderService) {
+        this.renderService = renderService;
     }
 }
