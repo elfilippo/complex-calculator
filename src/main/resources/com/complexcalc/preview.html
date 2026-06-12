@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    conj: "\\operatorname{conj}"
+                }
+            },
+            startup: {
+                ready() {
+                    MathJax.startup.defaultReady();
+                    window.javabridge.onMathJaxReady();
+                }
+            }
+        };
+    </script>
+
+    <script>
+        (function () {
+            const origFetch = window.fetch;
+            window.fetch = function (...args) {
+                console.log("FETCH:", args[0]);
+                return origFetch.apply(this, args);
+            };
+        })();
+    </script>
+
+    <script src="./mathjax/tex-chtml.js"></script>
+</head>
+
+<body>
+    <div id="output"></div>
+</body>
+
+</html>

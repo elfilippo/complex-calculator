@@ -13,7 +13,7 @@ public class RenderService {
     public void render(String latex) {
         String escaped = latex.replace("\\", "\\\\").replace("\"", "\\\"");
         String js = String.format(
-            "document.getElementById('output').innerHTML = '\\\\(%s\\\\)';" +
+            "document.getElementById('output').innerHTML = '\\\\[%s\\\\]';" +
                 "MathJax.typesetPromise([document.getElementById('output')]).then(() => window.javabridge.onRenderComplete());",
             escaped
         );

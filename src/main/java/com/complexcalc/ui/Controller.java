@@ -35,9 +35,10 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        String url = getClass().getResource("/com/complexcalc/index.html").toExternalForm();
+        String documentUrl = getClass().getResource("/com/complexcalc/document.html").toExternalForm();
+        String previewUrl = getClass().getResource("/com/complexcalc/preview.html").toExternalForm();
         latexPreviewWebEngine = latexWebPreview.getEngine();
-        latexPreviewWebEngine.load(url);
+        latexPreviewWebEngine.load(previewUrl);
 
         latexWebPreview.setOnScroll(event -> {
             if (event.isControlDown()) {
@@ -108,7 +109,7 @@ public class Controller {
     private void hEquals() {
         System.out.println("sigma");
         System.out.println(latexPreviewWebEngine);
-        renderService.render("\\frac{3}{4}");
+        renderService.render("\\frac{3}{4} \\] \\[ \\sum^{\\infty}_{n=0}{\\frac{1}{n}}");
     }
 
     @SuppressWarnings("exports")
