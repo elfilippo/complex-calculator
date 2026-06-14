@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
@@ -20,15 +22,13 @@ public class Controller {
     private RenderService renderService;
     private WebEngine previewEngine;
     private WebEngine documentEngine;
+    private UIManager uiManager;
 
     @FXML
     private GridPane keyboardGrid;
 
     @FXML
-    private WebView webPreview;
-
-    @FXML
-    private WebView documentWebView;
+    private WebView webPreview, documentWebView;
 
     @FXML
     private SplitPane calcSplitPane;
@@ -37,7 +37,16 @@ public class Controller {
     private TextArea latexInput;
 
     @FXML
-    private Button eqalsButton;
+    private Button equalsButton;
+
+    @FXML
+    private ToggleGroup themeGroup;
+
+    @FXML
+    private RadioMenuItem blueTheme, darkTheme, lightTheme, clownTheme, rosePineTheme, solarizedTheme, tokyoNightTheme;
+
+    @FXML
+    private ImageView pIcon, sIcon;
 
     @FXML
     public void initialize() {
@@ -70,10 +79,29 @@ public class Controller {
             }
         });
 
-        latexInput.setOnKeyTyped(event -> {
-            if (renderService == null) return;
-            renderService.render(latexInput.getText());
-        });
+        if (renderService != null) renderService.render(latexInput.getText());
+
+        themeGroup
+            .selectedToggleProperty()
+            .addListener((obs, oldToggle, newToggle) -> {
+                if (newToggle == null) return;
+
+                if (newToggle == blueTheme) {
+                    uiManager.setTheme(0);
+                } else if (newToggle == darkTheme) {
+                    uiManager.setTheme(1);
+                } else if (newToggle == lightTheme) {
+                    uiManager.setTheme(2);
+                } else if (newToggle == clownTheme) {
+                    uiManager.setTheme(3);
+                } else if (newToggle == rosePineTheme) {
+                    uiManager.setTheme(4);
+                } else if (newToggle == solarizedTheme) {
+                    uiManager.setTheme(5);
+                } else if (newToggle == tokyoNightTheme) {
+                    uiManager.setTheme(6);
+                }
+            });
 
         calcSplitPane.setDividerPosition(0, 0.30);
         calcSplitPane.setDividerPosition(1, 0.40);
@@ -139,5 +167,9 @@ public class Controller {
 
     public void setRenderService(RenderService renderService) {
         this.renderService = renderService;
+    }
+
+    public void setUiManager(UIManager uiManager) {
+        this.uiManager = uiManager;
     }
 }

@@ -1,0 +1,139 @@
+/* =============================================================
+   solarized.css — "Solarized Dark" Theme
+   Load after default.css.
+   Based on Ethan Schoonover's Solarized palette.
+
+   Palette:
+     base03  #002b36  (darkest bg)
+     base02  #073642  (bg highlights)
+     base01  #586e75  (comments, secondary content)
+     base0   #839496  (body text)
+     base1   #93a1a1  (optional emphasis)
+     yellow  #b58900
+     orange  #cb4b16
+     red     #dc322f
+     magenta #d33682
+     violet  #6c71c4
+     blue    #268bd2
+     cyan    #2aa198
+     green   #859900
+   ============================================================= */
+
+/* ── Root ─────────────────────────────────────────────────── */
+.root {
+    -fx-background: #002b36;
+    -fx-base:       #073642;
+}
+
+/* ── Primary Button  (blue accent) ───────────────────────── */
+.primary-btn {
+    -fx-background-color: #268bd2;
+    -fx-text-fill: #fdf6e3;
+}
+.primary-btn:hover {
+    -fx-background-color: #1a6fa8;
+}
+
+/* ── Secondary Button  (surface) ─────────────────────────── */
+.secondary-btn {
+    -fx-background-color: #073642;
+    -fx-text-fill: #839496;
+}
+.secondary-btn:hover {
+    -fx-background-color: #002b36;
+}
+.secondary-btn-img {
+    -fx-background-color: #073642;
+    -fx-text-fill: #839496;
+}
+.secondary-btn-img:hover {
+    -fx-background-color: #002b36;
+}
+.secondary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #839496;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #002b36;
+}
+.secondary-btn .arrow {
+    -fx-background-color: #586e75;
+}
+
+/* ── Menu Bar ─────────────────────────────────────────────── */
+.menu-bar {
+    -fx-background-color: #073642;
+    -fx-text-fill: #93a1a1;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-background-color: #073642;
+    -fx-text-fill: #93a1a1;
+    -fx-border-color: transparent;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #002b36;
+    -fx-border-color: #2aa198;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #93a1a1;
+}
+.secondary-menu-button .context-menu {
+    -fx-background-color: rgba(7, 54, 66, 0.97);
+    -fx-border-color: rgba(38, 139, 210, 0.25);
+    -fx-text-fill: #839496;
+}
+
+/* ── Tertiary Button  (cyan accent) ──────────────────────── */
+.tertiary-btn {
+    -fx-background-color: #2aa198;
+    -fx-text-fill: #fdf6e3;
+}
+.tertiary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #fdf6e3;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-color: #1d7a73;
+}
+.tertiary-btn .arrow {
+    -fx-background-color: #fdf6e3;
+}
+.tertiary-btn:hover {
+    -fx-background-color: #1d7a73;
+}
+
+/* ── Radio Menu Item ──────────────────────────────────────── */
+.radio-menu-item .radio {
+    -fx-background-color: #839496;
+}
+
+/* ── Context Menu ─────────────────────────────────────────── */
+.context-menu {
+    -fx-background-color: rgba(7, 54, 66, 0.97);
+    -fx-border-color: rgba(38, 139, 210, 0.25);
+    -fx-text-fill: #839496;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: rgba(38, 139, 210, 0.12);
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-background-color: #073642;
+    -fx-border-color: #586e75;
+    -fx-text-fill: #839496;
+    -fx-prompt-text-fill: #586e75;
+}
+.text-field:focused,
+.text-area:focused {
+    -fx-border-color: #268bd2;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: #073642;
+    -fx-border-color: #586e75;
+}

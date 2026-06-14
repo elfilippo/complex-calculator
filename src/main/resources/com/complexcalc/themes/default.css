@@ -1,0 +1,107 @@
+/* =============================================================
+   default.css — Structure & Layout
+   Always loaded. Contains everything that does NOT change
+   between themes: font, sizing, radii, padding, cursors,
+   border-widths, and structural rules.
+   Colors, fills, and transparency live in the theme files.
+   ============================================================= */
+
+/* ── Root / Global ────────────────────────────────────────── */
+.root {
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI";
+}
+
+/* ── Primary Button ───────────────────────────────────────── */
+.primary-btn {
+    -fx-background-radius: 6;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+/* ── Secondary Button (SplitMenuButton variant) ───────────── */
+.secondary-btn {
+    -fx-background-radius: 6;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+.secondary-btn-img {
+    -fx-background-radius: 6;
+    -fx-padding: 1 0 0 0;
+    -fx-cursor: hand;
+}
+
+/* Arrow sub-parts keep their radius from the split */
+.secondary-btn .arrow-button {
+    -fx-background-radius: 0 6 6 0;
+}
+
+/* ── Menu Bar ─────────────────────────────────────────────── */
+.menu-bar {
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.secondary-menu-button:hover {
+    -fx-border-width: 1;
+}
+.secondary-menu-button .arrow-button {
+    -fx-padding: 0;
+}
+.secondary-menu-button .context-menu {
+    -fx-font-size: 14px;
+    -fx-background-radius: 16;
+    -fx-padding: 6;
+    -fx-border-radius: 16;
+}
+
+/* ── Tertiary Button (SplitMenuButton variant) ────────────── */
+.tertiary-btn {
+    -fx-padding: 1 0 0 0;
+    -fx-cursor: hand;
+    -fx-background-radius: 6;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-radius: 0 6 6 0;
+}
+
+/* ── Context Menu ─────────────────────────────────────────── */
+.context-menu {
+    -fx-background-radius: 16;
+    -fx-padding: 10;
+    -fx-border-radius: 16;
+}
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+.context-menu .menu-item:focused {
+    -fx-background-radius: 10;
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 6 10 6 10;
+}
+
+/* ── Labels ───────────────────────────────────────────────── */
+.title-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ── Card Container ───────────────────────────────────────── */
+.card {
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 16;
+}

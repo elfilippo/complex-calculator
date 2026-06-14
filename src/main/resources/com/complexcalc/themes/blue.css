@@ -1,0 +1,144 @@
+/* =============================================================
+   blue.css — "Ocean Blue" Theme  (original palette)
+   Load after default.css.
+   Only sets colors, fills, border-colors, and transparency.
+   ============================================================= */
+
+/* ── Root ─────────────────────────────────────────────────── */
+.root {
+    -fx-background: #f4f4f4;
+    -fx-base:       #2b437c;
+}
+
+/* ── Primary Button ───────────────────────────────────────── */
+.primary-btn {
+    -fx-background-color: #2d6a9f;
+    -fx-text-fill: white;
+}
+.primary-btn:hover {
+    -fx-background-color: #1a4f7a;
+}
+
+/* ── Secondary Button ─────────────────────────────────────── */
+.secondary-btn {
+    -fx-background-color: #24547f;
+    -fx-text-fill: white;
+}
+.secondary-btn:hover {
+    -fx-background-color: #153d5e;
+}
+.secondary-btn-img {
+    -fx-background-color: #24547f;
+    -fx-text-fill: white;
+}
+.secondary-btn-img:hover {
+    -fx-background-color: #153d5e;
+}
+/* The label sub-node background is intentionally transparent */
+.secondary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #2d6a9f;
+}
+.secondary-btn .arrow {
+    -fx-background-color: white;
+}
+
+/* ── Menu Bar ─────────────────────────────────────────────── */
+.menu-bar {
+    -fx-background-color: #24547f;
+    -fx-text-fill: white;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-background-color: #24547f;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #153d5e;
+    -fx-border-color: #266fab;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #ffffff;
+}
+/* Semi-transparent dark navy context menu */
+.secondary-menu-button .context-menu {
+    -fx-background-color: rgba(30, 72, 108, 0.95);
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: white;
+}
+
+/* ── Tertiary Button ──────────────────────────────────────── */
+.tertiary-btn {
+    -fx-background-color: #4429b1;
+    -fx-text-fill: white;
+}
+.tertiary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-color: #563eb6;
+}
+.tertiary-btn .arrow {
+    -fx-background-color: white;
+}
+.tertiary-btn:hover {
+    -fx-background-color: #331f87;
+}
+
+/* ── Radio Menu Item ──────────────────────────────────────── */
+.radio-menu-item .radio {
+    -fx-background-color: white;
+}
+
+/* ── Context Menu ─────────────────────────────────────────── */
+.context-menu {
+    -fx-background-color: rgba(30, 72, 108, 0.95);
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: white;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-text-fill: #111111;
+    -fx-prompt-text-fill: #aaaaaa;
+}
+.text-field:focused,
+.text-area:focused {
+    -fx-border-color: #2d6a9f;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+}
+
+/* ── WebView Scrollbars ───────────────────────────────────── */
+.web-view .scroll-bar:vertical,
+.web-view .scroll-bar:horizontal {
+    -fx-background-color: #ffffff;
+}
+.web-view .scroll-bar .thumb {
+    -fx-background-color: #cccccc;
+}
+.web-view .scroll-bar .thumb:hover {
+    -fx-background-color: #aaaaaa;
+}
+.web-view .scroll-bar .track {
+    -fx-background-color: #f5f5f5;
+}
+.text-area .content {
+    -fx-background-color: #ffffff;
+}

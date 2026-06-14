@@ -1,0 +1,124 @@
+/* =============================================================
+   dark.css — "Charcoal" Dark Theme
+   Load after default.css.
+   Deep grays, muted accents, easy on the eyes at night.
+   ============================================================= */
+
+/* ── Root ─────────────────────────────────────────────────── */
+.root {
+    -fx-background: #1e1e1e;
+    -fx-base:       #2d2d2d;
+}
+
+/* ── Primary Button ───────────────────────────────────────── */
+.primary-btn {
+    -fx-background-color: #4a8fc9;
+    -fx-text-fill: #f0f0f0;
+}
+.primary-btn:hover {
+    -fx-background-color: #357ab5;
+}
+
+/* ── Secondary Button ─────────────────────────────────────── */
+.secondary-btn {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: #d4d4d4;
+}
+.secondary-btn:hover {
+    -fx-background-color: #2a2a2a;
+}
+.secondary-btn-img {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: #d4d4d4;
+}
+.secondary-btn-img:hover {
+    -fx-background-color: #2a2a2a;
+}
+.secondary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d4d4d4;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #3a3a3a;
+}
+.secondary-btn .arrow {
+    -fx-background-color: #d4d4d4;
+}
+
+/* ── Menu Bar ─────────────────────────────────────────────── */
+.menu-bar {
+    -fx-background-color: #252525;
+    -fx-text-fill: #cccccc;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-background-color: #3a3a3a;
+    -fx-text-fill: #cccccc;
+    -fx-border-color: transparent;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #4a8fc9;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #cccccc;
+}
+.secondary-menu-button .context-menu {
+    -fx-background-color: rgba(30, 30, 30, 0.97);
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #cccccc;
+}
+
+/* ── Tertiary Button ──────────────────────────────────────── */
+.tertiary-btn {
+    -fx-background-color: #2e8b72;
+    -fx-text-fill: #f0f0f0;
+}
+.tertiary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f0f0f0;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-color: #236b58;
+}
+.tertiary-btn .arrow {
+    -fx-background-color: #f0f0f0;
+}
+.tertiary-btn:hover {
+    -fx-background-color: #236b58;
+}
+
+/* ── Radio Menu Item ──────────────────────────────────────── */
+.radio-menu-item .radio {
+    -fx-background-color: #cccccc;
+}
+
+/* ── Context Menu ─────────────────────────────────────────── */
+.context-menu {
+    -fx-background-color: rgba(30, 30, 30, 0.97);
+    -fx-border-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #cccccc;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-background-color: #2d2d2d;
+    -fx-border-color: #555555;
+    -fx-text-fill: #e0e0e0;
+    -fx-prompt-text-fill: #777777;
+}
+.text-field:focused,
+.text-area:focused {
+    -fx-border-color: #4a8fc9;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: #2d2d2d;
+    -fx-border-color: #3d3d3d;
+}

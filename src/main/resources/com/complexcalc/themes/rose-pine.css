@@ -1,0 +1,139 @@
+/* =============================================================
+   rose-pine.css — "Rosé Pine" Theme
+   Load after default.css.
+   Based on the Rosé Pine color scheme by Rose Pine Team.
+   Warm, muted tones — dusty rose, pine green, soft gold.
+
+   Palette:
+     base    #191724  (bg)
+     surface #1f1d2e  (panels)
+     overlay #26233a  (popups)
+     muted   #6e6a86  (comments)
+     subtle  #908caa  (secondary text)
+     text    #e0def4  (foreground)
+     love    #eb6f92  (red accent)
+     gold    #f6c177  (yellow accent)
+     rose    #ebbcba  (warm highlight)
+     pine    #31748f  (primary accent — blue-green)
+     foam    #9ccfd8  (cyan accent)
+     iris    #c4a7e7  (purple accent)
+   ============================================================= */
+
+/* ── Root ─────────────────────────────────────────────────── */
+.root {
+    -fx-background: #191724;
+    -fx-base:       #1f1d2e;
+}
+
+/* ── Primary Button  (pine) ───────────────────────────────── */
+.primary-btn {
+    -fx-background-color: #3a8aa8;
+    -fx-text-fill: #e0def4;
+}
+.primary-btn:hover {
+    -fx-background-color: #2b6c85;
+}
+
+/* ── Secondary Button  (overlay surface) ─────────────────── */
+.secondary-btn {
+    -fx-background-color: #26233a;
+    -fx-text-fill: #b8b4d0;
+}
+.secondary-btn:hover {
+    -fx-background-color: #1f1d2e;
+}
+.secondary-btn-img {
+    -fx-background-color: #26233a;
+    -fx-text-fill: #b8b4d0;
+}
+.secondary-btn-img:hover {
+    -fx-background-color: #1f1d2e;
+}
+.secondary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #b8b4d0;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #3a8aa8;
+}
+.secondary-btn .arrow {
+    -fx-background-color: #e0def4;
+}
+
+/* ── Menu Bar ─────────────────────────────────────────────── */
+.menu-bar {
+    -fx-background-color: #1f1d2e;
+    -fx-text-fill: #e0def4;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-background-color: #26233a;
+    -fx-text-fill: #b8b4d0;
+    -fx-border-color: transparent;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #1f1d2e;
+    -fx-border-color: #9ccfd8;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #b8b4d0;
+}
+.secondary-menu-button .context-menu {
+    -fx-background-color: rgba(38, 35, 58, 0.97);
+    -fx-border-color: rgba(196, 167, 231, 0.15);
+    -fx-text-fill: #e0def4;
+}
+
+/* ── Tertiary Button  (iris / purple) ────────────────────── */
+.tertiary-btn {
+    -fx-background-color: #c4a7e7;
+    -fx-text-fill: #191724;
+}
+.tertiary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #191724;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-color: #b898d8;
+}
+.tertiary-btn .arrow {
+    -fx-background-color: #191724;
+}
+.tertiary-btn:hover {
+    -fx-background-color: #b898d8;
+}
+
+/* ── Radio Menu Item ──────────────────────────────────────── */
+.radio-menu-item .radio {
+    -fx-background-color: #e0def4;
+}
+
+/* ── Context Menu ─────────────────────────────────────────── */
+.context-menu {
+    -fx-background-color: rgba(38, 35, 58, 0.97);
+    -fx-border-color: rgba(196, 167, 231, 0.15);
+    -fx-text-fill: #e0def4;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: rgba(196, 167, 231, 0.10);
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-background-color: #1f1d2e;
+    -fx-border-color: #403d52;
+    -fx-text-fill: #e0def4;
+    -fx-prompt-text-fill: #6e6a86;
+}
+.text-field:focused,
+.text-area:focused {
+    -fx-border-color: #9ccfd8;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: #26233a;
+    -fx-border-color: #403d52;
+}

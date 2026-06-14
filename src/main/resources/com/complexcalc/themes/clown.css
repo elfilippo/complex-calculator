@@ -1,0 +1,126 @@
+/* =============================================================
+   clown.css — "Big Top" Clown Theme
+   Load after default.css.
+   Maximum chaos. Rotating primaries, circus energy.
+   Not for production. Probably.
+   ============================================================= */
+
+/* ── Root ─────────────────────────────────────────────────── */
+.root {
+    -fx-background: #fffde7;   /* warm cream — the big top canvas */
+    -fx-base:       #ffffff;
+}
+
+/* ── Primary Button  (fire-engine red) ───────────────────── */
+.primary-btn {
+    -fx-background-color: #e53935;
+    -fx-text-fill: #ffffff;
+}
+.primary-btn:hover {
+    -fx-background-color: #b71c1c;
+}
+
+/* ── Secondary Button  (bright yellow) ───────────────────── */
+.secondary-btn {
+    -fx-background-color: #fdd835;
+    -fx-text-fill: #212121;
+}
+.secondary-btn:hover {
+    -fx-background-color: #f9a825;
+}
+.secondary-btn-img {
+    -fx-background-color: #fdd835;
+    -fx-text-fill: #212121;
+}
+.secondary-btn-img:hover {
+    -fx-background-color: #f9a825;
+}
+.secondary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #212121;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #e53935;
+}
+.secondary-btn .arrow {
+    -fx-background-color: #ffffff;
+}
+
+/* ── Menu Bar  (royal blue like a clown suit) ─────────────── */
+.menu-bar {
+    -fx-background-color: #1565c0;
+    -fx-text-fill: #fdd835;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-background-color: #fdd835;
+    -fx-text-fill: #212121;
+    -fx-border-color: transparent;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #f9a825;
+    -fx-border-color: #e53935;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #212121;
+}
+.secondary-menu-button .context-menu {
+    /* Polka-dot energy approximated with solid hot pink */
+    -fx-background-color: rgba(255, 64, 129, 0.95);
+    -fx-border-color: rgba(255, 255, 0, 0.60);
+    -fx-text-fill: #ffffff;
+}
+
+/* ── Tertiary Button  (lime green) ───────────────────────── */
+.tertiary-btn {
+    -fx-background-color: #43a047;
+    -fx-text-fill: #ffffff;
+}
+.tertiary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-color: #66bb6a;
+}
+.tertiary-btn .arrow {
+    -fx-background-color: #ffffff;
+}
+.tertiary-btn:hover {
+    -fx-background-color: #2e7d32;
+}
+
+/* ── Radio Menu Item ──────────────────────────────────────── */
+.radio-menu-item .radio {
+    -fx-background-color: #e53935;
+}
+
+/* ── Context Menu  (hot pink — honk honk) ────────────────── */
+.context-menu {
+    -fx-background-color: rgba(255, 64, 129, 0.95);
+    -fx-border-color: rgba(255, 255, 0, 0.60);
+    -fx-text-fill: #ffffff;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: rgba(255, 255, 0, 0.25);
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e53935;
+    -fx-text-fill: #212121;
+    -fx-prompt-text-fill: #e91e63;
+}
+.text-field:focused,
+.text-area:focused {
+    -fx-border-color: #1565c0;
+}
+
+/* ── Card  (sunshine yellow with red border) ─────────────── */
+.card {
+    -fx-background-color: #fff9c4;
+    -fx-border-color: #e53935;
+}
