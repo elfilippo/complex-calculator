@@ -6,6 +6,12 @@
 
     <script>
         window.MathJax = {
+            loader: {
+                load: ['output/svg']
+            },
+            svg: {
+                scale: 2
+            },
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 macros: {

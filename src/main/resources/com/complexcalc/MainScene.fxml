@@ -62,10 +62,10 @@
           <items>
             <AnchorPane prefHeight="193.0" prefWidth="648.0">
               <children>
-                <WebView fx:id="latexWebPreview" minHeight="50.0" minWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <WebView fx:id="webPreview" minHeight="50.0" minWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               </children>
             </AnchorPane>
-                  <TextArea fx:id="latexInput" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" promptText="Type LaTeX here">
+                  <TextArea fx:id="latexInput" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" promptText="Type LaTeX here" wrapText="true">
                      <font>
                         <Font name="Cambria Math" size="34.0" />
                      </font></TextArea>
@@ -954,6 +954,9 @@
               </items>
             </ToolBar>
          </top>
+         <center>
+            <WebView fx:id="documentWebView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
     </BorderPane>
   </children>
 </VBox>

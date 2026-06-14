@@ -26,7 +26,7 @@ public class App extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
         var bridge = new Bridge();
-        var renderService = new RenderService(controller.getLatexPreviewWebEngine());
+        var renderService = new RenderService(controller.getPreviewEngine());
         controller.setRenderService(renderService);
 
         scene = new Scene(root, 700, 800);

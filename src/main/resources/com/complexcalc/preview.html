@@ -6,6 +6,12 @@
 
     <script>
         window.MathJax = {
+            loader: {
+                load: ['output/svg']
+            },
+            svg: {
+                scale: 2
+            },
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 macros: {
@@ -15,7 +21,7 @@
             startup: {
                 ready() {
                     MathJax.startup.defaultReady();
-                    window.javabridge.onMathJaxReady();
+                    window.javabridge?.onMathJaxReady();
                 }
             }
         };

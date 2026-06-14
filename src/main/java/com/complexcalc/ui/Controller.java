@@ -1,5 +1,6 @@
 package com.complexcalc.ui;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
@@ -16,13 +18,17 @@ import javafx.scene.web.WebView;
 public class Controller {
 
     private RenderService renderService;
-    private WebEngine latexPreviewWebEngine;
+    private WebEngine previewEngine;
+    private WebEngine documentEngine;
 
     @FXML
     private GridPane keyboardGrid;
 
     @FXML
-    private WebView latexWebPreview;
+    private WebView webPreview;
+
+    @FXML
+    private WebView documentWebView;
 
     @FXML
     private SplitPane calcSplitPane;
@@ -37,25 +43,15 @@ public class Controller {
     public void initialize() {
         String documentUrl = getClass().getResource("/com/complexcalc/document.html").toExternalForm();
         String previewUrl = getClass().getResource("/com/complexcalc/preview.html").toExternalForm();
-        latexPreviewWebEngine = latexWebPreview.getEngine();
-        latexPreviewWebEngine.load(previewUrl);
+        previewEngine = webPreview.getEngine();
+        previewEngine.load(previewUrl);
+        documentEngine = documentWebView.getEngine();
+        documentEngine.load(documentUrl);
 
-        latexWebPreview.setOnScroll(event -> {
-            if (event.isControlDown()) {
-                double zoom = latexWebPreview.getZoom();
+        webPreview.setContextMenuEnabled(false);
 
-                if (event.getDeltaY() > 0) {
-                    zoom *= 1.1;
-                } else {
-                    zoom /= 1.1;
-                }
-
-                zoom = Math.max(0.5, Math.min(3.0, zoom));
-                latexWebPreview.setZoom(zoom);
-
-                event.consume();
-            }
-        });
+        documentWebView.setOnScroll(zoom(documentWebView));
+        webPreview.setOnScroll(zoom(webPreview));
 
         latexInput.setOnScroll(event -> {
             if (event.isControlDown()) {
@@ -72,6 +68,11 @@ public class Controller {
 
                 event.consume();
             }
+        });
+
+        latexInput.setOnKeyTyped(event -> {
+            if (renderService == null) return;
+            renderService.render(latexInput.getText());
         });
 
         calcSplitPane.setDividerPosition(0, 0.30);
@@ -105,16 +106,35 @@ public class Controller {
         }
     }
 
+    private EventHandler<? super ScrollEvent> zoom(WebView webView) {
+        return event -> {
+            if (event.isControlDown()) {
+                double zoom = webView.getZoom();
+
+                if (event.getDeltaY() > 0) {
+                    zoom *= 1.1;
+                } else {
+                    zoom /= 1.1;
+                }
+
+                zoom = Math.max(0.25, Math.min(3.0, zoom));
+                webView.setZoom(zoom);
+
+                event.consume();
+            }
+        };
+    }
+
     @FXML
     private void hEquals() {
         System.out.println("sigma");
-        System.out.println(latexPreviewWebEngine);
+        System.out.println(previewEngine);
         renderService.render("\\frac{3}{4} \\] \\[ \\sum^{\\infty}_{n=0}{\\frac{1}{n}}");
     }
 
     @SuppressWarnings("exports")
-    public WebEngine getLatexPreviewWebEngine() {
-        return latexPreviewWebEngine;
+    public WebEngine getPreviewEngine() {
+        return previewEngine;
     }
 
     public void setRenderService(RenderService renderService) {
