@@ -79,7 +79,9 @@ public class Controller {
             }
         });
 
-        if (renderService != null) renderService.render(latexInput.getText());
+        latexInput.setOnKeyTyped(event -> {
+            if (renderService != null) renderService.render(latexInput.getText());
+        });
 
         themeGroup
             .selectedToggleProperty()

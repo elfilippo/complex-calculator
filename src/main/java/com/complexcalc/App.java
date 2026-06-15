@@ -29,8 +29,8 @@ public class App extends Application {
         controller.setRenderService(renderService);
 
         scene = new Scene(root, 700, 800);
-        scene.getStylesheets().add(getClass().getResource("themes/default.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("themes/clown.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/default.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/blue.css").toExternalForm());
         stage.setScene(scene);
 
         var uiManager = new UIManager(scene);
