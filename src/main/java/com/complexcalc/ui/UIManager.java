@@ -3,9 +3,7 @@ package com.complexcalc.ui;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.ColorInput;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
@@ -63,21 +61,26 @@ public class UIManager {
     }
 
     private void tintIcons(String selector, Color color) {
+        double hue = color.getHue() / 180.0 - 1.0;
+        double sat = color.getSaturation() * 2.0 - 1.0;
+        double bri = color.getBrightness() * 2.0 - 1.0;
+
         for (Node node : scene.getRoot().lookupAll(selector)) {
             if (node instanceof ImageView icon) {
                 if (icon.getImage() == null) continue;
-                var colorInput = new ColorInput(0, 0, icon.getImage().getWidth(), icon.getImage().getHeight(), color);
-
-                Blend blend = new Blend(BlendMode.SRC_ATOP, null, colorInput);
-                icon.setEffect(blend);
+                ColorAdjust ca = new ColorAdjust();
+                ca.setHue(hue);
+                ca.setSaturation(sat);
+                ca.setBrightness(bri);
+                icon.setEffect(ca);
             }
         }
     }
 
     private void colorIcons(boolean pLight, boolean sLight, boolean tLight) {
-        if (pLight != pIconsLight) tintIcons(".pIcon", pLight ? Color.WHITE : Color.BLACK);
-        if (sLight != sIconsLight) tintIcons(".sIcon", sLight ? Color.WHITE : Color.BLACK);
-        if (tLight != tIconsLight) tintIcons(".tIcon", tLight ? Color.WHITE : Color.BLACK);
+        if (pLight != pIconsLight) tintIcons(".pIcon", pLight ? Color.WHITE : Color.rgb(61, 57, 55));
+        if (sLight != sIconsLight) tintIcons(".sIcon", sLight ? Color.WHITE : Color.rgb(61, 57, 55));
+        if (tLight != tIconsLight) tintIcons(".tIcon", tLight ? Color.WHITE : Color.rgb(61, 57, 55));
         pIconsLight = pLight;
         sIconsLight = sLight;
         tIconsLight = tLight;

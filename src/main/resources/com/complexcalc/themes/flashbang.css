@@ -12,16 +12,16 @@
 
 /* ── Primary Button ───────────────────────────────────────── */
 .primary-btn {
-    -fx-background-color: #2e8b72;
+    -fx-background-color: #e9e0d3;
     -fx-text-fill: white;
 }
 .primary-btn:hover {
-    -fx-background-color: #236b58;
+    -fx-background-color: #b1b1b1;
 }
 
 /* ── Secondary Button ─────────────────────────────────────── */
 .secondary-btn {
-    -fx-background-color: #e8e8e8;
+    -fx-background-color: #EAE6DF;
     -fx-text-fill: #333333;
 }
 .secondary-btn:hover {
