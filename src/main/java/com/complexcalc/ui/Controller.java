@@ -43,7 +43,7 @@ public class Controller {
     private ToggleGroup themeGroup;
 
     @FXML
-    private RadioMenuItem blueTheme, darkTheme, lightTheme, clownTheme, rosePineTheme, solarizedTheme, tokyoNightTheme;
+    private RadioMenuItem blueTheme, charcoalTheme, flashbangTheme, clownTheme, rosePineTheme, solarizedTheme, tokyoNightTheme;
 
     @FXML
     private ImageView pIcon, sIcon;
@@ -90,9 +90,9 @@ public class Controller {
 
                 if (newToggle == blueTheme) {
                     uiManager.setTheme(0);
-                } else if (newToggle == darkTheme) {
+                } else if (newToggle == charcoalTheme) {
                     uiManager.setTheme(1);
-                } else if (newToggle == lightTheme) {
+                } else if (newToggle == flashbangTheme) {
                     uiManager.setTheme(2);
                 } else if (newToggle == clownTheme) {
                     uiManager.setTheme(3);

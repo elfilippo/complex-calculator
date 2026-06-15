@@ -31,11 +31,11 @@ public class UIManager {
                 colorIcons(true, true, true);
             }
             case 1 -> {
-                css.add(path("dark"));
+                css.add(path("charcoal"));
                 colorIcons(true, true, true);
             }
             case 2 -> {
-                css.add(path("light"));
+                css.add(path("flashbang"));
                 colorIcons(false, false, false);
             }
             case 3 -> {

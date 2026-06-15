@@ -1027,8 +1027,8 @@
                                     <ToggleGroup fx:id="themeGroup" />
                                  </toggleGroup>
                               </RadioMenuItem>
-                              <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false" text="Charcoal" toggleGroup="$themeGroup" />
-                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false" text="Flashbang" toggleGroup="$themeGroup" />
+                              <RadioMenuItem fx:id="charcoalTheme" mnemonicParsing="false" text="Charcoal" toggleGroup="$themeGroup" />
+                              <RadioMenuItem fx:id="flashbangTheme" mnemonicParsing="false" text="Flashbang" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="clownTheme" mnemonicParsing="false" text="Clown" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="rosePineTheme" mnemonicParsing="false" text="Rose Pine" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="solarizedTheme" mnemonicParsing="false" text="Solarized" toggleGroup="$themeGroup" />

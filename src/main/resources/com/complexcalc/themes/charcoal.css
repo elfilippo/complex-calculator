@@ -12,11 +12,11 @@
 
 /* ── Primary Button ───────────────────────────────────────── */
 .primary-btn {
-    -fx-background-color: #4a8fc9;
+    -fx-background-color: #986d30;
     -fx-text-fill: #f0f0f0;
 }
 .primary-btn:hover {
-    -fx-background-color: #357ab5;
+    -fx-background-color: #795726;
 }
 
 /* ── Secondary Button ─────────────────────────────────────── */
@@ -39,7 +39,7 @@
     -fx-text-fill: #d4d4d4;
 }
 .secondary-btn .arrow-button {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #242424;
 }
 .secondary-btn .arrow {
     -fx-background-color: #d4d4d4;
@@ -72,7 +72,7 @@
 
 /* ── Tertiary Button ──────────────────────────────────────── */
 .tertiary-btn {
-    -fx-background-color: #2e8b72;
+    -fx-background-color: #a1481b;
     -fx-text-fill: #f0f0f0;
 }
 .tertiary-btn .label {
@@ -80,13 +80,13 @@
     -fx-text-fill: #f0f0f0;
 }
 .tertiary-btn .arrow-button {
-    -fx-background-color: #236b58;
+    -fx-background-color: #863b16;
 }
 .tertiary-btn .arrow {
     -fx-background-color: #f0f0f0;
 }
 .tertiary-btn:hover {
-    -fx-background-color: #236b58;
+    -fx-background-color: #6f3112;
 }
 
 /* ── Radio Menu Item ──────────────────────────────────────── */
