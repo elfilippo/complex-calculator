@@ -11,6 +11,9 @@ public class LatexLexer {
     public static List<valueToken> tokenize(String s) {
         List<valueToken> tokens = new ArrayList<>();
 
+        s = s.replace("\\left", "").replace("\\right", "");
+        //TODO: add abs written as |x|
+
         int digitStart = -1;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);

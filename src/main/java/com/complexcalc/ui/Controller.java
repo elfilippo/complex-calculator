@@ -12,6 +12,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -38,7 +39,10 @@ public class Controller {
     private TextArea latexInput;
 
     @FXML
-    private Button equalsButton;
+    private Button clearBtn, delBtn;
+
+    @FXML
+    private SplitMenuButton equalsBtn;
 
     @FXML
     private ToggleGroup themeGroup;
@@ -80,20 +84,7 @@ public class Controller {
             }
         });
 
-        latexInput.setOnKeyTyped(event -> {
-            int pos = latexInput.getCaretPosition();
-            int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
-            if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || pos < equalsIndex) {
-                if (equalsIndex != 2 && pos < equalsIndex) {
-                    latexInput.deleteText(equalsIndex, latexInput.getText().length());
-                    evaluateExpr();
-                } else if (
-                    latexInput.getText().endsWith(" = ") && event.getCharacter().hashCode() == 32
-                ) evaluateExpr();
-                latexInput.positionCaret(pos);
-            }
-            if (renderService != null) renderService.render(latexInput.getText());
-        });
+        latexInput.setOnKeyTyped(this::autoEval);
 
         themeGroup
             .selectedToggleProperty()
@@ -121,52 +112,93 @@ public class Controller {
         calcSplitPane.setDividerPosition(1, 0.40);
 
         for (Node node : keyboardGrid.getChildren()) {
-            if (node instanceof Button button) {
+            if (node == delBtn) {
+                ImageView icon = (ImageView) delBtn.getGraphic();
+                setIconScaling(icon);
+                delBtn.setOnAction(event -> {
+                    latexInput.deletePreviousChar();
+                    autoEval("del");
+                });
+            } else if (node == clearBtn) {
+                ImageView icon = (ImageView) delBtn.getGraphic();
+                setIconScaling(icon);
+                clearBtn.setOnAction(event -> {
+                    latexInput.clear();
+                    if (renderService != null) renderService.render(latexInput.getText());
+                });
+            } else if (node == equalsBtn) {
+                ImageView icon = (ImageView) equalsBtn.getGraphic();
+                setIconScaling(icon);
+                equalsBtn.setOnAction(event -> {
+                    latexInput.insertText(latexInput.getCaretPosition(), " = ");
+                    autoEval("equals");
+                });
+            } else if (node instanceof Button button) {
                 ImageView icon = (ImageView) button.getGraphic();
-                if (icon != null) {
-                    icon.setPreserveRatio(true);
-                    icon.fitWidthProperty().bind(button.widthProperty().multiply(0.6));
-                    icon.fitHeightProperty().bind(button.heightProperty().multiply(0.6));
-                }
+                setIconScaling(icon);
                 button.setOnAction(event -> {
-                    latexInput.insertText(
-                        latexInput.getCaretPosition(),
-                        ((String) button.getUserData()).replace("e@", "\\")
-                    );
+                    String text = ((String) button.getUserData()).replace("e@", "\\");
+                    latexInput.insertText(latexInput.getCaretPosition(), text);
                     if (renderService != null) renderService.render(latexInput.getText());
+                    autoEval(text);
                 });
-            }
-            if (node instanceof SplitMenuButton menuButton) {
+            } else if (node instanceof SplitMenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
-                if (icon != null) {
-                    icon.setPreserveRatio(true);
-                    icon.fitWidthProperty().bind(menuButton.widthProperty().multiply(0.8));
-                    icon.fitHeightProperty().bind(menuButton.heightProperty().multiply(0.8));
-                }
+                setIconScaling(icon);
                 menuButton.setOnAction(event -> {
-                    latexInput.insertText(
-                        latexInput.getCaretPosition(),
-                        ((String) menuButton.getUserData()).replace("e@", "\\")
-                    );
+                    String text = ((String) menuButton.getUserData()).replace("e@", "\\");
+                    latexInput.insertText(latexInput.getCaretPosition(), text);
                     if (renderService != null) renderService.render(latexInput.getText());
+                    autoEval(text);
                 });
-            }
-            if (node instanceof MenuButton menuButton) {
+            } else if (node instanceof MenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
-                if (icon != null) {
-                    icon.setPreserveRatio(true);
-                    icon.fitWidthProperty().bind(menuButton.widthProperty().multiply(0.8));
-                    icon.fitHeightProperty().bind(menuButton.heightProperty().multiply(0.8));
-                }
+                setIconScaling(icon);
                 menuButton.setOnAction(event -> {
-                    latexInput.insertText(
-                        latexInput.getCaretPosition(),
-                        ((String) menuButton.getUserData()).replace("e@", "\\")
-                    );
+                    String text = ((String) menuButton.getUserData()).replace("e@", "\\");
+                    latexInput.insertText(latexInput.getCaretPosition(), text);
                     if (renderService != null) renderService.render(latexInput.getText());
+                    autoEval(text);
                 });
             }
         }
+    }
+
+    private void setIconScaling(ImageView icon) {
+        if (icon != null) {
+            icon.setPreserveRatio(true);
+            icon.fitWidthProperty().bind(delBtn.widthProperty().multiply(0.6));
+            icon.fitHeightProperty().bind(delBtn.heightProperty().multiply(0.6));
+        }
+    }
+
+    private void autoEval(KeyEvent event) {
+        int pos = latexInput.getCaretPosition();
+        int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
+        boolean beforeEquals = pos < equalsIndex && equalsIndex != 2;
+        if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || beforeEquals) {
+            if (beforeEquals) {
+                latexInput.deleteText(equalsIndex, latexInput.getText().length());
+                evaluateExpr();
+            } else if (latexInput.getText().endsWith(" = ") && event.getCharacter().hashCode() == 32) evaluateExpr();
+            latexInput.positionCaret(pos);
+        }
+        if (renderService != null) renderService.render(latexInput.getText());
+    }
+
+    private void autoEval(String text) {
+        int pos = latexInput.getCaretPosition();
+        int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
+        boolean beforeEquals = equalsIndex != 2 && pos < equalsIndex;
+        if (beforeEquals) {
+            if (!text.equals("del")) {
+                latexInput.deleteText(equalsIndex, latexInput.getText().length());
+                evaluateExpr();
+            }
+        }
+        if (latexInput.getText().endsWith(" = ") && text.equals("equals")) evaluateExpr();
+        latexInput.positionCaret(pos);
+        if (renderService != null) renderService.render(latexInput.getText());
     }
 
     private EventHandler<? super ScrollEvent> zoom(WebView webView) {
