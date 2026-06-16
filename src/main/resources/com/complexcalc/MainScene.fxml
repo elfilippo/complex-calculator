@@ -106,7 +106,7 @@
                         </ImageView>
                       </graphic>
                     </MenuButton>
-                    <SplitMenuButton fx:id="integralBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <SplitMenuButton fx:id="integralBtn" userData="e@int_{}^{}" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -153,7 +153,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <Button fx:id="piBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <Button fx:id="piBtn" userData="e@pi" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -168,7 +168,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="oneBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <Button fx:id="oneBtn" userData="1" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -183,7 +183,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="sevenBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <Button fx:id="sevenBtn" userData="7" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -198,7 +198,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="fourBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <Button fx:id="fourBtn" userData="4" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -213,7 +213,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="eightBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <Button fx:id="eightBtn" userData="8" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -228,7 +228,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="nineBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <Button fx:id="nineBtn" userData="9" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -243,7 +243,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="fiveBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <Button fx:id="fiveBtn" userData="5" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -258,7 +258,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="threeBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <Button fx:id="threeBtn" userData="3" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -273,7 +273,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="twoBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <Button fx:id="twoBtn" userData="2" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -288,7 +288,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="zeroBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <Button fx:id="zeroBtn" userData="0" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -303,7 +303,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="threeBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <Button fx:id="threeBtn" userData="3" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -348,7 +348,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="prodBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <Button fx:id="prodBtn" userData="e@prod_{}^{}" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -363,7 +363,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="sumBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <Button fx:id="sumBtn" userData="e@sum_{}^{}" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -378,7 +378,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="divBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <Button fx:id="divBtn" userData="e@frac{}{}" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -393,7 +393,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="minusBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                    <Button fx:id="minusBtn" userData="-" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -408,7 +408,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="timesBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <Button fx:id="timesBtn" userData="e@times" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -423,7 +423,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="plusBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <Button fx:id="plusBtn" userData="+" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -438,7 +438,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="factorialBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <Button fx:id="factorialBtn" userData="!" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -453,7 +453,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="lnBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <Button fx:id="lnBtn" userData="e@ln" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -468,7 +468,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <Button fx:id="pointBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                    <Button fx:id="pointBtn" userData="." alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="3" GridPane.rowIndex="7">
                       <font>
                         <Font name="Cambria Math" size="65.0" />
                       </font>
@@ -483,7 +483,7 @@
                         </ImageView>
                       </graphic>
                     </Button>
-                    <SplitMenuButton fx:id="derivBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <SplitMenuButton fx:id="derivBtn" userData="e@frac{d}{dx}" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -521,7 +521,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="sqrtBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="3">
+                    <SplitMenuButton fx:id="sqrtBtn" userData="e@sqrt{}" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="3">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -550,7 +550,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="logBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="7">
+                    <SplitMenuButton fx:id="logBtn" userData="e@log" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="7">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -579,7 +579,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="inftyBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="2">
+                    <SplitMenuButton fx:id="inftyBtn" userData="e@infty" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="2">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -608,7 +608,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="absBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                    <SplitMenuButton fx:id="absBtn" userData="e@left|{}e@right|" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -637,7 +637,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="iBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                    <SplitMenuButton fx:id="iBtn" userData="i" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="4" GridPane.rowIndex="2">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -666,7 +666,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="lBracketBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <SplitMenuButton fx:id="lBracketBtn" userData="(" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -695,7 +695,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="rBracketBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                    <SplitMenuButton fx:id="rBracketBtn" userData=")" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -724,7 +724,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="powBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="5">
+                    <SplitMenuButton fx:id="powBtn" userData="^{}" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="5">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -744,7 +744,7 @@
                         </ImageView>
                       </graphic>
                     </SplitMenuButton>
-                    <SplitMenuButton fx:id="squareBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="4">
+                    <SplitMenuButton fx:id="squareBtn" userData="^{2}" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.rowIndex="4">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -807,7 +807,7 @@
                         </ImageView>
                       </graphic>
                     </MenuButton>
-                    <SplitMenuButton fx:id="vectorBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <SplitMenuButton fx:id="vectorBtn" userData="e@vec{}" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
                       <items>
                         <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                           <graphic>
@@ -900,7 +900,7 @@
                         </ImageView>
                       </graphic>
                     </MenuButton>
-                              <SplitMenuButton fx:id="equalsBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                              <SplitMenuButton fx:id="equalsBtn" userData="=" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" GridPane.columnIndex="4" GridPane.rowIndex="7">
                                  <items>
                                     <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                                        <graphic>

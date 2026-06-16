@@ -28,7 +28,6 @@ public class RenderService {
                 "MathJax.typesetPromise([document.getElementById('output')]).then(() => window.javabridge.onRenderComplete());",
             escapedExpr
         );
-        System.out.println("JS = " + js);
         webEngine.executeScript(js);
     }
 

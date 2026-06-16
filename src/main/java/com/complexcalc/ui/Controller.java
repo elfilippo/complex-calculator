@@ -1,5 +1,6 @@
 package com.complexcalc.ui;
 
+import java.util.Arrays;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -116,6 +117,13 @@ public class Controller {
                     icon.fitWidthProperty().bind(button.widthProperty().multiply(0.6));
                     icon.fitHeightProperty().bind(button.heightProperty().multiply(0.6));
                 }
+                button.setOnAction(event -> {
+                    latexInput.insertText(
+                        latexInput.getCaretPosition(),
+                        ((String) button.getUserData()).replace("e@", "\\")
+                    );
+                    if (renderService != null) renderService.render(latexInput.getText());
+                });
             }
             if (node instanceof SplitMenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
@@ -124,6 +132,13 @@ public class Controller {
                     icon.fitWidthProperty().bind(menuButton.widthProperty().multiply(0.8));
                     icon.fitHeightProperty().bind(menuButton.heightProperty().multiply(0.8));
                 }
+                menuButton.setOnAction(event -> {
+                    latexInput.insertText(
+                        latexInput.getCaretPosition(),
+                        ((String) menuButton.getUserData()).replace("e@", "\\")
+                    );
+                    if (renderService != null) renderService.render(latexInput.getText());
+                });
             }
             if (node instanceof MenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
@@ -132,6 +147,13 @@ public class Controller {
                     icon.fitWidthProperty().bind(menuButton.widthProperty().multiply(0.8));
                     icon.fitHeightProperty().bind(menuButton.heightProperty().multiply(0.8));
                 }
+                menuButton.setOnAction(event -> {
+                    latexInput.insertText(
+                        latexInput.getCaretPosition(),
+                        ((String) menuButton.getUserData()).replace("e@", "\\")
+                    );
+                    if (renderService != null) renderService.render(latexInput.getText());
+                });
             }
         }
     }
