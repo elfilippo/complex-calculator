@@ -1,5 +1,6 @@
 package com.complexcalc.ui;
 
+import com.complexcalc.parser.LatexComplexEvaluator;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -80,6 +81,15 @@ public class Controller {
         });
 
         latexInput.setOnKeyTyped(event -> {
+            if (event.getCharacter().hashCode() != 8) {
+                int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
+                int pos = latexInput.getCaretPosition();
+                if (equalsIndex != 2) {
+                    latexInput.deleteText(equalsIndex, latexInput.getText().length());
+                }
+                if (latexInput.getText().endsWith(" = ")) evaluateExpr();
+                latexInput.positionCaret(pos);
+            }
             if (renderService != null) renderService.render(latexInput.getText());
         });
 
@@ -176,13 +186,6 @@ public class Controller {
         };
     }
 
-    @FXML
-    private void hEquals() {
-        System.out.println("sigma");
-        System.out.println(previewEngine);
-        renderService.render("\\frac{3}{4} \\] \\[ \\sum^{\\infty}_{n=0}{\\frac{1}{n}}");
-    }
-
     @SuppressWarnings("exports")
     public WebEngine getPreviewEngine() {
         return previewEngine;
@@ -194,5 +197,17 @@ public class Controller {
 
     public void setUiManager(UIManager uiManager) {
         this.uiManager = uiManager;
+    }
+
+    private void evaluateExpr() {
+        String result;
+        try {
+            result = new LatexComplexEvaluator(latexInput.getText().substring(0, latexInput.getText().length() - 2))
+                .eval()
+                .toLatexString();
+        } catch (Exception e) {
+            result = e.getMessage().replace(" ", " \\space ");
+        }
+        latexInput.appendText(result);
     }
 }

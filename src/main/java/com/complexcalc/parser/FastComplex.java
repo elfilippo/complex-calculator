@@ -746,6 +746,28 @@ public class FastComplex {
     }
 
     /**
+     * returns a string in cartesian form specialized for latex results and truncated to 6 decimal places
+     */
+    public String toLatexString() {
+        String aStr;
+        String bStr;
+        boolean bNegative = false;
+        if (Double.isInfinite(a)) aStr = a > 0.0 ? "\\infty" : "-\\infty";
+        else if (Math.abs(a) < 0.000001) aStr = "";
+        else if (Math.abs(Math.rint(a) - a) < 0.000001) aStr = String.format("%.0f", Math.rint(a));
+        else aStr = String.format("%.6f", a);
+
+        if (b < 0.0) bNegative = true;
+        if (Double.isInfinite(b)) bStr = "\\infty i";
+        else if (Math.abs(b) < 0.000001) bStr = "";
+        else if (Math.abs(Math.rint(b) - b) < 0.000001) bStr = String.format("%.0f", Math.rint(b)) + "i";
+        else if (b == 1.0) bStr = "i";
+        else bStr = String.format("%.6f", Math.abs(b)) + "i";
+
+        return aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr;
+    }
+
+    /**
      * returns a string in normalized polar form <p>
      * truncates decimals for whole numbers and omits empty values <p>
      */
