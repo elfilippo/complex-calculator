@@ -382,12 +382,6 @@ public class LatexComplexEvaluator {
                         secondArgException(arg2, "FRAC");
                         yield FastComplex.div(arg1, arg2);
                     }
-                    // case HYPOT -> {
-                    //     argException(args.size(), 2, 2);
-                    //     yield FastComplex.sqrt(
-                    //         FastComplex.add(FastComplex.sqr(args.get(0)), FastComplex.sqr(args.get(1)))
-                    //     );
-                    // }
                     case ROOT -> {
                         if (arg2 == null) yield FastComplex.sqrt(arg1);
                         yield FastComplex.nRoot(arg2, arg1);

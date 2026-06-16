@@ -2,6 +2,7 @@ package com.complexcalc.parser;
 
 import static com.complexcalc.parser.registry.Functions.*;
 
+import com.complexcalc.parser.registry.Functions.valueToken;
 import com.complexcalc.parser.registry.Token;
 import java.util.List;
 
@@ -148,43 +149,41 @@ public class LatexEvaluator {
             throw new IllegalArgumentException("unknown variable: " + (char) peek().value());
         }
 
-        /*
-        for (Token token : LatexLexer.multipleArguments.values()) {
+        for (Token token : multipleArgOperations.values()) {
             if (check(token)) {
                 consume();
-                expect(Token.LPAR);
-                List<Double> args = new ArrayList<>();
-                args.add(depth1());
-                while (check(Token.COMMA)) {
+                expect(Token.LBRACE);
+                double arg1 = depth1();
+                double arg2 = 0;
+                boolean hasArg2 = false;
+                if (check(Token.LBRACE)) {
                     consume();
-                    args.add(depth1());
+                    arg2 = depth1();
+                    expect(Token.RBRACE);
+                    hasArg2 = true;
                 }
-                expect(Token.RPAR);
 
                 return switch (token) {
                     case LOG -> {
-                        if (args.size() == 1) yield Math.log(args.get(0));
-                        argException(args.size(), 2, 2);
-                        yield Math.log(args.get(1)) / Math.log(args.get(0));
+                        if (!hasArg2) yield Math.log(arg1);
+                        yield Math.log(arg2) / Math.log(arg1);
                     }
                     case ATAN2 -> {
-                        argException(args.size(), 2, 2);
-                        yield Math.atan2(args.get(0), args.get(1));
+                        if (!hasArg2) throw new IllegalArgumentException("missing second argument for atan2");
+                        yield Math.atan2(arg1, arg2);
                     }
                     case HYPOT -> {
-                        argException(args.size(), 2, 2);
-                        yield Math.hypot(args.get(0), args.get(1));
+                        if (!hasArg2) throw new IllegalArgumentException("missing second argument for hypot");
+                        yield Math.hypot(arg1, arg2);
                     }
                     case ROOT -> {
-                        argException(args.size(), 1, 2);
-                        if (args.size() == 1) yield Math.sqrt(args.get(0));
-                        yield Math.pow(args.get(1), 1 / args.get(0));
+                        if (!hasArg2) yield Math.sqrt(arg1);
+                        yield Math.pow(arg2, 1 / arg1);
                     }
                     default -> throw new IllegalArgumentException("unexpected multi-arg function: " + peek().type());
                 };
             }
         }
-        */
 
         for (Token token : wordOperations.values()) {
             if (check(token)) {
@@ -218,17 +217,6 @@ public class LatexEvaluator {
             }
         }
         throw new IllegalStateException("unexpected token: " + peek().type());
-    }
-
-    /**
-     * throws exceptions if there are too many or too few arguments
-     * @param amount the argument amount
-     * @param min the minimum value to not throw an exception
-     * @param max the max value to not throw an exception
-     */
-    private static void argException(int amount, int min, int max) {
-        if (amount < min) throw new IllegalArgumentException("too few arguments provided");
-        if (amount > max) throw new IllegalArgumentException("too many arguments provided");
     }
 
     private valueToken peek() {

@@ -30,6 +30,4 @@ public class RenderService {
         );
         webEngine.executeScript(js);
     }
-
-    private void flushQueue() {}
 }

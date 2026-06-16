@@ -1,6 +1,5 @@
 package com.complexcalc.ui;
 
-import java.util.Arrays;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
