@@ -81,13 +81,15 @@ public class Controller {
         });
 
         latexInput.setOnKeyTyped(event -> {
-            if (event.getCharacter().hashCode() != 8) {
-                int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
-                int pos = latexInput.getCaretPosition();
-                if (equalsIndex != 2) {
+            int pos = latexInput.getCaretPosition();
+            int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
+            if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || pos < equalsIndex) {
+                if (equalsIndex != 2 && pos < equalsIndex) {
                     latexInput.deleteText(equalsIndex, latexInput.getText().length());
-                }
-                if (latexInput.getText().endsWith(" = ")) evaluateExpr();
+                    evaluateExpr();
+                } else if (
+                    latexInput.getText().endsWith(" = ") && event.getCharacter().hashCode() == 32
+                ) evaluateExpr();
                 latexInput.positionCaret(pos);
             }
             if (renderService != null) renderService.render(latexInput.getText());
@@ -206,7 +208,10 @@ public class Controller {
                 .eval()
                 .toLatexString();
         } catch (Exception e) {
-            result = e.getMessage().replace(" ", " \\space ");
+            if (e instanceof IllegalArgumentException || e instanceof IllegalStateException) result = e
+                .getMessage()
+                .replace(" ", " \\space ");
+            else result = "";
         }
         latexInput.appendText(result);
     }
