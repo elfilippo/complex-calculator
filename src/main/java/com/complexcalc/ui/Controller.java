@@ -117,7 +117,7 @@ public class Controller {
                 setIconScaling(icon);
                 delBtn.setOnAction(event -> {
                     latexInput.deletePreviousChar();
-                    autoEval("del");
+                    autoEval("");
                 });
             } else if (node == clearBtn) {
                 ImageView icon = (ImageView) delBtn.getGraphic();
@@ -192,10 +192,8 @@ public class Controller {
         int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
         boolean beforeEquals = equalsIndex != 2 && pos < equalsIndex;
         if (beforeEquals) {
-            if (!text.equals("del")) {
-                latexInput.deleteText(equalsIndex, latexInput.getText().length());
-                evaluateExpr();
-            }
+            latexInput.deleteText(equalsIndex, latexInput.getText().length());
+            evaluateExpr();
         }
         if (latexInput.getText().endsWith(" = ") && text.equals("equals")) evaluateExpr();
         latexInput.positionCaret(pos);

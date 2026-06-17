@@ -751,20 +751,36 @@ public class FastComplex {
     public String toLatexString() {
         String aStr;
         String bStr;
-        boolean bNegative = false;
+        boolean bNegative = b < 0.0;
+
         if (Double.isInfinite(a)) aStr = a > 0.0 ? "\\infty" : "-\\infty";
         else if (Math.abs(a) < 0.000001) aStr = "";
         else if (Math.abs(Math.rint(a) - a) < 0.000001) aStr = String.format("%.0f", Math.rint(a));
-        else aStr = String.format("%.6f", a);
+        else {
+            aStr = String.format("%.6f", a);
+            int i;
+            for (i = aStr.length() - 1; aStr.charAt(i) == '0'; i--);
+            aStr = aStr.substring(0, i + 1);
+        }
 
-        if (b < 0.0) bNegative = true;
         if (Double.isInfinite(b)) bStr = "\\infty i";
         else if (Math.abs(b) < 0.000001) bStr = "";
         else if (Math.abs(Math.rint(b) - b) < 0.000001) bStr = String.format("%.0f", Math.rint(b)) + "i";
         else if (b == 1.0) bStr = "i";
-        else bStr = String.format("%.6f", Math.abs(b)) + "i";
+        else {
+            bStr = String.format("%.6f", b);
+            int i;
+            for (i = bStr.length() - 1; bStr.charAt(i) == '0'; i--);
+            bStr = bStr.substring(0, i + 1) + "i";
+        }
 
-        return aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr;
+        if (aStr.equals("")) {
+            if (bStr.equals("")) return "0";
+            else return (bNegative ? "-" : "") + bStr;
+        } else {
+            if (bStr.equals("")) return aStr;
+            else return aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr;
+        }
     }
 
     /**
