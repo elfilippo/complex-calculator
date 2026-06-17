@@ -1,6 +1,5 @@
 package com.complexcalc;
 
-import com.complexcalc.parser.LatexComplexEvaluator;
 import com.complexcalc.ui.Controller;
 import com.complexcalc.ui.RenderService;
 import com.complexcalc.ui.UIManager;

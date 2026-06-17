@@ -177,7 +177,6 @@ public class Controller {
         int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
         boolean beforeEquals = pos < equalsIndex && equalsIndex != 2;
         if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || beforeEquals) {
-            System.out.println(equalsIndex);
             if (beforeEquals) {
                 latexInput.deleteText(equalsIndex, latexInput.getText().length());
                 evaluateExpr();
