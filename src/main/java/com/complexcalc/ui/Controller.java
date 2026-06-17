@@ -174,9 +174,10 @@ public class Controller {
 
     private void autoEval(KeyEvent event) {
         int pos = latexInput.getCaretPosition();
-        int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
+        int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
         boolean beforeEquals = pos < equalsIndex && equalsIndex != 2;
         if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || beforeEquals) {
+            System.out.println(equalsIndex);
             if (beforeEquals) {
                 latexInput.deleteText(equalsIndex, latexInput.getText().length());
                 evaluateExpr();
@@ -188,7 +189,7 @@ public class Controller {
 
     private void autoEval(String text) {
         int pos = latexInput.getCaretPosition();
-        int equalsIndex = latexInput.getText().indexOf(" = ", 0) + 3;
+        int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
         boolean beforeEquals = equalsIndex != 2 && pos < equalsIndex;
         if (beforeEquals) {
             if (!text.equals("del")) {
@@ -240,10 +241,10 @@ public class Controller {
                 .eval()
                 .toLatexString();
         } catch (Exception e) {
-            if (e instanceof IllegalArgumentException || e instanceof IllegalStateException) result = e
-                .getMessage()
-                .replace(" ", " \\space ");
-            else result = "";
+            if (e instanceof IllegalArgumentException || e instanceof IllegalStateException) {
+                if (e.getMessage().contains("fromIndex")) result = "argument of sum or prod has to be in braces";
+                else result = e.getMessage().replace(" ", " \\space ");
+            } else result = "";
         }
         latexInput.appendText(result);
     }
