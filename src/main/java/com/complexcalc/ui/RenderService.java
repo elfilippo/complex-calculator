@@ -1,5 +1,6 @@
 package com.complexcalc.ui;
 
+import javafx.concurrent.Worker;
 import javafx.scene.web.WebEngine;
 
 public class RenderService {
@@ -12,6 +13,10 @@ public class RenderService {
     }
 
     public void render(String expression) {
+        if (webEngine.getLoadWorker().getState() != Worker.State.SUCCEEDED) {
+            return;
+        }
+
         escapedExpr = expression
             .replace("\\", "\\\\")
             .replace("\"", "\\\"")
@@ -28,6 +33,7 @@ public class RenderService {
                 "MathJax.typesetPromise([document.getElementById('output')]).then(() => window.javabridge.onRenderComplete());",
             escapedExpr
         );
+
         webEngine.executeScript(js);
     }
 }

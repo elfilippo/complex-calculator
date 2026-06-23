@@ -1,6 +1,7 @@
 package com.complexcalc.ui;
 
 import com.complexcalc.parser.LatexComplexEvaluator;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -67,6 +68,8 @@ public class Controller {
         documentWebView.setOnScroll(zoom(documentWebView));
         webPreview.setOnScroll(zoom(webPreview));
 
+        Platform.runLater(latexInput::requestFocus);
+
         latexInput.setOnScroll(event -> {
             if (event.isControlDown()) {
                 double fontSize = latexInput.getFont().getSize();
@@ -85,6 +88,14 @@ public class Controller {
         });
 
         latexInput.setOnKeyTyped(this::autoEval);
+
+        latexInput
+            .focusedProperty()
+            .addListener((obs, wasFocused, isNowFocused) -> {
+                if (!isNowFocused) {
+                    Platform.runLater(latexInput::requestFocus);
+                }
+            });
 
         themeGroup
             .selectedToggleProperty()
@@ -173,6 +184,12 @@ public class Controller {
     }
 
     private void autoEval(KeyEvent event) {
+        if (event.getCharacter().hashCode() == 9) {
+            latexInput.clear();
+            previewEngine.reload();
+            return;
+        }
+
         int pos = latexInput.getCaretPosition();
         int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
         boolean beforeEquals = pos < equalsIndex && equalsIndex != 2;
@@ -183,6 +200,7 @@ public class Controller {
             } else if (latexInput.getText().endsWith(" = ") && event.getCharacter().hashCode() == 32) evaluateExpr();
             latexInput.positionCaret(pos);
         }
+
         if (renderService != null) renderService.render(latexInput.getText());
     }
 
