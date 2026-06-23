@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -19,6 +20,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.PopupWindow;
+import javafx.stage.Window;
 
 public class Controller {
 
@@ -93,7 +96,11 @@ public class Controller {
             .focusedProperty()
             .addListener((obs, wasFocused, isNowFocused) -> {
                 if (!isNowFocused) {
-                    Platform.runLater(latexInput::requestFocus);
+                    Platform.runLater(() -> {
+                        if (!anyPopupShowing()) {
+                            latexInput.requestFocus();
+                        }
+                    });
                 }
             });
 
@@ -123,30 +130,24 @@ public class Controller {
         calcSplitPane.setDividerPosition(1, 0.40);
 
         for (Node node : keyboardGrid.getChildren()) {
-            if (node == delBtn) {
-                ImageView icon = (ImageView) delBtn.getGraphic();
-                setIconScaling(icon);
-                delBtn.setOnAction(event -> {
-                    latexInput.deletePreviousChar();
-                    autoEval("");
-                });
-            } else if (node == clearBtn) {
-                ImageView icon = (ImageView) delBtn.getGraphic();
-                setIconScaling(icon);
-                clearBtn.setOnAction(event -> {
-                    latexInput.clear();
-                    if (renderService != null) renderService.render(latexInput.getText());
-                });
-            } else if (node == equalsBtn) {
-                ImageView icon = (ImageView) equalsBtn.getGraphic();
-                setIconScaling(icon);
-                equalsBtn.setOnAction(event -> {
-                    latexInput.insertText(latexInput.getCaretPosition(), " = ");
-                    autoEval("equals");
-                });
-            } else if (node instanceof Button button) {
+            if (node instanceof Button button) {
                 ImageView icon = (ImageView) button.getGraphic();
                 setIconScaling(icon);
+
+                if (button == delBtn) {
+                    delBtn.setOnAction(event -> {
+                        latexInput.deletePreviousChar();
+                        autoEval("");
+                    });
+                    continue;
+                } else if (button == clearBtn) {
+                    clearBtn.setOnAction(event -> {
+                        latexInput.clear();
+                        if (renderService != null) renderService.render(latexInput.getText());
+                    });
+                    continue;
+                }
+
                 button.setOnAction(event -> {
                     String text = ((String) button.getUserData()).replace("e@", "\\");
                     latexInput.insertText(latexInput.getCaretPosition(), text);
@@ -156,6 +157,27 @@ public class Controller {
             } else if (node instanceof SplitMenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
                 setIconScaling(icon);
+
+                menuButton
+                    .showingProperty()
+                    .addListener((obs, wasShowing, isShowing) -> {
+                        if (!isShowing) {
+                            Platform.runLater(() -> {
+                                if (!anyPopupShowing()) {
+                                    latexInput.requestFocus();
+                                }
+                            });
+                        }
+                    });
+
+                if (menuButton == equalsBtn) {
+                    equalsBtn.setOnAction(event -> {
+                        latexInput.insertText(latexInput.getCaretPosition(), " = ");
+                        autoEval("equals");
+                    });
+                    continue;
+                }
+
                 menuButton.setOnAction(event -> {
                     String text = ((String) menuButton.getUserData()).replace("e@", "\\");
                     latexInput.insertText(latexInput.getCaretPosition(), text);
@@ -165,6 +187,19 @@ public class Controller {
             } else if (node instanceof MenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
                 setIconScaling(icon);
+
+                menuButton
+                    .showingProperty()
+                    .addListener((obs, wasShowing, isShowing) -> {
+                        if (!isShowing) {
+                            Platform.runLater(() -> {
+                                if (!anyPopupShowing()) {
+                                    latexInput.requestFocus();
+                                }
+                            });
+                        }
+                    });
+
                 menuButton.setOnAction(event -> {
                     String text = ((String) menuButton.getUserData()).replace("e@", "\\");
                     latexInput.insertText(latexInput.getCaretPosition(), text);
@@ -180,6 +215,14 @@ public class Controller {
             icon.setPreserveRatio(true);
             icon.fitWidthProperty().bind(delBtn.widthProperty().multiply(0.6));
             icon.fitHeightProperty().bind(delBtn.heightProperty().multiply(0.6));
+        }
+    }
+
+    private void setIconScaling(ImageView icon, double size) {
+        if (icon != null) {
+            icon.setPreserveRatio(true);
+            icon.fitWidthProperty().bind(delBtn.widthProperty().multiply(size));
+            icon.fitHeightProperty().bind(delBtn.heightProperty().multiply(size));
         }
     }
 
@@ -262,5 +305,11 @@ public class Controller {
             } else result = "";
         }
         latexInput.appendText(result);
+    }
+
+    private boolean anyPopupShowing() {
+        return Window.getWindows()
+            .stream()
+            .anyMatch(w -> w instanceof PopupWindow pw && pw.isShowing());
     }
 }
