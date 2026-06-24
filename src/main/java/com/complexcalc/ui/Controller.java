@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -30,6 +31,11 @@ public class Controller {
     private WebEngine previewEngine;
     private WebEngine documentEngine;
     private UIManager uiManager;
+
+    private double xWindowOffset = 0;
+    private double yWindowOffset = 0;
+    private boolean dragging = false;
+    private double pendingX, pendingY;
 
     @FXML
     private GridPane keyboardGrid;
@@ -341,5 +347,29 @@ public class Controller {
     private void onClose(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void onToolBarClicked(MouseEvent event) {
+        xWindowOffset = event.getSceneX();
+        yWindowOffset = event.getSceneY();
+    }
+
+    @FXML
+    private void onToolBarDragged(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (stage.isMaximized()) return;
+
+        pendingX = event.getScreenX() - xWindowOffset;
+        pendingY = event.getScreenY() - yWindowOffset;
+
+        if (!dragging) {
+            dragging = true;
+            Platform.runLater(() -> {
+                stage.setX(pendingX);
+                stage.setY(pendingY);
+                dragging = false;
+            });
+        }
     }
 }

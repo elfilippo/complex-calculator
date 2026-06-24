@@ -1008,7 +1008,7 @@
         <top>
           <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="menu-bar" BorderPane.alignment="CENTER">
             <items>
-              <Label id="title" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#onWindowDragged" onMouseClicked="#onToolBarClicked" prefHeight="31.0" prefWidth="140.0" styleClass="menu-bar" text=" Calculator" textFill="WHITE">
+              <Label id="title" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onToolBarDragged" onMousePressed="#onToolBarClicked" prefHeight="31.0" prefWidth="140.0" styleClass="menu-bar" text=" Calculator" textFill="WHITE">
                 <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                 </font>
@@ -1046,7 +1046,7 @@
                      </font>
                   </MenuButton>
 
-                  <Region onDragDetected="#onWindowDragged" onMouseClicked="#onToolBarClicked" HBox.hgrow="ALWAYS" />
+                  <Region onMouseDragged="#onToolBarDragged" onMousePressed="#onToolBarClicked" HBox.hgrow="ALWAYS" />
 
                   <HBox alignment="CENTER" spacing="2" styleClass="tab-bar">
                      <children>
@@ -1060,7 +1060,7 @@
                      </children>
                   </HBox>
 
-                  <Region onDragDetected="#onWindowDragged" onMouseClicked="#onToolBarClicked" HBox.hgrow="ALWAYS" />
+                  <Region onMouseDragged="#onToolBarDragged" onMousePressed="#onToolBarClicked" HBox.hgrow="ALWAYS" />
 
                   <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#onMinimize" prefHeight="40.0" prefWidth="46.0" styleClass="secondary-btn" text="—" textFill="WHITE" />
                   <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#onMaximizeRestore" prefHeight="40.0" prefWidth="46.0" styleClass="secondary-btn" text="🗖" textFill="WHITE" />
