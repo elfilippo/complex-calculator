@@ -190,7 +190,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="integralInftyBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="integralInftyBtn" userData="e@int_{0}^{@einfty}{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -199,7 +199,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="doubleIntegralBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="doubleIntegralBtn" userData="e@iint_{}^{}{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -208,7 +208,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="contourIntegralBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="contourIntegralBtn" userData="e@oint_{}^{}{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -528,7 +528,7 @@
                           </Button>
                           <SplitMenuButton fx:id="derivBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@frac{d}{dx}" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <items>
-                              <MenuItem fx:id="partialDerivBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="partialDerivBtn" userData="e@frac{@epartial}{@epartial x}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -537,7 +537,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="dBtn" mnemonicParsing="false">
+                              <MenuItem fx:id="dBtn" userData="d" mnemonicParsing="false">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -566,7 +566,7 @@
                           </SplitMenuButton>
                           <SplitMenuButton fx:id="sqrtBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@sqrt{}" GridPane.rowIndex="6">
                             <items>
-                              <MenuItem fx:id="cbrtBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="cbrtBtn" userData="e@sqrt\[3\]{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -595,7 +595,7 @@
                           </SplitMenuButton>
                           <SplitMenuButton fx:id="lnBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@log_{}{}" GridPane.rowIndex="7">
                             <items>
-                              <MenuItem fx:id="log10Btn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="log10Btn" userData="e@log_{10}{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fx:id="log10Btn" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -604,7 +604,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="log2Btn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="log2Btn" userData="e@log_{2}{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -624,7 +624,7 @@
                           </SplitMenuButton>
                           <SplitMenuButton fx:id="inftyBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@infty" GridPane.rowIndex="3">
                             <items>
-                              <MenuItem fx:id="pmBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="pmBtn" userData="@epm " mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -633,7 +633,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="mpBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="mpBtn" userData="@emp " mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                       <image>
@@ -669,7 +669,7 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="0" fx:id="xBtn">
+                                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="0" fx:id="xBtn" userData="x">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -678,7 +678,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="yBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                      <Button fx:id="yBtn" userData="y" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -687,7 +687,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="zBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
+                                                      <Button fx:id="zBtn" userData="z" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -696,7 +696,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="aBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                      <Button fx:id="aBtn" userData="a" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -705,7 +705,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="bBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <Button fx:id="bBtn" userData="b" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -714,7 +714,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="cBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                      <Button fx:id="cBtn" userData="c" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -732,7 +732,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="tauBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <Button fx:id="tauBtn" userData="τ" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -741,7 +741,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="nBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                      <Button fx:id="nBtn" userData="n" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -750,7 +750,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="kBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="3">
+                                                      <Button fx:id="kBtn" userData="k" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -759,7 +759,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="tBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                      <Button fx:id="tBtn" userData="t" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -768,7 +768,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="fBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                      <Button fx:id="fBtn" userData="f" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -777,7 +777,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="gBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="4">
+                                                      <Button fx:id="gBtn" userData="g" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="4">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -786,7 +786,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="hBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                      <Button fx:id="hBtn" userData="h" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -795,7 +795,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="jBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                      <Button fx:id="jBtn" userData="j" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -819,7 +819,7 @@
                           </SplitMenuButton>
                           <SplitMenuButton fx:id="rParenBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@right)" GridPane.columnIndex="2" GridPane.rowIndex="2">
                             <items>
-                              <MenuItem fx:id="rBraceBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="rBraceBtn" userData="e@right{" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -848,7 +848,7 @@
                           </SplitMenuButton>
                           <SplitMenuButton fx:id="powBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="^{}" GridPane.rowIndex="5">
                             <items>
-                                          <MenuItem fx:id="squareBtn" mnemonicParsing="false">
+                                          <MenuItem fx:id="squareBtn" userData="^{2}" mnemonicParsing="false">
                                              <graphic>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                       <image>
@@ -857,7 +857,7 @@
                                     </ImageView>
                                              </graphic>
                                           </MenuItem>
-                              <MenuItem fx:id="cubeBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="cubeBtn" userData="^{3}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -866,7 +866,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="subscriptBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="subscriptBtn" userData="_{}" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -944,7 +944,7 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                      <Button fx:id="fancyNBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="0">
+                                      <Button fx:id="fancyNBtn" userData="@emathbb{N}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="0">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -953,7 +953,7 @@
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                      <Button fx:id="fancyZBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                      <Button fx:id="fancyZBtn" userData="@emathbb{Z}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -962,7 +962,7 @@
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                      <Button fx:id="fancyQBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
+                                      <Button fx:id="fancyQBtn" userData="@emathbb{Q}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -971,7 +971,7 @@
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                                      <Button fx:id="fancyRBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3">
+                                                      <Button fx:id="fancyRBtn" userData="@emathbb{R}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -980,7 +980,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                      <Button fx:id="fancyCBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="1">
+                                      <Button fx:id="fancyCBtn" userData="@emathbb{C}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="1">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -989,7 +989,7 @@
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                                      <Button fx:id="fancyHBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <Button fx:id="fancyHBtn" userData="@emathbb{H}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -998,7 +998,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="fancyOBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                      <Button fx:id="fancyOBtn" userData="@emathbb{O}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1007,7 +1007,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="fancyDBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                      <Button fx:id="fancyDBtn" userData="@emathbb{D}" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1016,7 +1016,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="elementOfBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="2">
+                                                      <Button fx:id="elementOfBtn" userData="@ein " maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1025,7 +1025,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="notElementOfBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <Button fx:id="notElementOfBtn" userData="@enotin " maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1034,7 +1034,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="smallerThanBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                      <Button fx:id="smallerThanBtn" userData="@s" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1043,7 +1043,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="largerThanBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                      <Button fx:id="largerThanBtn" userData="@l" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1052,7 +1052,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="equalsBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="3">
+                                                      <Button fx:id="equalsBtn" userData="=" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1061,7 +1061,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="notEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                      <Button fx:id="notEqualBtn" userData="@eneq " maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1070,7 +1070,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="smallerThanEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                      <Button fx:id="smallerThanEqualBtn" userData="@eleq " maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1079,7 +1079,7 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="largerThanEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                      <Button fx:id="largerThanEqualBtn" userData="@egeq " maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
@@ -1103,7 +1103,7 @@
                           </MenuButton>
                             <SplitMenuButton fx:id="approxBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" userData=" = " GridPane.columnIndex="4" GridPane.rowIndex="7">
                                 <items>
-                                  <MenuItem fx:id="equalsBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                                  <MenuItem fx:id="equalsBtn" userData="=" mnemonicParsing="false" styleClass="secondary-btn">
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -1304,7 +1304,7 @@
                                     </SplitMenuButton>
                           <SplitMenuButton fx:id="lParenBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@left(" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <items>
-                              <MenuItem fx:id="lBraceBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="lBraceBtn" userData="e@left{" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
