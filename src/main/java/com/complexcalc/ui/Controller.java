@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBoxBase;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -46,7 +45,7 @@ public class Controller {
     private Button clearBtn, delBtn;
 
     @FXML
-    private SplitMenuButton equalsBtn;
+    private SplitMenuButton equalsBtn, lParenBtn, rParenBtn, derivBtn, integralBtn;
 
     @FXML
     private ToggleGroup themeGroup;
@@ -184,6 +183,15 @@ public class Controller {
                     if (renderService != null) renderService.render(latexInput.getText());
                     autoEval(text);
                 });
+
+                if (
+                    menuButton == lParenBtn ||
+                    menuButton == rParenBtn ||
+                    menuButton == derivBtn ||
+                    menuButton == integralBtn
+                ) {
+                    setIconScaling(icon, 0.8);
+                }
             } else if (node instanceof MenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
                 setIconScaling(icon);
@@ -231,6 +239,8 @@ public class Controller {
             latexInput.clear();
             previewEngine.reload();
             return;
+        } else if (event.getCharacter().hashCode() == 27) {
+            Platform.exit();
         }
 
         int pos = latexInput.getCaretPosition();
