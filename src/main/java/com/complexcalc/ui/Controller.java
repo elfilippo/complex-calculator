@@ -7,12 +7,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.SplitPane.Divider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
@@ -42,7 +42,7 @@ public class Controller {
     private WebView webPreview, documentWebView;
 
     @FXML
-    private SplitPane calcSplitPane;
+    private SplitPane calcSplitPane, documentSplitPane;
 
     @FXML
     private TextArea latexInput;
@@ -136,6 +136,21 @@ public class Controller {
 
         calcSplitPane.setDividerPosition(0, 0.30);
         calcSplitPane.setDividerPosition(1, 0.40);
+
+        Divider divider = documentSplitPane.getDividers().get(0);
+        divider.setPosition(0.3);
+        divider
+            .positionProperty()
+            .addListener((obs, oldPos, newPos) -> {
+                double min = 0.2;
+                double max = 0.8;
+
+                if (newPos.doubleValue() < min) {
+                    divider.setPosition(min);
+                } else if (newPos.doubleValue() > max) {
+                    divider.setPosition(max);
+                }
+            });
 
         for (Node node : keyboardGrid.getChildren()) {
             if (node instanceof Button button) {
@@ -339,11 +354,8 @@ public class Controller {
 
     @FXML
     private void onMaximizeRestore(ActionEvent event) {
-        if (scene.isMaximized()) {
-            scene.maximizeStage(); // acts as a toggle per their API
-        } else {
-            scene.maximizeStage();
-        }
+        scene.maximizeStage();
+        documentSplitPane.setDividerPosition(0, 0.25);
     }
 
     @FXML
@@ -351,11 +363,12 @@ public class Controller {
         ((Stage) toolBar.getScene().getWindow()).close();
     }
 
+    @SuppressWarnings("exports")
     public ToolBar getToolBar() {
         return toolBar;
     }
 
-    public void setBorderlessScene(BorderlessScene scene) {
+    public void setBorderlessScene(@SuppressWarnings("exports") BorderlessScene scene) {
         this.scene = scene;
     }
 }
