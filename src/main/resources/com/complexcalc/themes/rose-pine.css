@@ -1,3 +1,4 @@
+
 /* =============================================================
    rose-pine.css — "Rosé Pine" Theme
    Load after default.css.
@@ -27,7 +28,7 @@
 
 /* ── Primary Button  (pine) ───────────────────────────────── */
 .primary-btn {
-    -fx-background-color: #3a8aa8;
+    -fx-background-color: #ff2e97;
     -fx-text-fill: #e0def4;
 }
 .primary-btn:hover {
@@ -36,7 +37,7 @@
 
 /* ── Secondary Button  (overlay surface) ─────────────────── */
 .secondary-btn {
-    -fx-background-color: #26233a;
+    -fx-background-color: #c832ff;
     -fx-text-fill: #b8b4d0;
 }
 .secondary-btn:hover {
