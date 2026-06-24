@@ -1,11 +1,13 @@
 package com.complexcalc.ui;
 
 import com.complexcalc.parser.LatexComplexEvaluator;
+import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
@@ -13,9 +15,9 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -31,11 +33,7 @@ public class Controller {
     private WebEngine previewEngine;
     private WebEngine documentEngine;
     private UIManager uiManager;
-
-    private double xWindowOffset = 0;
-    private double yWindowOffset = 0;
-    private boolean dragging = false;
-    private double pendingX, pendingY;
+    private BorderlessScene scene;
 
     @FXML
     private GridPane keyboardGrid;
@@ -63,6 +61,9 @@ public class Controller {
 
     @FXML
     private ImageView pIcon, sIcon;
+
+    @FXML
+    private ToolBar toolBar;
 
     @FXML
     public void initialize() {
@@ -333,43 +334,28 @@ public class Controller {
 
     @FXML
     private void onMinimize(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setIconified(true);
+        scene.minimizeStage();
     }
 
     @FXML
     private void onMaximizeRestore(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setMaximized(!stage.isMaximized());
+        if (scene.isMaximized()) {
+            scene.maximizeStage(); // acts as a toggle per their API
+        } else {
+            scene.maximizeStage();
+        }
     }
 
     @FXML
     private void onClose(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+        ((Stage) toolBar.getScene().getWindow()).close();
     }
 
-    @FXML
-    private void onToolBarClicked(MouseEvent event) {
-        xWindowOffset = event.getSceneX();
-        yWindowOffset = event.getSceneY();
+    public ToolBar getToolBar() {
+        return toolBar;
     }
 
-    @FXML
-    private void onToolBarDragged(MouseEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        if (stage.isMaximized()) return;
-
-        pendingX = event.getScreenX() - xWindowOffset;
-        pendingY = event.getScreenY() - yWindowOffset;
-
-        if (!dragging) {
-            dragging = true;
-            Platform.runLater(() -> {
-                stage.setX(pendingX);
-                stage.setY(pendingY);
-                dragging = false;
-            });
-        }
+    public void setBorderlessScene(BorderlessScene scene) {
+        this.scene = scene;
     }
 }

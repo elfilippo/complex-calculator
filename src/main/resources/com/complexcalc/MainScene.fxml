@@ -72,10 +72,11 @@
                 <WebView fx:id="webPreview" minHeight="50.0" minWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               </children>
             </AnchorPane>
-                  <TextArea fx:id="latexInput" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" promptText="Type LaTeX here" wrapText="true">
-                     <font>
-                        <Font name="Cambria Math" size="34.0" />
-                     </font></TextArea>
+              <TextArea fx:id="latexInput" minHeight="50.0" prefHeight="100.0" prefWidth="200.0" promptText="Type LaTeX here" wrapText="true">
+                <font>
+                  <Font name="Cambria Math" size="34.0" />
+                </font>
+              </TextArea>
             <AnchorPane minHeight="196.0" minWidth="0.0" prefHeight="593.0" prefWidth="158.0">
               <children>
                 <GridPane fx:id="keyboardGrid" hgap="8.0" layoutX="7.0" layoutY="11.0" prefHeight="660.0" prefWidth="837.0" vgap="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -594,15 +595,15 @@
                             </ImageView>
                           </graphic>
                         </MenuItem>
-                                    <MenuItem fx:id="mpBtn" mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                             <image>
-                                                <Image url="@textures/mp.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
+                        <MenuItem fx:id="mpBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                <image>
+                                  <Image url="@textures/mp.png" />
+                                </image>
+                            </ImageView>
+                          </graphic>
+                        </MenuItem>
                       </items>
                       <graphic>
                         <ImageView fx:id="sIcon" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
@@ -904,100 +905,100 @@
                         </ImageView>
                       </graphic>
                     </MenuButton>
-                              <SplitMenuButton fx:id="equalsBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" userData=" = " GridPane.columnIndex="4" GridPane.rowIndex="7">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/integral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/integralInfty.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/doubleIntegral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/contourIntegral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="tIcon">
-                                       <image>
-                                          <Image url="@textures/equals.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
-                              <SplitMenuButton fx:id="docInsertBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/integral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/integralInfty.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/doubleIntegral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                       <graphic>
-                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@textures/contourIntegral.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </MenuItem>
-                                 </items>
-                                 <graphic>
-                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
-                                       <image>
-                                          <Image url="@textures/rightArrow.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </SplitMenuButton>
+                      <SplitMenuButton fx:id="equalsBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" userData=" = " GridPane.columnIndex="4" GridPane.rowIndex="7">
+                          <items>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/integral.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/integralInfty.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/doubleIntegral.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/contourIntegral.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                          </items>
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="tIcon">
+                                <image>
+                                  <Image url="@textures/equals.png" />
+                                </image>
+                            </ImageView>
+                          </graphic>
+                      </SplitMenuButton>
+                      <SplitMenuButton fx:id="docInsertBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn">
+                          <items>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/integral.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/integralInfty.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/doubleIntegral.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                            <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                      <image>
+                                        <Image url="@textures/contourIntegral.png" />
+                                      </image>
+                                  </ImageView>
+                                </graphic>
+                            </MenuItem>
+                          </items>
+                          <graphic>
+                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                <image>
+                                  <Image url="@textures/rightArrow.png" />
+                                </image>
+                            </ImageView>
+                          </graphic>
+                      </SplitMenuButton>
                   </children>
                 </GridPane>
               </children>
@@ -1006,9 +1007,9 @@
         </SplitPane>
       </left>
         <top>
-          <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="menu-bar" BorderPane.alignment="CENTER">
+          <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" styleClass="menu-bar" BorderPane.alignment="CENTER">
             <items>
-              <Label id="title" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onToolBarDragged" onMousePressed="#onToolBarClicked" prefHeight="31.0" prefWidth="140.0" styleClass="menu-bar" text=" Calculator" textFill="WHITE">
+              <Label id="title" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="140.0" styleClass="menu-bar" text=" Calculator" textFill="WHITE">
                 <font>
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                 </font>
@@ -1027,9 +1028,9 @@
                         <Menu mnemonicParsing="false" styleClass="radio-menu-item" text="Theme">
                           <items>
                               <RadioMenuItem fx:id="blueTheme" mnemonicParsing="false" selected="true" text="Ocean Blue">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="themeGroup" />
-                                 </toggleGroup>
+                                <toggleGroup>
+                                  <ToggleGroup fx:id="themeGroup" />
+                                </toggleGroup>
                               </RadioMenuItem>
                               <RadioMenuItem fx:id="charcoalTheme" mnemonicParsing="false" text="Charcoal" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="flashbangTheme" mnemonicParsing="false" text="Flashbang" toggleGroup="$themeGroup" />
@@ -1046,7 +1047,7 @@
                      </font>
                   </MenuButton>
 
-                  <Region onMouseDragged="#onToolBarDragged" onMousePressed="#onToolBarClicked" HBox.hgrow="ALWAYS" />
+                  <Region HBox.hgrow="ALWAYS" />
 
                   <HBox alignment="CENTER" spacing="2" styleClass="tab-bar">
                      <children>
@@ -1060,15 +1061,15 @@
                      </children>
                   </HBox>
 
-                  <Region onMouseDragged="#onToolBarDragged" onMousePressed="#onToolBarClicked" HBox.hgrow="ALWAYS" />
+                  <Region HBox.hgrow="ALWAYS" />
 
                   <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#onMinimize" prefHeight="40.0" prefWidth="46.0" styleClass="secondary-btn" text="—" textFill="WHITE" />
                   <Button fx:id="maximizeButton" mnemonicParsing="false" onAction="#onMaximizeRestore" prefHeight="40.0" prefWidth="46.0" styleClass="secondary-btn" text="🗖" textFill="WHITE" />
                   <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onClose" prefHeight="40.0" prefWidth="46.0" text="✕" textFill="WHITE">
-                     <styleClass>
-                        <String fx:value="secondary-btn" />
-                        <String fx:value="close-button" />
-                     </styleClass></Button>
+                    <styleClass>
+                      <String fx:value="secondary-btn" />
+                      <String fx:value="close-button" />
+                    </styleClass></Button>
               </items>
             </ToolBar>
          </top>
