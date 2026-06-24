@@ -8,6 +8,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,6 +24,11 @@ public class App extends Application {
     @Override
     @SuppressWarnings("exports")
     public void start(Stage stage) throws IOException {
+        stage.setTitle("complex-calculator v0.6.0 ©Filip M. 2026");
+        stage.setHeight(600);
+        stage.setWidth(800);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/complexcalc/textures/calculatorIcon.png")));
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
@@ -40,7 +46,7 @@ public class App extends Application {
         controller.setUiManager(uiManager);
         controller.setBorderlessScene(scene);
 
-        stage.setTitle("sigma");
         stage.show();
+        //scene.maximizeStage();
     }
 }

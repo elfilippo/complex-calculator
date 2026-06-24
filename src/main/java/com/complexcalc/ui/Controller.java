@@ -138,7 +138,7 @@ public class Controller {
         calcSplitPane.setDividerPosition(1, 0.40);
 
         Divider divider = documentSplitPane.getDividers().get(0);
-        divider.setPosition(0.3);
+        divider.setPosition(0.25);
         divider
             .positionProperty()
             .addListener((obs, oldPos, newPos) -> {
