@@ -2,6 +2,7 @@ package com.complexcalc.ui;
 
 import com.complexcalc.parser.LatexComplexEvaluator;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class Controller {
@@ -321,5 +323,23 @@ public class Controller {
         return Window.getWindows()
             .stream()
             .anyMatch(w -> w instanceof PopupWindow pw && pw.isShowing());
+    }
+
+    @FXML
+    private void onMinimize(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    private void onMaximizeRestore(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
+    }
+
+    @FXML
+    private void onClose(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }
