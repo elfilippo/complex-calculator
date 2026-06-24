@@ -28,7 +28,7 @@
 
 /* ── Primary Button  (cyan accent) ───────────────────────── */
 .primary-btn {
-    -fx-background-color: #82aaff;
+    -fx-background-color: #7b78da;
     -fx-text-fill: #1a1b2e;
 }
 .primary-btn:hover {
@@ -89,7 +89,7 @@
 
 /* ── Tertiary Button  (purple accent) ────────────────────── */
 .tertiary-btn {
-    -fx-background-color: #c8a8ff;
+    -fx-background-color: #b287fd;
     -fx-text-fill: #1a1b2e;
 }
 .tertiary-btn .label {
@@ -97,13 +97,13 @@
     -fx-text-fill: #1a1b2e;
 }
 .tertiary-btn .arrow-button {
-    -fx-background-color: #a98ee0;
+    -fx-background-color: #9e70ec;
 }
 .tertiary-btn .arrow {
     -fx-background-color: #1a1b2e;
 }
 .tertiary-btn:hover {
-    -fx-background-color: #a98ee0;
+    -fx-background-color: #8658d1;
 }
 
 /* ── Radio Menu Item ──────────────────────────────────────── */
