@@ -511,36 +511,6 @@
                               </ImageView>
                             </graphic>
                           </Button>
-                          <Button fx:id="factorialBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="!" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-                            <font>
-                              <Font name="Cambria Math" size="65.0" />
-                            </font>
-                            <opaqueInsets>
-                              <Insets />
-                            </opaqueInsets>
-                            <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
-                                <image>
-                                  <Image url="@textures/factorial.png" />
-                                </image>
-                              </ImageView>
-                            </graphic>
-                          </Button>
-                          <Button fx:id="lnBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="e@ln" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                            <font>
-                              <Font name="Cambria Math" size="65.0" />
-                            </font>
-                            <opaqueInsets>
-                              <Insets />
-                            </opaqueInsets>
-                            <graphic>
-                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
-                                <image>
-                                  <Image url="@textures/ln.png" />
-                                </image>
-                              </ImageView>
-                            </graphic>
-                          </Button>
                           <Button fx:id="pointBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="primary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="." GridPane.columnIndex="3" GridPane.rowIndex="7">
                             <font>
                               <Font name="Cambria Math" size="65.0" />
@@ -558,7 +528,7 @@
                           </Button>
                           <SplitMenuButton fx:id="derivBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@frac{d}{dx}" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <items>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="partialDerivBtn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -567,7 +537,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem mnemonicParsing="false">
+                              <MenuItem fx:id="dBtn" mnemonicParsing="false">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
@@ -578,7 +548,7 @@
                               </MenuItem>
                               <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                  <ImageView fx:id="partialDerivSymbolBtn" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
                                       <Image url="@textures/partialDerivSymbol.png" />
                                     </image>
@@ -594,13 +564,13 @@
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <SplitMenuButton fx:id="sqrtBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@sqrt{}" GridPane.rowIndex="3">
+                          <SplitMenuButton fx:id="sqrtBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@sqrt{}" GridPane.rowIndex="6">
                             <items>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="cbrtBtn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
-                                      <Image url="@textures/cuberoot.png" />
+                                      <Image url="@textures/cbrt.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
@@ -623,18 +593,18 @@
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <SplitMenuButton fx:id="logBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@log_{}{}" GridPane.rowIndex="7">
+                          <SplitMenuButton fx:id="lnBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@log_{}{}" GridPane.rowIndex="7">
                             <items>
                               <MenuItem fx:id="log10Btn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fx:id="log10Btn" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                       <Image url="@textures/log10.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                              <MenuItem fx:id="log2Btn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -645,14 +615,14 @@
                               </MenuItem>
                             </items>
                             <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                              <ImageView fitHeight="70.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
-                                  <Image url="@textures/log.png" />
+                                  <Image url="@textures/ln.png" />
                                 </image>
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <SplitMenuButton fx:id="inftyBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@infty" GridPane.rowIndex="2">
+                          <SplitMenuButton fx:id="inftyBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@infty" GridPane.rowIndex="3">
                             <items>
                               <MenuItem fx:id="pmBtn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
@@ -681,55 +651,163 @@
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <SplitMenuButton fx:id="absBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@left|{}e@right|" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                            <items>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/floor.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/ceil.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                            </items>
-                            <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
-                                <image>
-                                  <Image url="@textures/abs.png" />
-                                </image>
-                              </ImageView>
-                            </graphic>
-                          </SplitMenuButton>
                           <SplitMenuButton fx:id="iBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="i" GridPane.columnIndex="4" GridPane.rowIndex="2">
                             <items>
-                              <MenuItem fx:id="yBtn" mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/y.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                              <MenuItem fx:id="zBtn" mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/z.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
+                                          <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
+                                             <content>
+                                                <GridPane hgap="8.0" vgap="8.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="0" fx:id="xBtn">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/x.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="yBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/y.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="zBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/z.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="aBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/a.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="bBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/b.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="cBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/c.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="eBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/e.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="tauBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/tau.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="nBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/n.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="kBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/k.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="tBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/t.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="fBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/f.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="gBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="4">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/g.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="hBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/h.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="jBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/j.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                   </children>
+                                                </GridPane>
+                                             </content>
+                                          </CustomMenuItem>
                             </items>
                             <graphic>
                               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
@@ -739,45 +817,7 @@
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <SplitMenuButton fx:id="lParenBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@left(" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                            <items>
-                              <MenuItem fx:id="lBraceBtn" mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/lbrace.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                              <MenuItem fx:id="lbracketBtn" mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/lbracket.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/mp.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                            </items>
-                            <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
-                                <image>
-                                  <Image url="@textures/lparen.png" />
-                                </image>
-                              </ImageView>
-                            </graphic>
-                          </SplitMenuButton>
-                          <SplitMenuButton fx:id="rParenBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@right)" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                          <SplitMenuButton fx:id="rParenBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@right)" GridPane.columnIndex="2" GridPane.rowIndex="2">
                             <items>
                               <MenuItem fx:id="rBraceBtn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
@@ -808,6 +848,24 @@
                           </SplitMenuButton>
                           <SplitMenuButton fx:id="powBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="^{}" GridPane.rowIndex="5">
                             <items>
+                                          <MenuItem fx:id="squareBtn" mnemonicParsing="false">
+                                             <graphic>
+                                    <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                      <image>
+                                        <Image url="@textures/square.png" />
+                                      </image>
+                                    </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                              <MenuItem fx:id="cubeBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                    <image>
+                                      <Image url="@textures/cube.png" />
+                                    </image>
+                                  </ImageView>
+                                </graphic>
+                              </MenuItem>
                               <MenuItem fx:id="subscriptBtn" mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
@@ -826,49 +884,20 @@
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <SplitMenuButton fx:id="squareBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="^{2}" GridPane.rowIndex="4">
-                            <items>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/cube.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
-                                <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
-                                    <image>
-                                      <Image url="@textures/power4.png" />
-                                    </image>
-                                  </ImageView>
-                                </graphic>
-                              </MenuItem>
-                            </items>
-                            <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
-                                <image>
-                                  <Image url="@textures/square.png" />
-                                </image>
-                              </ImageView>
-                            </graphic>
-                          </SplitMenuButton>
                           <MenuButton fx:id="alphaBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3">
                             <items>
                               <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 1" />
                               <MenuItem mnemonicParsing="false" styleClass="secondary-btn" text="Action 2" />
                             </items>
                             <graphic>
-                              <ImageView fitHeight="70.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                              <ImageView fitHeight="70.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
                                   <Image url="@textures/alpha.png" />
                                 </image>
                               </ImageView>
                             </graphic>
                           </MenuButton>
-                          <SplitMenuButton fx:id="vectorBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@vec{}" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <SplitMenuButton fx:id="vectorBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@vec{}" GridPane.rowIndex="2">
                             <items>
                               <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
                                 <graphic>
@@ -897,56 +926,168 @@
                               </ImageView>
                             </graphic>
                           </SplitMenuButton>
-                          <MenuButton fx:id="realBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                          <MenuButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
                             <items>
                               <CustomMenuItem mnemonicParsing="false" text="Unspecified Action">
                                 <content>
                                   <GridPane hgap="8.0" vgap="8.0">
                                     <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
                                       <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
                                       <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                      <Button fx:id="fancyNBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="0">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                                  <Image url="@textures/square.png" />
+                                                                  <Image url="@textures/fancyN.png" />
                                                                </image>
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                      <Button fx:id="fancyZBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                                  <Image url="@textures/square.png" />
+                                                                  <Image url="@textures/fancyZ.png" />
                                                                </image>
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                      <Button fx:id="fancyQBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                                  <Image url="@textures/square.png" />
+                                                                  <Image url="@textures/fancyQ.png" />
                                                                </image>
                                           </ImageView>
                                         </graphic>
                                       </Button>
-                                      <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <Button fx:id="fancyRBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/fancyR.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                      <Button fx:id="fancyCBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="1">
                                         <graphic>
                                           <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                                  <Image url="@textures/square.png" />
+                                                                  <Image url="@textures/fancyC.png" />
                                                                </image>
                                           </ImageView>
                                         </graphic>
                                       </Button>
+                                                      <Button fx:id="fancyHBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/fancyH.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="fancyOBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/fancyO.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="fancyDBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/fancyD.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="elementOfBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/in.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="notElementOfBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/notin.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="smallerThanBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/smallerThan.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="largerThanBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/largerThan.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="equalsBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/equals.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="notEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/notEqual.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="smallerThanEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/smallerThanEqual.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button fx:id="largerThanEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                         <graphic>
+                                                            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@textures/largerThanEqual.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
                                     </children>
                                   </GridPane>
                                 </content>
@@ -960,13 +1101,13 @@
                               </ImageView>
                             </graphic>
                           </MenuButton>
-                            <SplitMenuButton fx:id="equalsBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" userData=" = " GridPane.columnIndex="4" GridPane.rowIndex="7">
+                            <SplitMenuButton fx:id="approxBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" userData=" = " GridPane.columnIndex="4" GridPane.rowIndex="7">
                                 <items>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                  <MenuItem fx:id="equalsBtn" mnemonicParsing="false" styleClass="secondary-btn">
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                              <Image url="@textures/integral.png" />
+                                              <Image url="@textures/equals.png" />
                                             </image>
                                         </ImageView>
                                       </graphic>
@@ -1000,7 +1141,7 @@
                                   </MenuItem>
                                 </items>
                                 <graphic>
-                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="tIcon">
+                                  <ImageView fitHeight="70.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="tIcon">
                                       <image>
                                         <Image url="@textures/equals.png" />
                                       </image>
@@ -1049,7 +1190,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                       <image>
-                                        <Image url="@textures/rightArrow.png" />
+                                        <Image url="@textures/mapsto.png" />
                                       </image>
                                   </ImageView>
                                 </graphic>
@@ -1067,6 +1208,173 @@
                               </ImageView>
                             </graphic>
                           </MenuButton>
+                                    <SplitMenuButton fx:id="docInsertBtn1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <items>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/integral.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/integralInfty.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/doubleIntegral.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/contourIntegral.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                       </items>
+                                       <graphic>
+                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                             <image>
+                                                <Image url="@textures/leftArrow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </SplitMenuButton>
+                                    <SplitMenuButton fx:id="docInsertBtn2" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <items>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/integral.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/integralInfty.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/doubleIntegral.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                          <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                             <graphic>
+                                                <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@textures/contourIntegral.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </MenuItem>
+                                       </items>
+                                       <graphic>
+                                          <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                             <image>
+                                                <Image url="@textures/rightArrow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </SplitMenuButton>
+                          <SplitMenuButton fx:id="lParenBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@left(" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <items>
+                              <MenuItem fx:id="lBraceBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                    <image>
+                                      <Image url="@textures/lbrace.png" />
+                                    </image>
+                                  </ImageView>
+                                </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="lbracketBtn" mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                    <image>
+                                      <Image url="@textures/lbracket.png" />
+                                    </image>
+                                  </ImageView>
+                                </graphic>
+                              </MenuItem>
+                            </items>
+                            <graphic>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                <image>
+                                  <Image url="@textures/lparen.png" />
+                                </image>
+                              </ImageView>
+                            </graphic>
+                          </SplitMenuButton>
+                          <SplitMenuButton fx:id="absBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" userData="e@left|{}e@right|" GridPane.rowIndex="4">
+                            <items>
+                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                    <image>
+                                      <Image url="@textures/floor.png" />
+                                    </image>
+                                  </ImageView>
+                                </graphic>
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                <graphic>
+                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
+                                    <image>
+                                      <Image url="@textures/ceil.png" />
+                                    </image>
+                                  </ImageView>
+                                </graphic>
+                              </MenuItem>
+                            </items>
+                            <graphic>
+                              <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                <image>
+                                  <Image url="@textures/abs.png" />
+                                </image>
+                              </ImageView>
+                            </graphic>
+                          </SplitMenuButton>
+                          <Button fx:id="factorialBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="!" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                            <font>
+                              <Font name="Cambria Math" size="65.0" />
+                            </font>
+                            <opaqueInsets>
+                              <Insets />
+                            </opaqueInsets>
+                            <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
+                                <image>
+                                  <Image url="@textures/factorial.png" />
+                                </image>
+                              </ImageView>
+                            </graphic>
+                          </Button>
                         </children>
                       </GridPane>
                     </children>

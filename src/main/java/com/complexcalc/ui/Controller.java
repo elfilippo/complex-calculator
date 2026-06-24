@@ -51,7 +51,7 @@ public class Controller {
     private Button clearBtn, delBtn;
 
     @FXML
-    private SplitMenuButton equalsBtn, lParenBtn, rParenBtn, derivBtn, integralBtn;
+    private SplitMenuButton approxBtn, lParenBtn, rParenBtn, derivBtn, integralBtn;
 
     @FXML
     private ToggleGroup themeGroup;
@@ -193,9 +193,9 @@ public class Controller {
                         }
                     });
 
-                if (menuButton == equalsBtn) {
-                    equalsBtn.setOnAction(event -> {
-                        latexInput.insertText(latexInput.getCaretPosition(), " = ");
+                if (menuButton == approxBtn) {
+                    approxBtn.setOnAction(event -> {
+                        latexInput.insertText(latexInput.getCaretPosition(), " ≈ ");
                         autoEval("equals");
                     });
                     continue;
@@ -268,13 +268,23 @@ public class Controller {
         }
 
         int pos = latexInput.getCaretPosition();
-        int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
+        int equalsIndex;
+        if (latexInput.getText().contains(" = ")) equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
+        else equalsIndex = latexInput.getText().lastIndexOf(" ≈ ") + 3;
         boolean beforeEquals = pos < equalsIndex && equalsIndex != 2;
         if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || beforeEquals) {
             if (beforeEquals) {
-                latexInput.deleteText(equalsIndex, latexInput.getText().length());
+                latexInput.deleteText(equalsIndex - 3, latexInput.getText().length());
+                latexInput.appendText(" ≈ ");
                 evaluateExpr();
-            } else if (latexInput.getText().endsWith(" = ") && event.getCharacter().hashCode() == 32) evaluateExpr();
+            } else if (
+                (latexInput.getText().endsWith(" = ") || latexInput.getText().endsWith(" ≈ ")) &&
+                event.getCharacter().hashCode() == 32
+            ) {
+                latexInput.deleteText(equalsIndex - 3, latexInput.getText().length());
+                latexInput.appendText(" ≈ ");
+                evaluateExpr();
+            }
             latexInput.positionCaret(pos);
         }
 
@@ -283,13 +293,18 @@ public class Controller {
 
     private void autoEval(String text) {
         int pos = latexInput.getCaretPosition();
-        int equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
+        int equalsIndex;
+        if (latexInput.getText().contains(" = ")) equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
+        else equalsIndex = latexInput.getText().lastIndexOf(" ≈ ") + 3;
         boolean beforeEquals = equalsIndex != 2 && pos < equalsIndex;
         if (beforeEquals) {
-            latexInput.deleteText(equalsIndex, latexInput.getText().length());
+            latexInput.deleteText(equalsIndex - 3, latexInput.getText().length());
+            latexInput.appendText(" ≈ ");
             evaluateExpr();
         }
-        if (latexInput.getText().endsWith(" = ") && text.equals("equals")) evaluateExpr();
+        if (
+            (latexInput.getText().endsWith(" = ") || latexInput.getText().endsWith(" ≈ ")) && text.equals("equals")
+        ) evaluateExpr();
         latexInput.positionCaret(pos);
         if (renderService != null) renderService.render(latexInput.getText());
     }
