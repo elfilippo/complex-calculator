@@ -53,7 +53,7 @@ public class Controller {
     private Button clearBtn, delBtn;
 
     @FXML
-    private SplitMenuButton approxBtn, lParenBtn, rParenBtn, derivBtn, integralBtn;
+    private SplitMenuButton approxBtn, lParenBtn, rParenBtn, derivBtn, integralBtn, leftArrowBtn, rightArrowBtn;
 
     @FXML
     private ToggleGroup themeGroup;
@@ -199,6 +199,13 @@ public class Controller {
                         latexInput.insertText(latexInput.getCaretPosition(), " ≈ ");
                         autoEval("equals");
                     });
+                } else if (menuButton == leftArrowBtn) {
+                    menuButton.setOnAction(event -> {
+                        if (latexInput.getCaretPosition() == 0) return;
+                        latexInput.positionCaret(latexInput.getCaretPosition() - 1);
+                    });
+                } else if (menuButton == rightArrowBtn) {
+                    menuButton.setOnAction(event -> latexInput.positionCaret(latexInput.getCaretPosition() + 1));
                 } else {
                     menuButton.setOnAction(event -> {
                         String text = ((String) menuButton.getUserData()).replace("e@", "\\");
@@ -296,6 +303,10 @@ public class Controller {
     }
 
     private void autoEval(KeyEvent event) {
+        if (event.isControlDown() || event.isAltDown()) {
+            return;
+        }
+
         if (event.getCharacter().hashCode() == 9) {
             latexInput.clear();
             previewEngine.reload();
