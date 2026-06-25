@@ -1103,7 +1103,16 @@
                           </MenuButton>
                             <SplitMenuButton fx:id="approxBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="tertiary-btn" userData=" = " GridPane.columnIndex="4" GridPane.rowIndex="7">
                                 <items>
-                                  <MenuItem fx:id="equalsBtn2" userData="=" mnemonicParsing="false" styleClass="secondary-btn">
+                                  <MenuItem fx:id="notBtn" userData="e@not " mnemonicParsing="false" styleClass="secondary-btn">
+                                      <graphic>
+                                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                              <Image url="@textures/not.png" />
+                                            </image>
+                                        </ImageView>
+                                      </graphic>
+                                  </MenuItem>
+                                  <MenuItem fx:id="equalsBtn3" userData="=" mnemonicParsing="false" styleClass="secondary-btn">
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -1112,29 +1121,29 @@
                                         </ImageView>
                                       </graphic>
                                   </MenuItem>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                  <MenuItem fx:id="approxBtn2" userData="≈" mnemonicParsing="false" styleClass="secondary-btn">
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                              <Image url="@textures/integralInfty.png" />
+                                              <Image url="@textures/approximately.png" />
                                             </image>
                                         </ImageView>
                                       </graphic>
                                   </MenuItem>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                  <MenuItem fx:id="equivalentBtn" userData="e@equiv " mnemonicParsing="false" styleClass="secondary-btn">
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                              <Image url="@textures/doubleIntegral.png" />
+                                              <Image url="@textures/equivalent.png" />
                                             </image>
                                         </ImageView>
                                       </graphic>
                                   </MenuItem>
-                                  <MenuItem mnemonicParsing="false" styleClass="secondary-btn">
+                                  <MenuItem fx:id="defBtn" userData="e@overset{e@underset{e@mathrm{def}}{}}{=}" mnemonicParsing="false" styleClass="secondary-btn">
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                              <Image url="@textures/contourIntegral.png" />
+                                              <Image url="@textures/def.png" />
                                             </image>
                                         </ImageView>
                                       </graphic>

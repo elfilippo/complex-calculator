@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
@@ -198,34 +199,49 @@ public class Controller {
                         latexInput.insertText(latexInput.getCaretPosition(), " ≈ ");
                         autoEval("equals");
                     });
-                    continue;
-                }
-
-                menuButton.setOnAction(event -> {
-                    String text = ((String) menuButton.getUserData()).replace("e@", "\\");
-                    latexInput.insertText(latexInput.getCaretPosition(), text);
-                    if (renderService != null) renderService.render(latexInput.getText());
-                    autoEval(text);
-                });
-
-                if (
-                    menuButton == lParenBtn ||
-                    menuButton == rParenBtn ||
-                    menuButton == derivBtn ||
-                    menuButton == integralBtn
-                ) {
-                    setIconScaling(icon, 0.8);
-                }
-
-                for (MenuItem item : menuButton.getItems()) {
-                    icon = (ImageView) menuButton.getGraphic();
-                    setIconScaling(icon);
-                    item.setOnAction(event -> {
-                        String text = ((String) item.getUserData()).replace("e@", "\\");
+                } else {
+                    menuButton.setOnAction(event -> {
+                        String text = ((String) menuButton.getUserData()).replace("e@", "\\");
                         latexInput.insertText(latexInput.getCaretPosition(), text);
                         if (renderService != null) renderService.render(latexInput.getText());
                         autoEval(text);
                     });
+                    if (
+                        menuButton == lParenBtn ||
+                        menuButton == rParenBtn ||
+                        menuButton == derivBtn ||
+                        menuButton == integralBtn
+                    ) {
+                        setIconScaling(icon, 0.8);
+                    }
+                }
+
+                for (MenuItem item : menuButton.getItems()) {
+                    if (item instanceof CustomMenuItem menuItem) {
+                        if (menuItem.getContent() instanceof GridPane grid) {
+                            for (Node child : grid.getChildren()) {
+                                if (child instanceof Button button) {
+                                    icon = (ImageView) button.getGraphic();
+                                    setIconScaling(icon);
+                                    button.setOnAction(event -> {
+                                        String text = ((String) button.getUserData()).replace("e@", "\\");
+                                        latexInput.insertText(latexInput.getCaretPosition(), text);
+                                        if (renderService != null) renderService.render(latexInput.getText());
+                                        autoEval(text);
+                                    });
+                                }
+                            }
+                        }
+                    } else {
+                        icon = (ImageView) menuButton.getGraphic();
+                        setIconScaling(icon);
+                        item.setOnAction(event -> {
+                            String text = ((String) item.getUserData()).replace("e@", "\\");
+                            latexInput.insertText(latexInput.getCaretPosition(), text);
+                            if (renderService != null) renderService.render(latexInput.getText());
+                            autoEval(text);
+                        });
+                    }
                 }
             } else if (node instanceof MenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
@@ -243,12 +259,22 @@ public class Controller {
                         }
                     });
 
-                menuButton.setOnAction(event -> {
-                    String text = ((String) menuButton.getUserData()).replace("e@", "\\");
-                    latexInput.insertText(latexInput.getCaretPosition(), text);
-                    if (renderService != null) renderService.render(latexInput.getText());
-                    autoEval(text);
-                });
+                if (menuButton.getItems().get(0) instanceof CustomMenuItem menuItem) {
+                    if (menuItem.getContent() instanceof GridPane grid) {
+                        for (Node child : grid.getChildren()) {
+                            if (child instanceof Button button) {
+                                icon = (ImageView) button.getGraphic();
+                                setIconScaling(icon);
+                                button.setOnAction(event -> {
+                                    String text = ((String) button.getUserData()).replace("e@", "\\");
+                                    latexInput.insertText(latexInput.getCaretPosition(), text);
+                                    if (renderService != null) renderService.render(latexInput.getText());
+                                    autoEval(text);
+                                });
+                            }
+                        }
+                    }
+                }
             }
         }
     }
