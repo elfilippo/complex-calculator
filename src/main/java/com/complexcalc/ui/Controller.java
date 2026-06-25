@@ -154,6 +154,22 @@ public class Controller {
                 }
             });
 
+        for (Node node : toolBar.getItems()) {
+            if (node instanceof MenuButton button) {
+                button
+                    .showingProperty()
+                    .addListener((obs, wasShowing, isShowing) -> {
+                        if (!isShowing) {
+                            Platform.runLater(() -> {
+                                if (!anyPopupShowing()) {
+                                    latexInput.requestFocus();
+                                }
+                            });
+                        }
+                    });
+            }
+        }
+
         for (Node node : keyboardGrid.getChildren()) {
             if (node instanceof Button button) {
                 ImageView icon = (ImageView) button.getGraphic();
