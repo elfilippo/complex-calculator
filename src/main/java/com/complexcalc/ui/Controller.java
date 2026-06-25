@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
@@ -180,7 +181,6 @@ public class Controller {
             } else if (node instanceof SplitMenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();
                 setIconScaling(icon);
-
                 menuButton
                     .showingProperty()
                     .addListener((obs, wasShowing, isShowing) -> {
@@ -215,6 +215,17 @@ public class Controller {
                     menuButton == integralBtn
                 ) {
                     setIconScaling(icon, 0.8);
+                }
+
+                for (MenuItem item : menuButton.getItems()) {
+                    icon = (ImageView) menuButton.getGraphic();
+                    setIconScaling(icon);
+                    item.setOnAction(event -> {
+                        String text = ((String) item.getUserData()).replace("e@", "\\");
+                        latexInput.insertText(latexInput.getCaretPosition(), text);
+                        if (renderService != null) renderService.render(latexInput.getText());
+                        autoEval(text);
+                    });
                 }
             } else if (node instanceof MenuButton menuButton) {
                 ImageView icon = (ImageView) menuButton.getGraphic();

@@ -7,6 +7,7 @@ LATEX_MAP = {
     # trigBtn and funcBtn intentionally omitted
     "absBtn":                    r"e@left|{}e@right|",
     "aBtn":                      r"a",
+    "sixBtn":                    r"6",
     "alphaBtn":                  r"e@alpha ",
     "arccosBtn":                 r"e@arccos",
     "arccoshBtn":                r"e@arccosh",
@@ -21,7 +22,7 @@ LATEX_MAP = {
     "arctanBtn":                 r"e@arctan",
     "arctanhBtn":                r"e@arctanh",
     "bBtn":                      r"b",
-    "cbrtBtn":                   r"e@sqrt\[3\]{}",
+    "cbrtBtn":                   r"e@sqrt[3]{}",
     "cBtn":                      r"c",
     "contourIntegralBtn":        r"e@oint_{}^{}{}",
     "cosBtn":                    r"e@cos{}",
@@ -46,29 +47,30 @@ LATEX_MAP = {
     "iBtn":                      r"i",
     "inftyBtn":                  r"e@infty ",
     "integralBtn":               r"e@int{}",
-    "integralInftyBtn":          r"e@int_{0}^{@einfty}{}",
+    "integralInftyBtn":          r"e@int_{0}^{e@infty}{}",
     "jBtn":                      r"j",
     "kBtn":                      r"k",
     "lParenBtn":                 r"e@left(",
-    "lBraceBtn":                 r"e@left{",
+    "lBraceBtn":                 r"e@lefte@{",
     "rParenBtn":                 r"e@right(",
-    "rBraceBtn":                 r"e@right{",
-    "lBracketBtn":               r"e@left\[",
+    "rBraceBtn":                 r"e@righte@}",
+    "lBracketBtn":               r"e@left[",
+    "rBracketBtn":               r"e@right]",
     "lnBtn":                     r"e@ln{}",
     "log10Btn":                  r"e@log_{10}{}",
     "log2Btn":                   r"e@log_{2}{}",
     "logBtn":                    r"e@log_{}{}",
     "minusBtn":                  r"-",
-    "mpBtn":                     r"@emp ",
+    "mpBtn":                     r"e@mp ",
     "nBtn":                      r"n",
     "nineBtn":                   r"9",
     "nRootBtn"                   r"e@sqrt[]{}"
     "oneBtn":                    r"1",
-    "partialDerivBtn":           r"e@frac{@epartial}{@epartial x}",
-    "partialDerivSymbolBtn":     r"@epartial ",
+    "partialDerivBtn":           r"e@frac{e@partial}{e@partial x}",
+    "partialDerivSymbolBtn":     r"e@partial ",
     "piBtn":                     r"e@pi ",
     "plusBtn":                   r"+",
-    "pmBtn":                     r"@epm ",
+    "pmBtn":                     r"e@pm ",
     "pointBtn":                  r".",
     "powBtn":                    r"^{}",
     "prodBtn":                   r"e@prod_{}^{}",
@@ -96,28 +98,28 @@ LATEX_MAP = {
     "yBtn":                      r"y",
     "zBtn":                      r"z",
     "zeroBtn":                   r"0",
-    "fancyNBtn":                 r"@emathbb{N}",
-    "fancyZBtn":                 r"@emathbb{Z}",
-    "fancyQBtn":                 r"@emathbb{Q}",
-    "fancyRBtn":                 r"@emathbb{R}",
-    "fancyCBtn":                 r"@emathbb{C}",
-    "fancyHBtn":                 r"@emathbb{H}",
-    "fancyOBtn":                 r"@emathbb{O}",
-    "fancyDBtn":                 r"@emathbb{D}",
-    "elementOfBtn":              r"@ein ",
-    "notElementOfBtn":           r"@enotin ",
+    "fancyNBtn":                 r"e@mathbb{N}",
+    "fancyZBtn":                 r"e@mathbb{Z}",
+    "fancyQBtn":                 r"e@mathbb{Q}",
+    "fancyRBtn":                 r"e@mathbb{R}",
+    "fancyCBtn":                 r"e@mathbb{C}",
+    "fancyHBtn":                 r"e@mathbb{H}",
+    "fancyOBtn":                 r"e@mathbb{O}",
+    "fancyDBtn":                 r"e@mathbb{D}",
+    "elementOfBtn":              r"e@in ",
+    "notElementOfBtn":           r"e@notin ",
     "smallerThanBtn":            r"@s",
     "largerThanBtn":             r"@l",
-    "largerThanEqualBtn":        r"@egeq ",
-    "smallerThanEqualBtn":       r"@eleq ",
-    "notEqualBtn":               r"@eneq ",
-    "notBtn":                    r"@enot ",
-    "normalApproxBtn":           r"@approx ",
+    "largerThanEqualBtn":        r"e@geq ",
+    "smallerThanEqualBtn":       r"e@leq ",
+    "notEqualBtn":               r"e@neq ",
+    "notBtn":                    r"e@not ",
+    "normalApproxBtn":           r"≈",
     "equalsBtn2":                r"=",
-    "equivalentBtn":             r"@eequiv ",
-    "defBtn":                    r"@eoverset{@eunderset{@emathrm{def}}{}}{=}",
-    "floorBtn":                  r"@eleft @elfloor {} @eright @erfloor ",
-    "ceilBtn":                   r"@eleft @elceil {} @eright @erceil ",
+    "equivalentBtn":             r"e@equiv ",
+    "defBtn":                    r"e@overset{e@underset{e@mathrm{def}}{}}{=}",
+    "floorBtn":                  r"e@left e@lfloor {} e@right e@rfloor ",
+    "ceilBtn":                   r"e@left e@lceil {} e@right e@rceil ",
     # trig menu items
     # func menu items — add yours here
 }
@@ -130,10 +132,16 @@ def inject_userdata(match):
     bid = fxid.group(1)
     if bid not in LATEX_MAP:
         return tag
-    if 'userData=' in tag:
-        return tag
+
     latex = LATEX_MAP[bid]
-    return tag.replace(f'fx:id="{bid}"', f'fx:id="{bid}" userData="{latex}"')
+    inject_userdata.count += 1
+
+    if 'userData=' in tag:
+        return re.sub(r'userData="[^"]*"', f'userData="{latex}"', tag)
+    else:
+        return tag.replace(f'fx:id="{bid}"', f'fx:id="{bid}" userData="{latex}"')
+
+inject_userdata.count = 0
 
 content = re.sub(
     r'<(?:Button|SplitMenuButton|MenuItem|CheckMenuItem|RadioMenuItem)\b[^>]*(?:/>|>)',
@@ -145,4 +153,4 @@ content = re.sub(
 with open("C:\\Users\\schüler\\Desktop\\Mein Ordner\\Code\\Java\\complex-calculator\\src\\main\\resources\\com\\complexcalc\\MainScene.fxml", "w", encoding="utf-8") as f:
     f.write(content)
 
-print("Done.")
+print(f"Done. Wrote userData to {inject_userdata.count} button(s).")
