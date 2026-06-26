@@ -575,7 +575,7 @@
                                   </ImageView>
                                 </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="nRootBtn" mnemonicParsing="false">
+                              <MenuItem fx:id="nRootBtn" userData="e@sqrt[]{}" mnemonicParsing="false">
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
