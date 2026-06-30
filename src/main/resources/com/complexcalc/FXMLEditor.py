@@ -91,7 +91,7 @@ LATEX_MAP = {
     "tauBtn":                    r"τ",
     "tBtn":                      r"t",
     "threeBtn":                  r"3",
-    "timesBtn":                  r"e@times ",
+    "timesBtn":                  r"×",
     "twoBtn":                    r"2",
     "vectorBtn":                 r"e@vec{}",
     "xBtn":                      r"x",

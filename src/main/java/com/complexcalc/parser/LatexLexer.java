@@ -11,9 +11,6 @@ public class LatexLexer {
     public static List<valueToken> tokenize(String s) {
         List<valueToken> tokens = new ArrayList<>();
 
-        s = s.replace("\\left", "").replace("\\right", "");
-        //TODO: add abs written as |x|
-
         int digitStart = -1;
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
@@ -29,7 +26,7 @@ public class LatexLexer {
                 tokens.add(new valueToken(Token.NUM, Double.parseDouble(s.substring(digitStart, i))));
                 digitStart = -1;
             }
-            switch (c) {
+            tokenMatching: switch (c) {
                 case '+' -> tokens.add(new valueToken(Token.ADD, 1));
                 case '-', '−' -> {
                     Token lastToken;
@@ -56,27 +53,44 @@ public class LatexLexer {
                 case '}', ']' -> tokens.add(new valueToken(Token.RBRACE, 5));
                 case '_' -> tokens.add(new valueToken(Token.SUBS, 5));
                 case '=' -> tokens.add(new valueToken(Token.EQUALS, 6));
+                case '|' -> {
+                    if (tokens.getLast().type() == Token.LEFT) {
+                        tokens.removeLast();
+                        tokens.add(new valueToken(Token.ABS, 4));
+                        tokens.add(new valueToken(Token.LPAR, 5));
+                    } else if (tokens.getLast().type() == Token.RIGHT) {
+                        tokens.removeLast();
+                        tokens.add(new valueToken(Token.RPAR, 5));
+                    } else throw new IllegalArgumentException("missing side specifier for abs");
+                }
                 case '\\' -> {
                     for (String operation : wordOperations.keySet()) {
                         if (s.substring(i + 1).startsWith(operation)) {
                             tokens.add(new valueToken(wordOperations.get(operation), 3));
                             i += operation.length();
-                            break;
+                            break tokenMatching;
                         }
                     }
                     for (String operation : multipleArgOperations.keySet()) {
                         if (s.substring(i + 1).startsWith(operation)) {
                             tokens.add(new valueToken(multipleArgOperations.get(operation), 3));
                             i += operation.length();
-                            break;
+                            break tokenMatching;
                         }
                     }
                     for (String number : numberSymbols.keySet()) {
                         if (s.substring(i + 1).startsWith(number)) {
                             tokens.add(new valueToken(Token.NUM, numberSymbols.get(number)));
                             i += number.length();
-                            break;
+                            break tokenMatching;
                         }
+                    }
+                    if (s.substring(i + 1).startsWith("left")) {
+                        tokens.add(new valueToken(Token.LEFT, 0));
+                        i += 4;
+                    } else if (s.substring(i + 1).startsWith("right")) {
+                        tokens.add(new valueToken(Token.RIGHT, 0));
+                        i += 5;
                     }
                 }
                 default -> {
