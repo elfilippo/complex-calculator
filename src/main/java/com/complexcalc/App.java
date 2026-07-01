@@ -47,6 +47,5 @@ public class App extends Application {
         controller.setBorderlessScene(scene);
 
         stage.show();
-        //scene.maximizeStage();
     }
 }

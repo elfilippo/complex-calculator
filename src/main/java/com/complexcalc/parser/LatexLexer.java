@@ -53,6 +53,14 @@ public class LatexLexer {
                 case '}', ']' -> tokens.add(new valueToken(Token.RBRACE, 5));
                 case '_' -> tokens.add(new valueToken(Token.SUBS, 5));
                 case '=' -> tokens.add(new valueToken(Token.EQUALS, 6));
+                case '²' -> {
+                    tokens.add(new valueToken(Token.POW, 4));
+                    tokens.add(new valueToken(Token.NUM, 2));
+                }
+                case '³' -> {
+                    tokens.add(new valueToken(Token.POW, 4));
+                    tokens.add(new valueToken(Token.NUM, 3));
+                }
                 case '|' -> {
                     if (tokens.getLast().type() == Token.LEFT) {
                         tokens.removeLast();

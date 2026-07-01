@@ -319,7 +319,7 @@ public class Controller {
     }
 
     private void autoEval(KeyEvent event) {
-        if (event.isControlDown() || event.isAltDown()) {
+        if (event.isControlDown() ^ event.isAltDown()) {
             return;
         }
 
