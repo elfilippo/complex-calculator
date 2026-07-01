@@ -27,7 +27,10 @@ public class RenderService {
             .replace("\b", "\\b")
             .replace("\f", "\\f")
             .replace("\u2028", "\\u2028")
-            .replace("\u2029", "\\u2029");
+            .replace("\u2029", "\\u2029")
+            .replace("²", "^{2}")
+            .replace("³", "^{3}");
+
         String js = String.format(
             "document.getElementById('output').innerHTML = '\\\\[%s\\\\]';" +
                 "MathJax.typesetPromise([document.getElementById('output')]).then(() => window.javabridge.onRenderComplete());",
