@@ -31,9 +31,20 @@
     -fx-cursor: hand;
 }
 
-/* Arrow sub-parts keep their radius from the split */
 .secondary-btn .arrow-button {
     -fx-background-radius: 0 6 6 0;
+    -fx-padding: 0 8 0 8;
+}
+
+.secondary-btn > .label {
+    -fx-content-display: GRAPHIC_ONLY;
+    -fx-alignment: CENTER;
+    -fx-padding: 0;
+}
+
+.secondary-btn .arrow-button .arrow {
+    -fx-padding: 3 4 3 4;
+    -fx-background-insets: 0;
 }
 
 /* ── Menu Bar ─────────────────────────────────────────────── */
