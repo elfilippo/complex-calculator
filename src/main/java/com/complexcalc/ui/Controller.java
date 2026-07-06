@@ -69,7 +69,7 @@ public class Controller {
     private ToolBar toolBar;
 
     @FXML
-    private MenuItem upArrowBtn, downArrowBtn;
+    private MenuItem upArrowBtn, downArrowBtn, docDeleteBtn;
 
     @FXML
     public void initialize() {
@@ -317,6 +317,10 @@ public class Controller {
         });
         downArrowBtn.setOnAction(event -> {
             if (document.movedDown()) latexInput.setText(document.getCurrent());
+        });
+        docDeleteBtn.setOnAction(event -> {
+            document.deleteCurrent();
+            latexInput.setText(document.getCurrent());
         });
     }
 

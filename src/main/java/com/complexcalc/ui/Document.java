@@ -52,9 +52,10 @@ public class Document {
         return expressions.size() <= currentIndex ? "" : expressions.get(currentIndex);
     }
 
-    public void delete() {
-        if (currentIndex > expressions.size() - 1) return;
+    public void deleteCurrent() {
+        if (currentIndex >= expressions.size()) return;
         expressions.remove(currentIndex);
+        currentIndex--;
         update();
     }
 }
