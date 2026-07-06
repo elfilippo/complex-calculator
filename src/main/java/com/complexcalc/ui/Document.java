@@ -10,7 +10,7 @@ public class Document {
     private RenderService renderEngine;
 
     public Document(RenderService renderEngine) {
-        currentIndex = 3;
+        currentIndex = 0;
         this.renderEngine = renderEngine;
     }
 
@@ -30,18 +30,26 @@ public class Document {
         update();
     }
 
-    public void moveUp() {
+    public boolean movedUp() {
         if (currentIndex - 1 >= 0) {
             currentIndex--;
             update();
+            return true;
         }
+        return false;
     }
 
-    public void moveDown() {
+    public boolean movedDown() {
         if (currentIndex < expressions.size()) {
             currentIndex++;
             update();
+            return true;
         }
+        return false;
+    }
+
+    public String getCurrent() {
+        return expressions.size() <= currentIndex ? "" : expressions.get(currentIndex);
     }
 
     public void delete() {

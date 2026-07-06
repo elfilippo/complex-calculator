@@ -69,6 +69,9 @@ public class Controller {
     private ToolBar toolBar;
 
     @FXML
+    private MenuItem upArrowBtn, downArrowBtn;
+
+    @FXML
     public void initialize() {
         String documentUrl = getClass().getResource("/com/complexcalc/document.html").toExternalForm();
         String previewUrl = getClass().getResource("/com/complexcalc/preview.html").toExternalForm();
@@ -308,6 +311,13 @@ public class Controller {
                 }
             }
         }
+
+        upArrowBtn.setOnAction(event -> {
+            if (document.movedUp()) latexInput.setText(document.getCurrent());
+        });
+        downArrowBtn.setOnAction(event -> {
+            if (document.movedDown()) latexInput.setText(document.getCurrent());
+        });
     }
 
     private void setIconScaling(ImageView icon) {
