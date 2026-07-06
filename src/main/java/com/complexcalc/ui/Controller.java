@@ -31,11 +31,12 @@ import javafx.stage.Window;
 
 public class Controller {
 
-    private RenderService renderService;
+    private RenderService previewRenderer, documentRenderer;
     private WebEngine previewEngine;
     private WebEngine documentEngine;
     private UIManager uiManager;
     private BorderlessScene scene;
+    private Document document;
 
     @FXML
     private GridPane keyboardGrid;
@@ -53,7 +54,7 @@ public class Controller {
     private Button clearBtn, delBtn;
 
     @FXML
-    private SplitMenuButton approxBtn, lParenBtn, rParenBtn, derivBtn, integralBtn, leftArrowBtn, rightArrowBtn;
+    private SplitMenuButton approxBtn, lParenBtn, rParenBtn, derivBtn, integralBtn, leftArrowBtn, rightArrowBtn, docInsertBtn;
 
     @FXML
     private ToggleGroup themeGroup;
@@ -75,6 +76,11 @@ public class Controller {
         previewEngine.load(previewUrl);
         documentEngine = documentWebView.getEngine();
         documentEngine.load(documentUrl);
+
+        previewRenderer = new RenderService(previewEngine);
+        documentRenderer = new RenderService(documentEngine);
+
+        document = new Document(documentRenderer);
 
         webPreview.setContextMenuEnabled(false);
 
@@ -184,7 +190,7 @@ public class Controller {
                 } else if (button == clearBtn) {
                     clearBtn.setOnAction(event -> {
                         latexInput.clear();
-                        if (renderService != null) renderService.render(latexInput.getText());
+                        previewRenderer.render(latexInput.getText());
                     });
                     continue;
                 }
@@ -192,7 +198,7 @@ public class Controller {
                 button.setOnAction(event -> {
                     String text = ((String) button.getUserData()).replace("e@", "\\");
                     latexInput.insertText(latexInput.getCaretPosition(), text);
-                    if (renderService != null) renderService.render(latexInput.getText());
+                    previewRenderer.render(latexInput.getText());
                     autoEval(text);
                 });
             } else if (node instanceof SplitMenuButton menuButton) {
@@ -222,11 +228,13 @@ public class Controller {
                     });
                 } else if (menuButton == rightArrowBtn) {
                     menuButton.setOnAction(event -> latexInput.positionCaret(latexInput.getCaretPosition() + 1));
+                } else if (menuButton == docInsertBtn) {
+                    menuButton.setOnAction(event -> document.add(latexInput.getText()));
                 } else {
                     menuButton.setOnAction(event -> {
                         String text = ((String) menuButton.getUserData()).replace("e@", "\\");
                         latexInput.insertText(latexInput.getCaretPosition(), text);
-                        if (renderService != null) renderService.render(latexInput.getText());
+                        previewRenderer.render(latexInput.getText());
                         autoEval(text);
                     });
                     if (
@@ -249,7 +257,7 @@ public class Controller {
                                     button.setOnAction(event -> {
                                         String text = ((String) button.getUserData()).replace("e@", "\\");
                                         latexInput.insertText(latexInput.getCaretPosition(), text);
-                                        if (renderService != null) renderService.render(latexInput.getText());
+                                        previewRenderer.render(latexInput.getText());
                                         autoEval(text);
                                     });
                                 }
@@ -261,7 +269,7 @@ public class Controller {
                         item.setOnAction(event -> {
                             String text = ((String) item.getUserData()).replace("e@", "\\");
                             latexInput.insertText(latexInput.getCaretPosition(), text);
-                            if (renderService != null) renderService.render(latexInput.getText());
+                            previewRenderer.render(latexInput.getText());
                             autoEval(text);
                         });
                     }
@@ -291,7 +299,7 @@ public class Controller {
                                 button.setOnAction(event -> {
                                     String text = ((String) button.getUserData()).replace("e@", "\\");
                                     latexInput.insertText(latexInput.getCaretPosition(), text);
-                                    if (renderService != null) renderService.render(latexInput.getText());
+                                    previewRenderer.render(latexInput.getText());
                                     autoEval(text);
                                 });
                             }
@@ -352,7 +360,7 @@ public class Controller {
             latexInput.positionCaret(pos);
         }
 
-        if (renderService != null) renderService.render(latexInput.getText());
+        previewRenderer.render(latexInput.getText());
     }
 
     private void autoEval(String text) {
@@ -370,7 +378,7 @@ public class Controller {
             (latexInput.getText().endsWith(" = ") || latexInput.getText().endsWith(" ≈ ")) && text.equals("equals")
         ) evaluateExpr();
         latexInput.positionCaret(pos);
-        if (renderService != null) renderService.render(latexInput.getText());
+        previewRenderer.render(latexInput.getText());
     }
 
     private EventHandler<? super ScrollEvent> zoom(WebView webView) {
@@ -397,10 +405,6 @@ public class Controller {
         return previewEngine;
     }
 
-    public void setRenderService(RenderService renderService) {
-        this.renderService = renderService;
-    }
-
     public void setUiManager(UIManager uiManager) {
         this.uiManager = uiManager;
     }
@@ -412,7 +416,9 @@ public class Controller {
                 .eval()
                 .toLatexString();
         } catch (Exception e) {
-            if (e instanceof IllegalArgumentException || e instanceof IllegalStateException) {
+            if (
+                e.getMessage() != null && (e instanceof IllegalArgumentException || e instanceof IllegalStateException)
+            ) {
                 if (e.getMessage().contains("fromIndex")) result = "argument of sum or prod has to be in braces";
                 else result = e.getMessage().replace(" ", " \\space ");
             } else result = "";

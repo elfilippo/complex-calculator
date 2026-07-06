@@ -32,8 +32,6 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
-        var renderService = new RenderService(controller.getPreviewEngine());
-        controller.setRenderService(renderService);
 
         scene = new BorderlessScene(stage, StageStyle.UNDECORATED, root, 700, 800);
         scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/default.css").toExternalForm());

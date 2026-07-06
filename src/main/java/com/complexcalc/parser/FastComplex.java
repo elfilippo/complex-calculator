@@ -776,10 +776,10 @@ public class FastComplex {
 
         if (aStr.equals("")) {
             if (bStr.equals("")) return "0";
-            else return (bNegative ? "-" : "") + bStr;
+            else return ((bNegative ? "-" : "") + bStr).replace(',', '.');
         } else {
-            if (bStr.equals("")) return aStr;
-            else return aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr;
+            if (bStr.equals("")) return aStr.replace(',', '.');
+            else return (aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr).replace(',', '.');
         }
     }
 
