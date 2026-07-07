@@ -16,12 +16,14 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.SplitPane.Divider;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -69,7 +71,13 @@ public class Controller {
     private ToolBar toolBar;
 
     @FXML
+    private ToggleButton invToggle, hypToggle;
+
+    @FXML
     private MenuItem upArrowBtn, downArrowBtn, docDeleteBtn;
+
+    @FXML
+    private CustomMenuItem trigMenuItem;
 
     @FXML
     public void initialize() {
@@ -307,6 +315,17 @@ public class Controller {
                                 });
                             }
                         }
+                    } else if (menuItem.getContent() instanceof VBox panel) {
+                        for (Node vboxChild : panel.getChildren()) {
+                            if (vboxChild instanceof GridPane grid) {
+                                for (Node child : grid.getChildren()) {
+                                    if (child instanceof Button button) {
+                                        icon = (ImageView) button.getGraphic();
+                                        setIconScaling(icon);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -469,5 +488,24 @@ public class Controller {
 
     public void setBorderlessScene(@SuppressWarnings("exports") BorderlessScene scene) {
         this.scene = scene;
+    }
+
+    @FXML
+    private void onTrigFunctionClicked(ActionEvent event) {
+        Button src = (Button) event.getSource();
+        String base = (String) src.getUserData();
+
+        boolean inverse = invToggle.isSelected();
+        boolean hyperbolic = hypToggle.isSelected();
+
+        String fnName = hyperbolic ? base + "h" : base;
+        if (inverse) {
+            fnName = "arc" + fnName;
+        }
+
+        String latex = "\\" + fnName + "{}";
+        latexInput.insertText(latexInput.getCaretPosition(), latex);
+
+        trigMenuItem.getParentPopup().hide();
     }
 }

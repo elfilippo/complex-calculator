@@ -45,6 +45,12 @@
 .secondary-btn .arrow {
     -fx-background-color: #ffffff;
 }
+.trig-toggle:selected {
+    -fx-background-color: #e53935;
+}
+.trig-toggle:selected:hover {
+    -fx-background-color: #b71c1c;
+}
 
 /* ── Menu Bar  (royal blue like a clown suit) ─────────────── */
 .menu-bar {

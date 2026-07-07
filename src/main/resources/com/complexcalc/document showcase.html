@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <script>
+        window.MathJax = {
+            loader: {
+                load: ['output/svg']
+            },
+            svg: {
+                scale: 2
+            },
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    conj: "\\operatorname{conj}"
+                }
+            },
+            startup: {
+                ready() {
+                    MathJax.startup.defaultReady();
+                    window.javabridge.onMathJaxReady();
+                }
+            }
+        };
+    </script>
+
+    <script>
+        (function () {
+            const origFetch = window.fetch;
+            window.fetch = function (...args) {
+                console.log("FETCH:", args[0]);
+                return origFetch.apply(this, args);
+            };
+        })();
+    </script>
+
+    <script src="./mathjax/tex-chtml.js"></script>
+
+    <style>
+        body {
+            background: rgb(10, 9, 27);
+            color: rgb(233, 233, 233);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output"></div>
+    <p>Inline: $x^2 + y^2 = z^2$</p>
+
+    \[
+    \begin{aligned}
+    \textbf{MathJax Capability Showcase} \\\\[6pt]
+
+    % --- Text + formatting ---
+    \text{Inline text: } \quad \text{Hello world}, \quad \mathbf{bold}, \quad \mathit{italic}, \quad \mathsf{sans-serif}
+    \\\\[8pt]
+
+    % --- Fractions, roots, superscripts ---
+    \frac{a+b}{c+d}, \quad \sqrt{x^2 + y^2}, \quad e^{i\pi} + 1 = 0 \\\\[8pt]
+
+    % --- Summations / integrals ---
+    \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}, \quad
+    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} \\\\[8pt]
+
+    % --- Limits ---
+    \lim_{x \to 0} \frac{\sin x}{x} = 1 \\\\[8pt]
+
+    % --- Matrices ---
+    \begin{bmatrix}
+    1 & 2 & 3 \\\\
+    4 & 5 & 6 \\\\
+    7 & 8 & 9
+    \end{bmatrix} \\\\[10pt]
+
+    % --- Cases ---
+    f(x) =
+    \begin{cases}
+    x^2 & x \ge 0 \\\\
+    -x & x < 0 \end{cases} \\\\[10pt] % --- Accents --- \hat{x}, \quad \bar{x}, \quad \vec{x}, \quad \dot{x}, \quad
+        \tilde{x} \\\\[8pt] % --- Delimiters --- \left( \frac{1}{1+x} \right), \quad \left[ \sum_{i=1}^n i \right],
+        \quad \left\{ x \in \mathbb{R} \mid x> 0 \right\} \\\\[8pt]
+
+        % --- Spacing ---
+        a \, b \; c \quad d \qquad e \\\\[8pt]
+
+        % --- Big operators ---
+        \prod_{i=1}^{n} i, \quad \bigcup_{i=1}^{n} A_i, \quad \bigcap_{i=1}^{n} B_i \\\\[8pt]
+
+        % --- Greek letters ---
+        \alpha + \beta + \gamma + \Gamma + \Delta + \Omega \\\\[8pt]
+
+        % --- Relations ---
+        a \le b \ge c \neq d \approx e \equiv f \\\\[8pt]
+
+        % --- Arrows ---
+        A \rightarrow B \leftarrow C \Rightarrow D \Leftrightarrow E \\\\[8pt]
+
+        % --- Colored / styled (if MathJax config allows mhchem or color) ---
+        \text{(optional)} \quad \color{red}{x^2 + y^2 = z^2}
+
+        \end{aligned}
+        \]
+
+        \[
+        \conj{x}
+        conj{x}
+        \]
+
+        \[
+        \zeta (s) = \sum^{\infty}_{n=0}{\frac{1}{n^s}}
+        \]
+
+        \[
+        - \frac{p}{2} \pm \sqrt{\left(\frac{p}{2}\right)^2 - q}
+        \]
+
+        \[
+        x = \frac{-b \pm \sqrt{b² - 4ac}}{2a}
+        \]
+
+        \[
+        f(x) = \sum_{n=0}^{\infty} \frac{f^n(a)}{n!} \times (x-a)^n
+        \]
+
+        <!-- Quartic equation -->
+        \[
+        ax^4 + bx^3 + cx^2 + dx + e = 0
+        \]
+
+        <!-- Block A -->
+        \[
+        A = 2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace
+        \]
+
+        <!-- Block B -->
+        \[
+        B = c^2 - 3bd + 12ae
+        \]
+
+        <!-- Block C (Cardano cube-root structure) -->
+        \[
+        C =
+        \sqrt[3]{\frac{A + \sqrt{A^2 - 4B^3}}{2}}
+        +
+        \sqrt[3]{\frac{A - \sqrt{A^2 - 4B^3}}{2}}
+        \]
+
+        <!-- Block D (Ferrari core term) -->
+        \[
+        D =
+        \sqrt{
+        -\frac{2c}{3a}
+        +
+        \frac{C}{3a}
+        }
+        \]
+
+        <!-- Block E (asymmetry correction term) -->
+        \[
+        E =
+        \frac{\frac{bc}{2a^2} - \frac{d}{a}}{D}
+        \]
+
+        <!-- Block F (inner discriminant) -->
+        \[
+        F =
+        \sqrt{
+        -4D^2
+        -\frac{2c}{a}
+        +2E
+        }
+        \]
+
+        <!-- Final roots -->
+        \[
+        x =
+        -\frac{b}{4a}
+        \pm \frac{D}{2}
+        \pm \frac{F}{2}
+        \]
+
+        \[
+        x =
+        -\frac{b}{4a}
+        \pm \frac{
+        \sqrt{
+        -\frac{2c}{3a}
+        +
+        \frac{\sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) +
+        \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+        4(c^2 - 3bd + 12ae)^3}}{2}}
+        +
+        \sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) -
+        \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+        4(c^2 - 3bd + 12ae)^3}}{2}}}{3a}
+        }
+        }{2}
+        \pm \frac{\sqrt{
+        -4(\sqrt{
+        -\frac{2c}{3a}
+        +
+        \frac{\sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) + \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+        4(c^2 - 3bd + 12ae)^3}}{2}}
+        +
+        \sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) - \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 - 4(c^2
+        -
+        3bd + 12ae)^3}}{2}}}{3a}
+        })^2
+        -\frac{2c}{a}
+        +2(\frac{\frac{bc}{2a^2} - \frac{d}{a}}{\sqrt{
+        -\frac{2c}{3a}
+        +
+        \frac{\sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) + \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 -
+        4(c^2 - 3bd + 12ae)^3}}{2}}
+        +
+        \sqrt[3]{\frac{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace) - \sqrt{(2c^3 - 9bcd + 27b^2e + 27ad^2 - 72ace)^2 - 4(c^2
+        -
+        3bd + 12ae)^3}}{2}}}{3a}
+        }})}}{2}
+        \]
+</body>
+
+</html>

@@ -71,6 +71,12 @@
     -fx-border-color: rgba(255, 255, 255, 0.08);
     -fx-text-fill: white;
 }
+.trig-toggle:selected {
+    -fx-background-color: derive(#24547f, -30%);
+}
+.trig-toggle:selected:hover {
+    -fx-background-color: derive(#24547f, -40%);
+}
 
 /* ── Tertiary Button ──────────────────────────────────────── */
 .tertiary-btn {

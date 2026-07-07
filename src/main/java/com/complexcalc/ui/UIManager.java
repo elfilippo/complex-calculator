@@ -34,7 +34,7 @@ public class UIManager {
             }
             case 2 -> {
                 css.add(path("flashbang"));
-                colorIcons(false, false, false);
+                colorIcons(false, false, true);
             }
             case 3 -> {
                 css.add(path("clown"));
@@ -78,9 +78,9 @@ public class UIManager {
     }
 
     private void colorIcons(boolean pLight, boolean sLight, boolean tLight) {
-        if (pLight != pIconsLight) tintIcons(".pIcon", pLight ? Color.WHITE : Color.rgb(61, 57, 55));
-        if (sLight != sIconsLight) tintIcons(".sIcon", sLight ? Color.WHITE : Color.rgb(61, 57, 55));
-        if (tLight != tIconsLight) tintIcons(".tIcon", tLight ? Color.WHITE : Color.rgb(61, 57, 55));
+        if (pLight != pIconsLight) tintIcons(".pIcon", pLight ? Color.WHITE : Color.rgb(29, 27, 26));
+        if (sLight != sIconsLight) tintIcons(".sIcon", sLight ? Color.WHITE : Color.rgb(29, 27, 26));
+        if (tLight != tIconsLight) tintIcons(".tIcon", tLight ? Color.WHITE : Color.rgb(29, 27, 26));
         pIconsLight = pLight;
         sIconsLight = sLight;
         tIconsLight = tLight;

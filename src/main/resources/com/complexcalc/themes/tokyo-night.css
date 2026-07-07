@@ -32,7 +32,7 @@
     -fx-text-fill: #1a1b2e;
 }
 .primary-btn:hover {
-    -fx-background-color: #6a8fe8;
+    -fx-background-color: #625fb0;
 }
 
 /* ── Secondary Button  (muted surface) ───────────────────── */
@@ -60,6 +60,13 @@
 .secondary-btn .arrow {
     -fx-background-color: #c0caf5;
 }
+.trig-toggle:selected {
+    -fx-background-color: #7b78da;
+}
+.trig-toggle:selected:hover {
+    -fx-background-color: #6a67be;
+}
+
 
 /* ── Menu Bar ─────────────────────────────────────────────── */
 .menu-bar {

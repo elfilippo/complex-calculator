@@ -59,6 +59,13 @@
 .secondary-btn .arrow {
     -fx-background-color: #586e75;
 }
+.trig-toggle:selected {
+    -fx-background-color: #268bd2;
+}
+.trig-toggle:selected:hover {
+    -fx-background-color: #1b71ab;
+}
+
 
 /* ── Menu Bar ─────────────────────────────────────────────── */
 .menu-bar {

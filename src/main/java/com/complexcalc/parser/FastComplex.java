@@ -745,10 +745,49 @@ public class FastComplex {
         return truncateWhole(a) + " + " + truncateWhole(Math.abs(b)) + "i";
     }
 
+    //TODO: make this actually return scientific notation
+    /**
+     * returns a string in cartesian form specialized for latex results in scientific notation to 8 decimal places
+     */
+    public String toLatexString() {
+        String aStr;
+        String bStr;
+        boolean bNegative = b < 0.0;
+
+        if (Double.isInfinite(a)) aStr = a > 0.0 ? "\\infty" : "-\\infty";
+        else if (Math.abs(a) < 0.000001) aStr = "";
+        else if (Math.abs(Math.rint(a) - a) < 0.000001) aStr = String.format("%.0f", Math.rint(a));
+        else {
+            aStr = String.format("%.6f", a);
+            int i;
+            for (i = aStr.length() - 1; aStr.charAt(i) == '0'; i--);
+            aStr = aStr.substring(0, i + 1);
+        }
+
+        if (Double.isInfinite(b)) bStr = "\\infty i";
+        else if (Math.abs(b) < 0.000001) bStr = "";
+        else if (Math.abs(b) == 1.0) bStr = "i";
+        else if (Math.abs(Math.rint(b) - b) < 0.000001) bStr = String.format("%.0f", Math.abs(Math.rint(b))) + "i";
+        else {
+            bStr = String.format("%.6f", Math.abs(b));
+            int i;
+            for (i = bStr.length() - 1; bStr.charAt(i) == '0'; i--);
+            bStr = bStr.substring(0, i + 1) + "i";
+        }
+
+        if (aStr.equals("")) {
+            if (bStr.equals("")) return "0";
+            else return ((bNegative ? "-" : "") + bStr).replace(',', '.');
+        } else {
+            if (bStr.equals("")) return aStr.replace(',', '.');
+            else return (aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr).replace(',', '.');
+        }
+    }
+
     /**
      * returns a string in cartesian form specialized for latex results and truncated to 6 decimal places
      */
-    public String toLatexString() {
+    public String toLatexStringTruncated() {
         String aStr;
         String bStr;
         boolean bNegative = b < 0.0;

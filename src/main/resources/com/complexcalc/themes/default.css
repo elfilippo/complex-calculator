@@ -116,3 +116,13 @@
     -fx-background-radius: 8;
     -fx-padding: 16;
 }
+
+.trig-toggle {
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.trig-fn-btn,
+.trig-toggle {
+    -fx-padding: 8 12 8 12;
+}
