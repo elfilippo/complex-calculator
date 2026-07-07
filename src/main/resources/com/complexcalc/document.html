@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
 
     <script>
-        window.MathJax = {
-            loader: {
-                load: ['output/svg']
-            },
+        wwindow.MathJax = {
             svg: {
                 scale: 2
             },
@@ -21,7 +18,7 @@
             startup: {
                 ready() {
                     MathJax.startup.defaultReady();
-                    window.javabridge.onMathJaxReady();
+                    window.javabridge?.onMathJaxReady();
                 }
             }
         };
@@ -37,11 +34,11 @@
         })();
     </script>
 
-    <script src="./mathjax/tex-chtml.js"></script>
+    <script src="./mathjax/tex-svg.js"></script>
 
     <style>
         body {
-            background: rgb(10, 9, 27);
+            background: rgb(12, 11, 34);
             color: rgb(233, 233, 233);
         }
     </style>
@@ -49,7 +46,7 @@
 
 <body>
     \[
-    \textbf{Complex Calculator v.0.7.0} \\\\[6pt]
+    \textbf{Complex Calculator v.0.7.1} \\\\[6pt]
     \] \[
     \text{©Filip M. & Andre M., 2026} \\\\[4pt]
     \]

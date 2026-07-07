@@ -22,10 +22,10 @@ public class UIManager {
     void setTheme(int n) {
         ObservableList<String> css = scene.getStylesheets();
         css.clear();
-        css.add(path("default"));
+        css.add(path("base"));
         switch (n) {
             case 0 -> {
-                css.add(path("blue"));
+                css.add(path("lapis-blue"));
                 colorIcons(true, true, true);
             }
             case 1 -> {
@@ -41,18 +41,21 @@ public class UIManager {
                 colorIcons(true, true, true);
             }
             case 4 -> {
-                css.add(path("rose-pine"));
+                css.add(path("cyberpunk"));
                 colorIcons(true, true, true);
             }
             case 5 -> {
-                css.add(path("solarized"));
+                css.add(path("deep-ocean"));
                 colorIcons(true, true, true);
             }
             case 6 -> {
                 css.add(path("tokyo-night"));
                 colorIcons(true, true, true);
             }
-            default -> css.add(path("blue"));
+            default -> {
+                css.add(path("lapis-blue"));
+                colorIcons(true, true, true);
+            }
         }
     }
 

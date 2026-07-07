@@ -1,27 +1,6 @@
-/* =============================================================
-   solarized.css — "Solarized Dark" Theme
-   Load after default.css.
-   Based on Ethan Schoonover's Solarized palette.
-
-   Palette:
-     base03  #002b36  (darkest bg)
-     base02  #073642  (bg highlights)
-     base01  #586e75  (comments, secondary content)
-     base0   #839496  (body text)
-     base1   #93a1a1  (optional emphasis)
-     yellow  #b58900
-     orange  #cb4b16
-     red     #dc322f
-     magenta #d33682
-     violet  #6c71c4
-     blue    #268bd2
-     cyan    #2aa198
-     green   #859900
-   ============================================================= */
-
 /* ── Root ─────────────────────────────────────────────────── */
 .root {
-    -fx-background: #002b36;
+    -fx-background: #002630;
     -fx-base:       #073642;
 }
 
@@ -38,6 +17,10 @@
 .secondary-btn {
     -fx-background-color: #073642;
     -fx-text-fill: #839496;
+    -fx-background-radius: 6px;
+    -fx-border-color: #0b4f60;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
 }
 .secondary-btn:hover {
     -fx-background-color: #002b36;

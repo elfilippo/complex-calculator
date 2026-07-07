@@ -1,0 +1,207 @@
+/* =============================================================
+   cyberpunk-2077.css — "Night City" Theme (v3)
+   Load after default.css.
+   Dark matte panels, rounded edges, neon reserved for borders/text
+   rather than fills. Glow effects kept subtle.
+
+   Palette:
+     void      #0a0a0d  (bg)
+     panel     #131316  (panels)
+     panel-alt #1c1c21  (popups)
+     grid      #2a2a30  (borders/dividers)
+     muted     #6b6b76  (comments/disabled)
+     subtle    #a8a8b3  (secondary text)
+     text      #e8e8ec  (foreground)
+     yellow    #fcee0a  (primary accent — CP2077 signature yellow)
+     cyan      #00f0ff  (secondary accent)
+     magenta   #ea00d9  (tertiary accent)
+     red       #ff003c  (alert / love accent)
+   ============================================================= */
+
+/* ── Root ─────────────────────────────────────────────────── */
+.root {
+    -fx-background: #0a0a0d;
+    -fx-base:       #131316;
+    -fx-font-family: "Consolas", "Rajdhani", "Segoe UI", monospace;
+}
+
+/* ── Primary Button  (dark fill, yellow neon border) ─────── */
+.primary-btn {
+    -fx-background-color: #16161a;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #fcee0a;
+    -fx-border-color: #fcee0a;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+.primary-btn:hover {
+    -fx-background-color: #1d1d22;
+    -fx-border-color: #fff96b;
+    -fx-text-fill: #fff96b;
+    -fx-effect: dropshadow(gaussian, rgba(252, 238, 10, 0.35), 8, 0.15, 0, 0);
+}
+
+/* ── Secondary Button  (cyan wireframe) ──────────────────── */
+.secondary-btn {
+    -fx-background-color: #131316;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #00f0ff;
+    -fx-border-color: #1c4a52;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+.secondary-btn:hover {
+    -fx-background-color: #161e20;
+    -fx-border-color: #00f0ff;
+}
+.secondary-btn-img {
+    -fx-background-color: #1c1c21;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #a8a8b3;
+    -fx-border-color: #2a2a30;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+.secondary-btn-img:hover {
+    -fx-background-color: #161e20;
+    -fx-border-color: #00f0ff;
+}
+.secondary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #00f0ff;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #131316;
+    -fx-border-color: #1c4a52;
+    -fx-border-width: 0 0 0 1px;
+}
+.secondary-btn .arrow {
+    -fx-background-color: #00f0ff;
+}
+
+/* ── Menu Bar / shared dark bar styling ──────────────────────
+   Purely cosmetic (background + text). No border here — this
+   class is shared by the real toolbar AND the title Label, so
+   a border here would leak onto both. Border lives on
+   .app-toolbar below instead. ──────────────────────────────── */
+.menu-bar {
+    -fx-background-color: #131316;
+    -fx-text-fill: #e8e8ec;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+/* ── App Toolbar (the actual top bar container only) ──────────
+   Add this class alongside "menu-bar" on the real toolbar node,
+   e.g. styleClass="menu-bar, app-toolbar" ───────────────────── */
+.app-toolbar {
+    -fx-border-color: #33330a transparent transparent transparent;
+    -fx-border-width: 2px 0 0 0;
+}
+
+/* ── Title Label safety net ───────────────────────────────────
+   Guarantees the "Calculator" title never shows a border,
+   regardless of what else it inherits via styleClass="menu-bar".
+   Match by id (#title) per the FXML provided. ────────────────── */
+#title {
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+/* ── Secondary Menu Button ────────────────────────────────── */
+.secondary-menu-button {
+    -fx-background-color: #1c1c21;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #a8a8b3;
+    -fx-border-color: #2a2a30;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+.secondary-menu-button:hover {
+    -fx-background-color: #17171b;
+    -fx-border-color: #fcee0a;
+}
+.secondary-menu-button .label {
+    -fx-text-fill: #e8e8ec;
+}
+.secondary-menu-button .context-menu {
+    -fx-background-color: rgba(19, 19, 22, 0.97);
+    -fx-background-radius: 8px;
+    -fx-border-color: #7a1471;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-text-fill: #e8e8ec;
+}
+
+/* ── Tertiary Button  (dark fill, magenta neon border) ───── */
+.tertiary-btn {
+    -fx-background-color: #16161a;
+    -fx-background-radius: 6px;
+    -fx-text-fill: #ea00d9;
+    -fx-border-color: #ea00d9;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+}
+.tertiary-btn .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ea00d9;
+}
+.tertiary-btn .arrow-button {
+    -fx-background-color: #16161a;
+    -fx-border-color: #7a1471;
+    -fx-border-width: 0 0 0 1px;
+}
+.tertiary-btn .arrow {
+    -fx-background-color: #ea00d9;
+}
+.tertiary-btn:hover {
+    -fx-background-color: #1d1d22;
+    -fx-border-color: #ff33ef;
+    -fx-text-fill: #ff33ef;
+}
+
+/* ── Radio Menu Item ──────────────────────────────────────── */
+.radio-menu-item .radio {
+    -fx-background-color: transparent;
+    -fx-border-color: #fcee0a;
+    -fx-border-radius: 50%;
+}
+
+/* ── Context Menu ─────────────────────────────────────────── */
+.context-menu {
+    -fx-background-color: rgba(19, 19, 22, 0.97);
+    -fx-background-radius: 8px;
+    -fx-border-color: #1c4a52;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-text-fill: #e8e8ec;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: rgba(252, 238, 10, 0.08);
+}
+
+/* ── Text Fields & Text Areas ─────────────────────────────── */
+.text-field,
+.text-area {
+    -fx-background-color: #131316;
+    -fx-background-radius: 6px;
+    -fx-border-color: #2a2a30;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-text-fill: #e8e8ec;
+    -fx-prompt-text-fill: #6b6b76;
+}
+.text-field:focused,
+.text-area:focused {
+    -fx-border-color: #fcee0a;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: #1c1c21;
+    -fx-background-radius: 8px;
+    -fx-border-color: #2a2a30;
+    -fx-border-width: 1px 1px 1px 3px;
+    -fx-border-radius: 8px;
+}

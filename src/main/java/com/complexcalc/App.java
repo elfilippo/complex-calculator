@@ -23,7 +23,7 @@ public class App extends Application {
     @Override
     @SuppressWarnings("exports")
     public void start(Stage stage) throws IOException {
-        stage.setTitle("complex-calculator v0.7.0 ©Filip M. 2026");
+        stage.setTitle("complex-calculator v0.7.1 ©Filip M. 2026");
         stage.setHeight(600);
         stage.setWidth(800);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/complexcalc/textures/calculatorIcon.png")));
@@ -33,8 +33,8 @@ public class App extends Application {
         Controller controller = loader.getController();
 
         scene = new BorderlessScene(stage, StageStyle.UNDECORATED, root, 700, 800);
-        scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/default.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/blue.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/base.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/lapis-blue.css").toExternalForm());
         stage.setScene(scene);
 
         scene.setMoveControl(controller.getToolBar());

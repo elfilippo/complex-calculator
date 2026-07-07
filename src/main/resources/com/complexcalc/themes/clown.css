@@ -1,8 +1,9 @@
 /* =============================================================
-   clown.css — "Big Top" Clown Theme
+   clown.css — "Big Top" Clown Theme (v2 — chaos, but usable)
    Load after default.css.
-   Maximum chaos. Rotating primaries, circus energy.
-   Not for production. Probably.
+   Still maximum circus energy, but with rounded corners for a
+   tactile "big top" feel, better contrast on the pink menus,
+   and clearer separation on split buttons.
    ============================================================= */
 
 /* ── Root ─────────────────────────────────────────────────── */
@@ -14,39 +15,56 @@
 /* ── Primary Button  (fire-engine red) ───────────────────── */
 .primary-btn {
     -fx-background-color: #e53935;
+    -fx-background-radius: 8px;
     -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(229, 57, 53, 0.35), 6, 0.15, 0, 1);
 }
 .primary-btn:hover {
     -fx-background-color: #b71c1c;
+    -fx-effect: dropshadow(gaussian, rgba(183, 28, 28, 0.45), 8, 0.2, 0, 1);
 }
 
 /* ── Secondary Button  (bright yellow) ───────────────────── */
 .secondary-btn {
     -fx-background-color: #fdd835;
+    -fx-background-radius: 8px;
     -fx-text-fill: #212121;
+    -fx-border-color: #1565c0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
 }
 .secondary-btn:hover {
-    -fx-background-color: #f9a825;
+    -fx-background-color: #f6b833;
+    -fx-border-color: #0d47a1;
 }
 .secondary-btn-img {
     -fx-background-color: #fdd835;
+    -fx-background-radius: 8px;
     -fx-text-fill: #212121;
+    -fx-border-color: #1565c0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
 }
 .secondary-btn-img:hover {
     -fx-background-color: #f9a825;
+    -fx-border-color: #0d47a1;
+}
+.secondary-btn .arrow-button {
+    -fx-background-color: #f9a825;
+    -fx-background-radius: 0 7px 7px 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+.secondary-btn .arrow {
+    -fx-background-color: #212121;
 }
 .secondary-btn .label {
     -fx-background-color: transparent;
     -fx-text-fill: #212121;
 }
-.secondary-btn .arrow-button {
-    -fx-background-color: #e53935;
-}
-.secondary-btn .arrow {
-    -fx-background-color: #ffffff;
-}
 .trig-toggle:selected {
     -fx-background-color: #e53935;
+    -fx-text-fill: #ffffff;
 }
 .trig-toggle:selected:hover {
     -fx-background-color: #b71c1c;
@@ -56,31 +74,53 @@
 .menu-bar {
     -fx-background-color: #1565c0;
     -fx-text-fill: #fdd835;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+/* ── Title Label — readable regardless of menu-bar's loud bg ── */
+#title {
+    -fx-text-fill: #ffffff;
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
 }
 
 /* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #fdd835;
+    -fx-background-radius: 8px;
     -fx-text-fill: #212121;
-    -fx-border-color: transparent;
+    -fx-border-color: #1565c0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
 }
 .secondary-menu-button:hover {
     -fx-background-color: #f9a825;
-    -fx-border-color: #e53935;
+    -fx-border-color: #0d47a1;
 }
 .secondary-menu-button .label {
     -fx-text-fill: #212121;
 }
+.secondary-menu-button .arrow-button {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
 .secondary-menu-button .context-menu {
-    /* Polka-dot energy approximated with solid hot pink */
-    -fx-background-color: rgba(255, 64, 129, 0.95);
-    -fx-border-color: rgba(255, 255, 0, 0.60);
+    /* Still hot pink, but opaque + darker so white text has
+       enough contrast to actually read at a glance. */
+    -fx-background-color: #e91e63;
+    -fx-background-radius: 8px;
+    -fx-border-color: #fdd835;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
     -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.15, 0, 2);
 }
 
 /* ── Tertiary Button  (lime green) ───────────────────────── */
 .tertiary-btn {
     -fx-background-color: #43a047;
+    -fx-background-radius: 8px;
     -fx-text-fill: #ffffff;
 }
 .tertiary-btn .label {
@@ -88,7 +128,13 @@
     -fx-text-fill: #ffffff;
 }
 .tertiary-btn .arrow-button {
-    -fx-background-color: #66bb6a;
+    -fx-background-color: #2e7d32;
+    -fx-background-radius: 0 7px 7px 0;
+    -fx-border-color: transparent transparent transparent #1b5e20;
+    -fx-border-width: 1px;
+}
+.tertiary-btn .arrow-button:hover {
+    -fx-background-color: #1b5e20;
 }
 .tertiary-btn .arrow {
     -fx-background-color: #ffffff;
@@ -102,31 +148,79 @@
     -fx-background-color: #e53935;
 }
 
-/* ── Context Menu  (hot pink — honk honk) ────────────────── */
+/* ── Context Menu  (hot pink — honk honk, now opaque + bordered) ── */
 .context-menu {
-    -fx-background-color: rgba(255, 64, 129, 0.95);
-    -fx-border-color: rgba(255, 255, 0, 0.60);
+    -fx-background-color: #e91e63;
+    -fx-background-radius: 8px;
+    -fx-border-color: #fdd835;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
     -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.15, 0, 2);
 }
 .context-menu .menu-item:focused {
-    -fx-background-color: rgba(255, 255, 0, 0.25);
+    -fx-background-color: rgba(255, 255, 255, 0.20);
 }
 
 /* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #ffffff;
+    -fx-background-radius: 6px;
     -fx-border-color: #e53935;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
     -fx-text-fill: #212121;
-    -fx-prompt-text-fill: #e91e63;
+    -fx-prompt-text-fill: #212121;
 }
 .text-field:focused,
 .text-area:focused {
     -fx-border-color: #1565c0;
 }
 
+.radio-menu-item .radio {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #212121;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+}
+.radio-menu-item:selected .radio {
+    -fx-background-color: #fdd835;
+    -fx-border-color: #212121;
+}
+.radio-menu-item .radio .dot {
+    -fx-background-color: #e53935;
+}
+
+.check-menu-item .check {
+    -fx-background-color: #fdd835;
+}
+.check-menu-item:selected .check {
+    -fx-background-color: #212121;
+}
+
 /* ── Card  (sunshine yellow with red border) ─────────────── */
 .card {
     -fx-background-color: #fff9c4;
+    -fx-background-radius: 8px;
     -fx-border-color: #e53935;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(229, 57, 53, 0.20), 8, 0.1, 0, 2);
+}
+
+secondary-btn .context-menu .menu-item,
+.secondary-btn .context-menu .custom-menu-item {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.secondary-btn .context-menu .menu-item:hover,
+.secondary-btn .context-menu .menu-item:focused,
+.secondary-btn .context-menu .menu-item:armed,
+.secondary-btn .context-menu .menu-item:showing,
+.secondary-btn .context-menu .custom-menu-item:hover,
+.secondary-btn .context-menu .custom-menu-item:focused,
+.secondary-btn .context-menu .custom-menu-item:armed {
+    -fx-background-color: transparent;
 }

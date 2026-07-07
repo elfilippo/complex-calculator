@@ -84,7 +84,7 @@
                      <items>
                         <Menu mnemonicParsing="false" styleClass="radio-menu-item" text="Theme">
                           <items>
-                              <RadioMenuItem fx:id="blueTheme" mnemonicParsing="false" selected="true" text="Ocean Blue">
+                              <RadioMenuItem fx:id="lapisBlueTheme" mnemonicParsing="false" selected="true" text="Lapis Blue">
                                 <toggleGroup>
                                   <ToggleGroup fx:id="themeGroup" />
                                 </toggleGroup>
@@ -92,8 +92,8 @@
                               <RadioMenuItem fx:id="charcoalTheme" mnemonicParsing="false" text="Charcoal" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="flashbangTheme" mnemonicParsing="false" text="Flashbang" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="clownTheme" mnemonicParsing="false" text="Clown" toggleGroup="$themeGroup" />
-                              <RadioMenuItem fx:id="rosePineTheme" mnemonicParsing="false" text="Rose Pine" toggleGroup="$themeGroup" />
-                              <RadioMenuItem fx:id="solarizedTheme" mnemonicParsing="false" text="Solarized" toggleGroup="$themeGroup" />
+                              <RadioMenuItem fx:id="cyberpunkTheme" mnemonicParsing="false" text="Cyberpunk" toggleGroup="$themeGroup" />
+                              <RadioMenuItem fx:id="deepOceanTheme" mnemonicParsing="false" text="Deep Ocean" toggleGroup="$themeGroup" />
                               <RadioMenuItem fx:id="tokyoNightTheme" mnemonicParsing="false" text="Tokyo Night" toggleGroup="$themeGroup" />
                           </items>
                         </Menu>
