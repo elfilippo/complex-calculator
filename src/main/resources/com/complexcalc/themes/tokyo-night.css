@@ -32,7 +32,7 @@
     -fx-text-fill: #1a1b2e;
 }
 .primary-btn:hover {
-    -fx-background-color: #6a8fe8;
+    -fx-background-color: rgb(80, 75, 161);
 }
 
 /* ── Secondary Button  (muted surface) ───────────────────── */

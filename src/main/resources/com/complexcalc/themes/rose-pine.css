@@ -32,30 +32,28 @@
     -fx-text-fill: #e0def4;
 }
 .primary-btn:hover {
-    -fx-background-color: #2b6c85;
+    -fx-background-color: #ff5db1;
 }
 
 /* ── Secondary Button  (overlay surface) ─────────────────── */
 .secondary-btn {
-    -fx-background-color: #c832ff;
+    -fx-background-color: #641237;
     -fx-text-fill: #b8b4d0;
 }
-.secondary-btn:hover {
-    -fx-background-color: #1f1d2e;
-}
+ 
 .secondary-btn-img {
     -fx-background-color: #26233a;
-    -fx-text-fill: #b8b4d0;
+    -fx-text-fill: #ff63b4;
 }
 .secondary-btn-img:hover {
-    -fx-background-color: #1f1d2e;
+    -fx-background-color: #4f1530;
 }
 .secondary-btn .label {
     -fx-background-color: transparent;
     -fx-text-fill: #b8b4d0;
 }
 .secondary-btn .arrow-button {
-    -fx-background-color: #3a8aa8;
+    -fx-background-color: #460a25;
 }
 .secondary-btn .arrow {
     -fx-background-color: #e0def4;
@@ -88,7 +86,7 @@
 
 /* ── Tertiary Button  (iris / purple) ────────────────────── */
 .tertiary-btn {
-    -fx-background-color: #c4a7e7;
+    -fx-background-color: #c83c20;
     -fx-text-fill: #191724;
 }
 .tertiary-btn .label {
