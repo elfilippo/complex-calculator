@@ -1,7 +1,6 @@
 package com.complexcalc;
 
 import com.complexcalc.ui.Controller;
-import com.complexcalc.ui.RenderService;
 import com.complexcalc.ui.UIManager;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class App extends Application {
     @Override
     @SuppressWarnings("exports")
     public void start(Stage stage) throws IOException {
-        stage.setTitle("complex-calculator v0.6.0 ©Filip M. 2026");
+        stage.setTitle("complex-calculator v0.7.0 ©Filip M. 2026");
         stage.setHeight(600);
         stage.setWidth(800);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/complexcalc/textures/calculatorIcon.png")));

@@ -1,56 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.complexcalc</groupId>
   <artifactId>complex-calculator</artifactId>
-  <version>0.6.0</version>
-
   <name>complex-calculator</name>
-
-  <properties>
-    <java.version>21</java.version>
-    <javafx.version>21</javafx.version>
-    <maven.compiler.source>${java.version}</maven.compiler.source>
-    <maven.compiler.target>${java.version}</maven.compiler.target>
-  </properties>
-
-  <repositories>
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-  </repositories>
-
-  <dependencies>
-    <dependency>
-      <groupId>com.github.goxr3plus</groupId>
-      <artifactId>FX-BorderlessScene</artifactId>
-      <version>4.4.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>${javafx.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>${javafx.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-web</artifactId>
-      <version>21</version>
-    </dependency>
-  </dependencies>
-
+  <version>0.6.0</version>
   <build>
     <plugins>
       <plugin>
@@ -59,8 +13,6 @@
         <version>0.0.8</version>
         <executions>
           <execution>
-            <!-- Default configuration for running -->
-            <!-- USAGE: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
               <mainClass>com.complexcalc.App</mainClass>
@@ -72,7 +24,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.5.1</version>
         <executions>
@@ -83,8 +34,7 @@
             </goals>
             <configuration>
               <transformers>
-                <transformer
-                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                <transformer>
                   <mainClass>com.complexcalc.Launcher</mainClass>
                 </transformer>
               </transformers>
@@ -130,4 +80,16 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+  <properties>
+    <javafx.version>21</javafx.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <java.version>21</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+  </properties>
 </project>
