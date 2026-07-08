@@ -1,10 +1,8 @@
-/* ── Root ─────────────────────────────────────────────────── */
 .root {
     -fx-background: #002630;
     -fx-base:       #073642;
 }
 
-/* ── Primary Button  (blue accent) ───────────────────────── */
 .primary-btn {
     -fx-background-color: #268bd2;
     -fx-text-fill: #fdf6e3;
@@ -13,7 +11,6 @@
     -fx-background-color: #1a6fa8;
 }
 
-/* ── Secondary Button  (surface) ─────────────────────────── */
 .secondary-btn {
     -fx-background-color: #073642;
     -fx-text-fill: #839496;
@@ -49,14 +46,11 @@
     -fx-background-color: #1b71ab;
 }
 
-
-/* ── Menu Bar ─────────────────────────────────────────────── */
 .menu-bar {
     -fx-background-color: #073642;
     -fx-text-fill: #93a1a1;
 }
 
-/* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #073642;
     -fx-text-fill: #93a1a1;
@@ -75,7 +69,6 @@
     -fx-text-fill: #839496;
 }
 
-/* ── Tertiary Button  (cyan accent) ──────────────────────── */
 .tertiary-btn {
     -fx-background-color: #2aa198;
     -fx-text-fill: #fdf6e3;
@@ -94,12 +87,10 @@
     -fx-background-color: #1d7a73;
 }
 
-/* ── Radio Menu Item ──────────────────────────────────────── */
 .radio-menu-item .radio {
     -fx-background-color: #839496;
 }
 
-/* ── Context Menu ─────────────────────────────────────────── */
 .context-menu {
     -fx-background-color: rgba(7, 54, 66, 0.97);
     -fx-border-color: rgba(38, 139, 210, 0.25);
@@ -109,7 +100,6 @@
     -fx-background-color: rgba(38, 139, 210, 0.12);
 }
 
-/* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #073642;
@@ -122,7 +112,6 @@
     -fx-border-color: #268bd2;
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
 .card {
     -fx-background-color: #073642;
     -fx-border-color: #586e75;

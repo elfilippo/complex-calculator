@@ -1,32 +1,8 @@
-/* =============================================================
-   tokyo-night.css — "Tokyo Night" Theme
-   Load after default.css.
-   Faithful port of the popular VS Code theme by enkia:
-   deep navy background, muted purples, cyan/teal accents,
-   warm pinks for highlights, and soft off-white text.
-
-   Palette reference:
-     bg          #1a1b2e   (editor bg)
-     bg-dark     #16161e   (sidebar/panels)
-     bg-highlight#292e42   (selection / hover)
-     fg          #c0caf5   (default text)
-     comment     #565f89   (muted / comments)
-     cyan        #7dcfff   (primary accent — functions)
-     blue        #7aa2f7   (secondary accent — keywords)
-     purple      #bb9af7   (tertiary — types)
-     green       #9ece6a   (strings)
-     red         #f7768e   (errors / delete)
-     orange      #ff9e64   (constants)
-     yellow      #e0af68   (warnings)
-   ============================================================= */
-
-/* ── Root ─────────────────────────────────────────────────── */
 .root {
     -fx-background: #1a1b2e;
     -fx-base:       #16161e;
 }
 
-/* ── Primary Button  (cyan accent) ───────────────────────── */
 .primary-btn {
     -fx-background-color: #7b78da;
     -fx-text-fill: #1a1b2e;
@@ -35,7 +11,6 @@
     -fx-background-color: #625fb0;
 }
 
-/* ── Secondary Button  (muted surface) ───────────────────── */
 .secondary-btn {
     -fx-background-color: #292e42;
     -fx-text-fill: #c0caf5;
@@ -67,14 +42,11 @@
     -fx-background-color: #6a67be;
 }
 
-
-/* ── Menu Bar ─────────────────────────────────────────────── */
 .menu-bar {
     -fx-background-color: #16161e;
     -fx-text-fill: #c0caf5;
 }
 
-/* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #292e42;
     -fx-text-fill: #c0caf5;
@@ -87,14 +59,12 @@
 .secondary-menu-button .label {
     -fx-text-fill: #c0caf5;
 }
-/* Context menu mirrors the sidebar bg with a subtle border */
 .secondary-menu-button .context-menu {
     -fx-background-color: rgba(22, 22, 30, 0.97);
     -fx-border-color: rgba(122, 162, 247, 0.20);
     -fx-text-fill: #c0caf5;
 }
 
-/* ── Tertiary Button  (purple accent) ────────────────────── */
 .tertiary-btn {
     -fx-background-color: #b287fd;
     -fx-text-fill: #1a1b2e;
@@ -113,23 +83,19 @@
     -fx-background-color: #8658d1;
 }
 
-/* ── Radio Menu Item ──────────────────────────────────────── */
 .radio-menu-item .radio {
     -fx-background-color: #c0caf5;
 }
 
-/* ── Context Menu ─────────────────────────────────────────── */
 .context-menu {
     -fx-background-color: rgba(22, 22, 30, 0.97);
     -fx-border-color: rgba(122, 162, 247, 0.20);
     -fx-text-fill: #c0caf5;
 }
 .context-menu .menu-item:focused {
-    /* Highlight color from the theme */
     -fx-background-color: rgba(41, 46, 66, 0.90);
 }
 
-/* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #16161e;
@@ -142,7 +108,6 @@
     -fx-border-color: #a9d8ff;
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
 .card {
     -fx-background-color: #1f2335;
     -fx-border-color: #292e42;

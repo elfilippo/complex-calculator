@@ -1,22 +1,11 @@
-/* =============================================================
-   clown.css — "Big Top" Clown Theme (v2 — chaos, but usable)
-   Load after default.css.
-   Still maximum circus energy, but with rounded corners for a
-   tactile "big top" feel, better contrast on the pink menus,
-   and clearer separation on split buttons.
-   ============================================================= */
-
-/* ── Root ─────────────────────────────────────────────────── */
 .root {
-    -fx-background: #fffde7;   /* warm cream — the big top canvas */
+    -fx-background: #fffde7;
     -fx-base:       #ffffff;
 }
 
-/* ── Primary Button  (fire-engine red) ───────────────────── */
 .primary-btn {
     -fx-background-color: #e53935;
     -fx-background-radius: 8px;
-    -fx-text-fill: #ffffff;
     -fx-effect: dropshadow(gaussian, rgba(229, 57, 53, 0.35), 6, 0.15, 0, 1);
 }
 .primary-btn:hover {
@@ -24,29 +13,15 @@
     -fx-effect: dropshadow(gaussian, rgba(183, 28, 28, 0.45), 8, 0.2, 0, 1);
 }
 
-/* ── Secondary Button  (bright yellow) ───────────────────── */
 .secondary-btn {
     -fx-background-color: #fdd835;
     -fx-background-radius: 8px;
-    -fx-text-fill: #212121;
     -fx-border-color: #1565c0;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
 }
 .secondary-btn:hover {
     -fx-background-color: #f6b833;
-    -fx-border-color: #0d47a1;
-}
-.secondary-btn-img {
-    -fx-background-color: #fdd835;
-    -fx-background-radius: 8px;
-    -fx-text-fill: #212121;
-    -fx-border-color: #1565c0;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-}
-.secondary-btn-img:hover {
-    -fx-background-color: #f9a825;
     -fx-border-color: #0d47a1;
 }
 .secondary-btn .arrow-button {
@@ -70,7 +45,6 @@
     -fx-background-color: #b71c1c;
 }
 
-/* ── Menu Bar  (royal blue like a clown suit) ─────────────── */
 .menu-bar {
     -fx-background-color: #1565c0;
     -fx-text-fill: #fdd835;
@@ -78,14 +52,13 @@
     -fx-border-color: transparent;
 }
 
-/* ── Title Label — readable regardless of menu-bar's loud bg ── */
+/* title Label */
 #title {
     -fx-text-fill: #ffffff;
     -fx-border-width: 0;
     -fx-border-color: transparent;
 }
 
-/* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #fdd835;
     -fx-background-radius: 8px;
@@ -117,7 +90,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.15, 0, 2);
 }
 
-/* ── Tertiary Button  (lime green) ───────────────────────── */
+/*  Tertiary button  (lime green)  */
 .tertiary-btn {
     -fx-background-color: #43a047;
     -fx-background-radius: 8px;
@@ -143,12 +116,10 @@
     -fx-background-color: #2e7d32;
 }
 
-/* ── Radio Menu Item ──────────────────────────────────────── */
 .radio-menu-item .radio {
     -fx-background-color: #e53935;
 }
 
-/* ── Context Menu  (hot pink — honk honk, now opaque + bordered) ── */
 .context-menu {
     -fx-background-color: #e91e63;
     -fx-background-radius: 8px;
@@ -162,7 +133,6 @@
     -fx-background-color: rgba(255, 255, 255, 0.20);
 }
 
-/* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #ffffff;
@@ -200,7 +170,6 @@
     -fx-background-color: #212121;
 }
 
-/* ── Card  (sunshine yellow with red border) ─────────────── */
 .card {
     -fx-background-color: #fff9c4;
     -fx-background-radius: 8px;

@@ -1,34 +1,8 @@
-/* =============================================================
-   light.css — "Slate & Indigo" Light Theme (v3)
-   Load after default.css.
-   Soft neutral grays, indigo accent used as tint + border rather
-   than full-saturation fill. Secondary buttons now have real
-   presence (border + shadow) instead of blending into bg.
-
-   Palette:
-     bg        #f6f7fb  (app background — cool off-white)
-     surface   #ffffff  (panels, cards, fields)
-     surface-2 #eef0f6  (hover states only, not resting fills)
-     border    #d7dae3  (hairline borders — slightly darker than before)
-     muted     #9a9fae  (placeholder / disabled text)
-     subtle    #5b6072  (secondary text)
-     text      #1e2230  (primary text)
-     indigo       #4f5eff  (accent — text/borders)
-     indigo-tint  #e3e6ff  (accent tint — number key backgrounds, upped contrast)
-     indigo-tint-h #d2d7fd (accent tint hover)
-     violet    #6d5bd0  (toolbar accent — replaces teal)
-     coral        #ff6a5c  (tertiary accent — text/borders)
-     coral-tint   #ffe3df  (tertiary tint — equals key background)
-     coral-tint-h #ffd0ca  (tertiary tint hover)
-   ============================================================= */
-
-/* ── Root ─────────────────────────────────────────────────── */
 .root {
     -fx-background: #f6f7fb;
     -fx-base:       #ffffff;
 }
 
-/* ── Primary Button  (indigo tint) ───────────────────────── */
 .primary-btn {
     -fx-background-color: #e3e6ff;
     -fx-background-radius: 6px;
@@ -42,7 +16,6 @@
     -fx-border-color: #4f5eff;
 }
 
-/* ── Secondary Button  (real surface + border, no more blending) ── */
 .secondary-btn {
     -fx-background-color: #ffffff;
     -fx-background-radius: 6px;
@@ -73,9 +46,6 @@
     -fx-text-fill: #1e2230;
 }
 
-/* Arrow-button: was flat gray-on-gray. Now a distinct pill-like
-   segment with its own rounded corners and a visible divider,
-   so it reads as a separate clickable target, not a smudge. */
 .secondary-btn .arrow-button {
     -fx-background-color: #eef0f6;
     -fx-background-radius: 0 6px 6px 0;
@@ -95,13 +65,11 @@
     -fx-background-color: #b9c1f7;
 }
 
-/* ── Menu Bar  (violet, replaces the disliked teal) ───────── */
 .menu-bar {
     -fx-background-color: #ece9fb;
     -fx-text-fill: #4a3d99;
 }
 
-/* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #ffffff;
     -fx-background-radius: 6px;
@@ -127,7 +95,6 @@
     -fx-effect: dropshadow(gaussian, rgba(30, 34, 48, 0.12), 14, 0.1, 0, 3);
 }
 
-/* ── Tertiary Button  (equals key — coral tint) ──────────── */
 .tertiary-btn {
     -fx-background-color: #ffbdb2;
     -fx-background-radius: 6px;
@@ -157,12 +124,10 @@
     -fx-border-color: #ff4a38;
 }
 
-/* ── Radio Menu Item ──────────────────────────────────────── */
 .radio-menu-item .radio {
     -fx-background-color: #5b6072;
 }
 
-/* ── Context Menu ─────────────────────────────────────────── */
 .context-menu {
     -fx-background-color: rgba(255, 255, 255, 0.98);
     -fx-background-radius: 8px;
@@ -176,7 +141,6 @@
     -fx-background-color: #f2f3f8;
 }
 
-/* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #ffffff;
@@ -193,7 +157,6 @@
     -fx-effect: dropshadow(gaussian, rgba(79, 94, 255, 0.20), 6, 0.1, 0, 0);
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
 .card {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8px;

@@ -1,10 +1,8 @@
-/* ── Root ─────────────────────────────────────────────────── */
 .root {
     -fx-background: #f4f4f4;
     -fx-base:       #2b437c;
 }
 
-/* ── Primary Button ───────────────────────────────────────── */
 .primary-btn {
     -fx-background-color: #2d6a9f;
     -fx-text-fill: white;
@@ -13,7 +11,6 @@
     -fx-background-color: #1a4f7a;
 }
 
-/* ── Secondary Button ─────────────────────────────────────── */
 .secondary-btn {
     -fx-background-color: #24547f;
     -fx-text-fill: white;
@@ -28,7 +25,6 @@
 .secondary-btn-img:hover {
     -fx-background-color: #153d5e;
 }
-/* The label sub-node background is intentionally transparent */
 .secondary-btn .label {
     -fx-background-color: transparent;
     -fx-text-fill: white;
@@ -40,13 +36,11 @@
     -fx-background-color: white;
 }
 
-/* ── Menu Bar ─────────────────────────────────────────────── */
 .menu-bar {
     -fx-background-color: #24547f;
     -fx-text-fill: white;
 }
 
-/* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #24547f;
     -fx-text-fill: white;
@@ -59,7 +53,6 @@
 .secondary-menu-button .label {
     -fx-text-fill: #ffffff;
 }
-/* Semi-transparent dark navy context menu */
 .secondary-menu-button .context-menu {
     -fx-background-color: rgba(30, 72, 108, 0.95);
     -fx-border-color: rgba(255, 255, 255, 0.08);
@@ -72,7 +65,6 @@
     -fx-background-color: derive(#24547f, -40%);
 }
 
-/* ── Tertiary Button ──────────────────────────────────────── */
 .tertiary-btn {
     -fx-background-color: #4429b1;
     -fx-text-fill: white;
@@ -91,12 +83,10 @@
     -fx-background-color: #331f87;
 }
 
-/* ── Radio Menu Item ──────────────────────────────────────── */
 .radio-menu-item .radio {
     -fx-background-color: white;
 }
 
-/* ── Context Menu ─────────────────────────────────────────── */
 .context-menu {
     -fx-background-color: rgba(30, 72, 108, 0.95);
     -fx-border-color: rgba(255, 255, 255, 0.08);
@@ -106,7 +96,6 @@
     -fx-background-color: rgba(0, 0, 0, 0.15);
 }
 
-/* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #ffffff;
@@ -119,13 +108,11 @@
     -fx-border-color: #2d6a9f;
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
 .card {
     -fx-background-color: white;
     -fx-border-color: #e0e0e0;
 }
 
-/* ── WebView Scrollbars ───────────────────────────────────── */
 .web-view .scroll-bar:vertical,
 .web-view .scroll-bar:horizontal {
     -fx-background-color: #ffffff;

@@ -1,31 +1,9 @@
-/* =============================================================
-   cyberpunk-2077.css — "Night City" Theme (v3)
-   Load after default.css.
-   Dark matte panels, rounded edges, neon reserved for borders/text
-   rather than fills. Glow effects kept subtle.
-
-   Palette:
-     void      #0a0a0d  (bg)
-     panel     #131316  (panels)
-     panel-alt #1c1c21  (popups)
-     grid      #2a2a30  (borders/dividers)
-     muted     #6b6b76  (comments/disabled)
-     subtle    #a8a8b3  (secondary text)
-     text      #e8e8ec  (foreground)
-     yellow    #fcee0a  (primary accent — CP2077 signature yellow)
-     cyan      #00f0ff  (secondary accent)
-     magenta   #ea00d9  (tertiary accent)
-     red       #ff003c  (alert / love accent)
-   ============================================================= */
-
-/* ── Root ─────────────────────────────────────────────────── */
 .root {
     -fx-background: #0a0a0d;
     -fx-base:       #131316;
     -fx-font-family: "Consolas", "Rajdhani", "Segoe UI", monospace;
 }
 
-/* ── Primary Button  (dark fill, yellow neon border) ─────── */
 .primary-btn {
     -fx-background-color: #16161a;
     -fx-background-radius: 6px;
@@ -41,7 +19,6 @@
     -fx-effect: dropshadow(gaussian, rgba(252, 238, 10, 0.35), 8, 0.15, 0, 0);
 }
 
-/* ── Secondary Button  (cyan wireframe) ──────────────────── */
 .secondary-btn {
     -fx-background-color: #131316;
     -fx-background-radius: 6px;
@@ -79,11 +56,6 @@
     -fx-background-color: #00f0ff;
 }
 
-/* ── Menu Bar / shared dark bar styling ──────────────────────
-   Purely cosmetic (background + text). No border here — this
-   class is shared by the real toolbar AND the title Label, so
-   a border here would leak onto both. Border lives on
-   .app-toolbar below instead. ──────────────────────────────── */
 .menu-bar {
     -fx-background-color: #131316;
     -fx-text-fill: #e8e8ec;
@@ -91,25 +63,17 @@
     -fx-border-color: transparent;
 }
 
-/* ── App Toolbar (the actual top bar container only) ──────────
-   Add this class alongside "menu-bar" on the real toolbar node,
-   e.g. styleClass="menu-bar, app-toolbar" ───────────────────── */
 .app-toolbar {
     -fx-border-color: #33330a transparent transparent transparent;
     -fx-border-width: 2px 0 0 0;
 }
 
-/* ── Title Label safety net ───────────────────────────────────
-   Guarantees the "Calculator" title never shows a border,
-   regardless of what else it inherits via styleClass="menu-bar".
-   Match by id (#title) per the FXML provided. ────────────────── */
 #title {
     -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
 
-/* ── Secondary Menu Button ────────────────────────────────── */
 .secondary-menu-button {
     -fx-background-color: #1c1c21;
     -fx-background-radius: 6px;
@@ -134,7 +98,6 @@
     -fx-text-fill: #e8e8ec;
 }
 
-/* ── Tertiary Button  (dark fill, magenta neon border) ───── */
 .tertiary-btn {
     -fx-background-color: #16161a;
     -fx-background-radius: 6px;
@@ -161,14 +124,12 @@
     -fx-text-fill: #ff33ef;
 }
 
-/* ── Radio Menu Item ──────────────────────────────────────── */
 .radio-menu-item .radio {
     -fx-background-color: transparent;
     -fx-border-color: #fcee0a;
     -fx-border-radius: 50%;
 }
 
-/* ── Context Menu ─────────────────────────────────────────── */
 .context-menu {
     -fx-background-color: rgba(19, 19, 22, 0.97);
     -fx-background-radius: 8px;
@@ -181,7 +142,6 @@
     -fx-background-color: rgba(252, 238, 10, 0.08);
 }
 
-/* ── Text Fields & Text Areas ─────────────────────────────── */
 .text-field,
 .text-area {
     -fx-background-color: #131316;
@@ -197,7 +157,6 @@
     -fx-border-color: #fcee0a;
 }
 
-/* ── Card ─────────────────────────────────────────────────── */
 .card {
     -fx-background-color: #1c1c21;
     -fx-background-radius: 8px;
