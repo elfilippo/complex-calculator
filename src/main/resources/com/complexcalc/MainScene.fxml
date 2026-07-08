@@ -512,7 +512,7 @@
                             <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
-                                  <Image url="@textures/delete.png" />
+                                  <Image url="@textures/del.png" />
                                 </image>
                               </ImageView>
                             </graphic>
@@ -527,7 +527,7 @@
                             <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
-                                  <Image url="@textures/ac.png" />
+                                  <Image url="@textures/clear.png" />
                                 </image>
                               </ImageView>
                             </graphic>
@@ -542,7 +542,7 @@
                             <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
-                                  <Image url="@textures/product.png" />
+                                  <Image url="@textures/prod.png" />
                                 </image>
                               </ImageView>
                             </graphic>
@@ -690,7 +690,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
-                                      <Image url="@textures/nroot.png" />
+                                      <Image url="@textures/nRoot.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
@@ -943,7 +943,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
-                                      <Image url="@textures/rbrace.png" />
+                                      <Image url="@textures/rBrace.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
@@ -952,7 +952,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
-                                      <Image url="@textures/rbracket.png" />
+                                      <Image url="@textures/rBracket.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
@@ -961,7 +961,7 @@
                             <graphic>
                               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
-                                  <Image url="@textures/rparen.png" />
+                                  <Image url="@textures/rParen.png" />
                                 </image>
                               </ImageView>
                             </graphic>
@@ -972,7 +972,7 @@
                                              <graphic>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                       <image>
-                                        <Image url="@textures/square.png" />
+                                        <Image url="@textures/sqr.png" />
                                       </image>
                                     </ImageView>
                                              </graphic>
@@ -1149,7 +1149,7 @@
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@textures/notin.png" />
+                                                                  <Image url="@textures/notIn.png" />
                                                                </image>
                                                             </ImageView>
                                                          </graphic>
@@ -1163,11 +1163,11 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="largerThanBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" userData="@l" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                      <Button fx:id="greaterThanBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" userData="@l" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@textures/largerThan.png" />
+                                                                  <Image url="@textures/greaterThan.png" />
                                                                </image>
                                                             </ImageView>
                                                          </graphic>
@@ -1199,11 +1199,11 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
-                                                      <Button fx:id="largerThanEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" userData="e@geq " GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                      <Button fx:id="greaterThanEqualBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="secondary-btn" userData="e@geq " GridPane.columnIndex="3" GridPane.rowIndex="3">
                                                          <graphic>
                                                             <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@textures/largerThanEqual.png" />
+                                                                  <Image url="@textures/greaterThanEqual.png" />
                                                                </image>
                                                             </ImageView>
                                                          </graphic>
@@ -1245,7 +1245,7 @@
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                              <Image url="@textures/approximately.png" />
+                                              <Image url="@textures/approx.png" />
                                             </image>
                                         </ImageView>
                                       </graphic>
@@ -1254,7 +1254,7 @@
                                       <graphic>
                                         <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                              <Image url="@textures/equivalent.png" />
+                                              <Image url="@textures/equiv.png" />
                                             </image>
                                         </ImageView>
                                       </graphic>
@@ -1301,7 +1301,7 @@
                                              <graphic>
                                                 <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@textures/mapsfrom.png" />
+                                                      <Image url="@textures/mapsFrom.png" />
                                                    </image>
                                                 </ImageView>
                                              </graphic>
@@ -1310,7 +1310,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                       <image>
-                                        <Image url="@textures/mapsto.png" />
+                                        <Image url="@textures/mapsTo.png" />
                                       </image>
                                   </ImageView>
                                 </graphic>
@@ -1428,7 +1428,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
-                                      <Image url="@textures/lbrace.png" />
+                                      <Image url="@textures/lBrace.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
@@ -1437,7 +1437,7 @@
                                 <graphic>
                                   <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="secondary-btn">
                                     <image>
-                                      <Image url="@textures/lbracket.png" />
+                                      <Image url="@textures/lBracket.png" />
                                     </image>
                                   </ImageView>
                                 </graphic>
@@ -1446,7 +1446,7 @@
                             <graphic>
                               <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" styleClass="sIcon">
                                 <image>
-                                  <Image url="@textures/lparen.png" />
+                                  <Image url="@textures/lParen.png" />
                                 </image>
                               </ImageView>
                             </graphic>
