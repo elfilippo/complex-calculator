@@ -32,7 +32,7 @@ public class App extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
 
-        scene = new BorderlessScene(stage, StageStyle.UNDECORATED, root, 700, 800);
+        scene = new BorderlessScene(stage, StageStyle.UNDECORATED, root, 400, 550);
         scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/base.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/com/complexcalc/themes/lapis-blue.css").toExternalForm());
         stage.setScene(scene);

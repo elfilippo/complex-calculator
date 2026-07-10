@@ -4,7 +4,7 @@
   <groupId>com.complexcalc</groupId>
   <artifactId>complex-calculator</artifactId>
   <name>complex-calculator</name>
-  <version>0.7.2</version>
+  <version>0.7.3</version>
   <build>
     <plugins>
       <plugin>
