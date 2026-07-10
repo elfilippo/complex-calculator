@@ -2,7 +2,11 @@ package com.complexcalc.ui;
 
 import com.complexcalc.parser.LatexComplexEvaluator;
 import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +34,7 @@ import javafx.scene.web.WebView;
 import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Duration;
 
 public class Controller {
 
@@ -84,12 +89,29 @@ public class Controller {
         String documentUrl = getClass().getResource("/com/complexcalc/document.html").toExternalForm();
         String previewUrl = getClass().getResource("/com/complexcalc/preview.html").toExternalForm();
         previewEngine = webPreview.getEngine();
-        previewEngine.load(previewUrl);
         documentEngine = documentWebView.getEngine();
-        documentEngine.load(documentUrl);
 
         previewRenderer = new RenderService(previewEngine);
         documentRenderer = new RenderService(documentEngine);
+
+        installMathJaxReadyCheck(previewEngine, previewRenderer);
+        installMathJaxReadyCheck(documentEngine, documentRenderer);
+
+        ChangeListener<Worker.State> loadDocumentAfterPreview = new ChangeListener<>() {
+            @Override
+            public void changed(
+                ObservableValue<? extends Worker.State> obs,
+                Worker.State oldState,
+                Worker.State newState
+            ) {
+                if (newState == Worker.State.SUCCEEDED) {
+                    previewEngine.getLoadWorker().stateProperty().removeListener(this);
+                    documentEngine.load(documentUrl);
+                }
+            }
+        };
+        previewEngine.getLoadWorker().stateProperty().addListener(loadDocumentAfterPreview);
+        previewEngine.load(previewUrl);
 
         document = new Document(documentRenderer);
 
@@ -209,7 +231,6 @@ public class Controller {
                 button.setOnAction(event -> {
                     String text = ((String) button.getUserData()).replace("e@", "\\");
                     latexInput.insertText(latexInput.getCaretPosition(), text);
-                    previewRenderer.render(latexInput.getText());
                     autoEval(text);
                 });
             } else if (node instanceof SplitMenuButton menuButton) {
@@ -245,7 +266,6 @@ public class Controller {
                     menuButton.setOnAction(event -> {
                         String text = ((String) menuButton.getUserData()).replace("e@", "\\");
                         latexInput.insertText(latexInput.getCaretPosition(), text);
-                        previewRenderer.render(latexInput.getText());
                         autoEval(text);
                     });
                     if (
@@ -268,7 +288,6 @@ public class Controller {
                                     button.setOnAction(event -> {
                                         String text = ((String) button.getUserData()).replace("e@", "\\");
                                         latexInput.insertText(latexInput.getCaretPosition(), text);
-                                        previewRenderer.render(latexInput.getText());
                                         autoEval(text);
                                     });
                                 }
@@ -280,7 +299,6 @@ public class Controller {
                         item.setOnAction(event -> {
                             String text = ((String) item.getUserData()).replace("e@", "\\");
                             latexInput.insertText(latexInput.getCaretPosition(), text);
-                            previewRenderer.render(latexInput.getText());
                             autoEval(text);
                         });
                     }
@@ -310,7 +328,6 @@ public class Controller {
                                 button.setOnAction(event -> {
                                     String text = ((String) button.getUserData()).replace("e@", "\\");
                                     latexInput.insertText(latexInput.getCaretPosition(), text);
-                                    previewRenderer.render(latexInput.getText());
                                     autoEval(text);
                                 });
                             }
@@ -341,6 +358,38 @@ public class Controller {
             document.deleteCurrent();
             latexInput.setText(document.getCurrent());
         });
+    }
+
+    /**
+     * MathJax's startup.ready() sets window.__mathJaxReady = true when it finishes
+     * initializing. Re-checked on every SUCCEEDED (not just the first), since the JS
+     * context is torn down and rebuilt on each navigation -- including the intentional
+     * previewEngine.reload() triggered by Tab in autoEval(). A bounded retry covers the
+     * (never actually observed, but possible) case where MathJax isn't ready yet at the
+     * instant the page finishes loading.
+     */
+    private void installMathJaxReadyCheck(WebEngine engine, RenderService renderer) {
+        engine
+            .getLoadWorker()
+            .stateProperty()
+            .addListener((obs, oldState, newState) -> {
+                if (newState == Worker.State.SUCCEEDED) {
+                    pollMathJaxReady(engine, renderer, 0);
+                }
+            });
+    }
+
+    private void pollMathJaxReady(WebEngine engine, RenderService renderer, int attempt) {
+        if (Boolean.TRUE.equals(engine.executeScript("window.__mathJaxReady === true"))) {
+            renderer.markMathJaxReady();
+            return;
+        }
+        if (attempt >= 50) {
+            return;
+        }
+        PauseTransition pause = new PauseTransition(Duration.millis(20));
+        pause.setOnFinished(e -> pollMathJaxReady(engine, renderer, attempt + 1));
+        pause.play();
     }
 
     private void setIconScaling(ImageView icon) {

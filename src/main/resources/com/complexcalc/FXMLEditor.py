@@ -122,7 +122,7 @@ LATEX_MAP = {
     "floorBtn":                  r"e@left e@lfloor {} e@right e@rfloor ",
     "ceilBtn":                   r"e@left e@lceil {} e@right e@rceil ",
     # trig menu items
-    # func menu items — add yours here
+    # func menu items
 }
 
 def inject_userdata(match):

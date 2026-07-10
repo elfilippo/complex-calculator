@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 
     <script>
-        wwindow.MathJax = {
+        window.MathJax = {
             svg: {
                 scale: 2
             },
@@ -18,7 +18,7 @@
             startup: {
                 ready() {
                     MathJax.startup.defaultReady();
-                    window.javabridge?.onMathJaxReady();
+                    window.__mathJaxReady = true;
                 }
             }
         };
@@ -46,7 +46,7 @@
 
 <body>
     \[
-    \textbf{Complex Calculator v.0.7.2} \\\\[6pt]
+    \textbf{Complex Calculator v.0.7.3} \\\\[6pt]
     \] \[
     \text{©Filip M, 2026} \\\\[4pt]
     \]

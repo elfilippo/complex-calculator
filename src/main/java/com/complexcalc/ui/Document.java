@@ -49,13 +49,18 @@ public class Document {
     }
 
     public String getCurrent() {
-        return expressions.size() <= currentIndex ? "" : expressions.get(currentIndex);
+        if (expressions.isEmpty()) return "";
+        return currentIndex < expressions.size()
+            ? expressions.get(currentIndex)
+            : currentIndex < 1
+                ? expressions.get(currentIndex)
+                : expressions.get(currentIndex - 1);
     }
 
     public void deleteCurrent() {
         if (currentIndex >= expressions.size()) return;
         expressions.remove(currentIndex);
-        currentIndex--;
+        if (currentIndex > 0) currentIndex--;
         update();
     }
 }
