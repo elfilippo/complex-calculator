@@ -23,7 +23,7 @@ public class App extends Application {
     @Override
     @SuppressWarnings("exports")
     public void start(Stage stage) throws IOException {
-        stage.setTitle("complex-calculator v0.7.3 ©Filip M. 2026");
+        stage.setTitle("complex-calculator v0.7.5 ©Filip M. 2026");
         stage.setHeight(600);
         stage.setWidth(800);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/complexcalc/textures/calculatorIcon.png")));
