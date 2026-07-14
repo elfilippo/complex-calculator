@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 $repoRoot = $PSScriptRoot
 Set-Location $repoRoot
 
-# jdk install path - auto-detected
+# auto-detects jdk install path
 function Find-JdkBin {
     if ($env:JAVA_HOME -and (Test-Path (Join-Path $env:JAVA_HOME "bin\jlink.exe"))) {
         return (Join-Path $env:JAVA_HOME "bin")
@@ -200,8 +200,20 @@ if (-not $ghAvailable) {
 
             $editNotes = Read-Host "Also edit the release title/notes? (y/N)"
             if ($editNotes -eq "y") {
-                gh release edit $releaseTag
+                $existing = gh release view $releaseTag --json title,body | ConvertFrom-Json
+
+                $newTitle = Read-Host "Title (press Enter to keep '$($existing.title)')"
+                if ([string]::IsNullOrWhiteSpace($newTitle)) { $newTitle = $existing.title }
+
+                $notesFile = [System.IO.Path]::GetTempFileName()
+                Set-Content -Path $notesFile -Value $existing.body -NoNewline
+                Write-Host "Opening notepad to edit release notes -- save and close it to continue..."
+                Start-Process notepad.exe -ArgumentList $notesFile -Wait
+
+                gh release edit $releaseTag --title $newTitle --notes-file $notesFile
                 if ($LASTEXITCODE -ne 0) { throw "gh release edit failed." }
+                Remove-Item $notesFile -Force
+                Write-Host "Release notes updated."
             }
         } else {
             Write-Host "Skipped updating existing release. Artifacts are ready at:"
