@@ -10,8 +10,37 @@ $ErrorActionPreference = "Stop"
 $repoRoot = $PSScriptRoot
 Set-Location $repoRoot
 
-# jdk install path - edit if necessary
-$jdkBin = "C:\Program Files\Java\jdk-24\bin"
+# jdk install path - auto-detected
+function Find-JdkBin {
+    if ($env:JAVA_HOME -and (Test-Path (Join-Path $env:JAVA_HOME "bin\jlink.exe"))) {
+        return (Join-Path $env:JAVA_HOME "bin")
+    }
+
+    $javaCmd = Get-Command java -ErrorAction SilentlyContinue
+    if (-not $javaCmd) {
+        throw "No 'java' found on PATH. Install a JDK 21+ and try again."
+    }
+
+    # resolves the real install dir even through oracle's javapath redirector
+    $props = & java -XshowSettings:properties -version 2>&1
+    $javaHomeLine = $props | Select-String "java.home"
+    if (-not $javaHomeLine) {
+        throw "Could not determine java.home from 'java -XshowSettings:properties'."
+    }
+    $javaHome = ($javaHomeLine -split "=")[1].Trim()
+    $bin = Join-Path $javaHome "bin"
+
+    if (-not (Test-Path (Join-Path $bin "jlink.exe"))) {
+        throw "Java install at $javaHome has no jlink -- install a full JDK 21+ (not a JRE)."
+    }
+    if (-not (Test-Path (Join-Path $bin "jpackage.exe"))) {
+        throw "Java install at $javaHome has no jpackage -- install a full JDK 21+ (not a JRE)."
+    }
+    return $bin
+}
+
+$jdkBin = Find-JdkBin
+Write-Host "Using JDK at: $jdkBin"
 
 $appJava      = Join-Path $repoRoot "src\main\java\com\complexcalc\App.java"
 $documentHtml = Join-Path $repoRoot "src\main\resources\com\complexcalc\document.html"
@@ -79,7 +108,7 @@ if (-not $pomFound) {
     Write-Host "Updated $pomXml"
 }
 
-# 2. clean building mvn package
+# 2. compiles clean mvn package
 
 Write-Host "`n--- mvn clean package ---"
 mvn clean package
@@ -91,7 +120,7 @@ if (-not (Test-Path $jarPath)) {
     throw "Expected jar not found: $jarPath (did the version bump in pom.xml take effect?)"
 }
 
-# 2.5. commits the version bump
+# 3. commits the version bump
 
 Write-Host "`n--- Committing version bump ---"
 git add $appJava $documentHtml $pomXml
@@ -106,7 +135,7 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "Committed and pushed: $commitMsg"
 }
 
-# 3. jlink rebuilds the custom runtime from scratch
+# 4. jlink rebuilds the custom runtime
 
 Write-Host "`n--- jlink ---"
 $runtimeDir = Join-Path $repoRoot "custom-runtime"
@@ -118,7 +147,7 @@ if (Test-Path $runtimeDir) { Remove-Item $runtimeDir -Recurse -Force }
     --strip-debug --no-header-files --no-man-pages --compress=2
 if ($LASTEXITCODE -ne 0) { throw "jlink failed." }
 
-# 4. jpackage
+# 5. jpackage
 
 Write-Host "`n--- jpackage ---"
 $distDir = Join-Path $repoRoot "dist"
@@ -134,7 +163,7 @@ if (Test-Path $distDir) { Remove-Item $distDir -Recurse -Force }
     --dest $distDir
 if ($LASTEXITCODE -ne 0) { throw "jpackage failed." }
 
-# 5. zips the app-image without double-nesting
+# 6. zips the app-image without double-nesting
 
 Write-Host "`n--- Packaging zip ---"
 $appImageDir = Join-Path $distDir "ComplexCalculator"
@@ -147,7 +176,7 @@ Compress-Archive -Path (Join-Path $appImageDir "*") -DestinationPath $zipPath
 
 Write-Host "Created $zipPath"
 
-# 6. publishes a github release with the jar and the zip
+# 7. publishes a github release with the jar and the zip
 
 Write-Host "`n--- Publishing release ---"
 
