@@ -200,10 +200,11 @@ if (-not $ghAvailable) {
 
             $editNotes = Read-Host "Also edit the release title/notes? (y/N)"
             if ($editNotes -eq "y") {
-                $existing = gh release view $releaseTag --json title,body | ConvertFrom-Json
+                $existing = gh release view $releaseTag --json name,body | ConvertFrom-Json
 
-                $newTitle = Read-Host "Title (press Enter to keep '$($existing.title)')"
-                if ([string]::IsNullOrWhiteSpace($newTitle)) { $newTitle = $existing.title }
+                $currentTitle = if ($existing.name) { $existing.name } else { $releaseTag }
+                $newTitle = Read-Host "Title (press Enter to keep '$currentTitle')"
+                if ([string]::IsNullOrWhiteSpace($newTitle)) { $newTitle = $currentTitle }
 
                 $notesFile = [System.IO.Path]::GetTempFileName()
                 Set-Content -Path $notesFile -Value $existing.body -NoNewline
