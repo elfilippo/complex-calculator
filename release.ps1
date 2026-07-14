@@ -187,8 +187,13 @@ if (-not $ghAvailable) {
 } else {
     $releaseTag = "v$newVersion"
 
-    gh release view $releaseTag *> $null
-    $releaseExists = ($LASTEXITCODE -eq 0)
+    $releaseListJson = gh release list --json tagName
+    if ([string]::IsNullOrWhiteSpace($releaseListJson)) {
+        $releaseExists = $false
+    } else {
+        $existingTags = @($releaseListJson | ConvertFrom-Json) | ForEach-Object { $_.tagName }
+        $releaseExists = $existingTags -contains $releaseTag
+    }
 
     if ($releaseExists) {
         Write-Host "Release $releaseTag already exists on GitHub."
