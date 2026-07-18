@@ -24,6 +24,7 @@
 
 # Maven
 target/
+target-linux/
 dist/
 custom-runtime/
 
