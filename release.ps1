@@ -1,7 +1,7 @@
 # release.ps1
 # paths are resolved relative to this script's own location
 #
-# steps: bump version everywhere -> mvn clean package -> jlink -> jpackage -> zip -> gh release
+# steps: bump version everywhere -> windows jar build -> linux jar build -> jlink -> jpackage -> zip -> gh release
 
 $ErrorActionPreference = "Stop"
 
@@ -135,7 +135,25 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "Committed and pushed: $commitMsg"
 }
 
-# 4. jlink rebuilds the custom runtime
+# 4. builds a linux jar (no bundled runtime - linux users will manage)
+
+Write-Host "`n--- mvn package (linux) ---"
+$linuxTargetDir = Join-Path $repoRoot "target-linux"
+if (Test-Path $linuxTargetDir) { Remove-Item $linuxTargetDir -Recurse -Force }
+
+mvn clean package -P linux "-Dproject.build.directory=$linuxTargetDir"
+if ($LASTEXITCODE -ne 0) { throw "Linux jar build failed." }
+
+$linuxJarName = "complex-calculator-$newVersion-linux.jar"
+$linuxJarPath = Join-Path $linuxTargetDir $linuxJarName
+Move-Item -Path (Join-Path $linuxTargetDir $jarName) -Destination $linuxJarPath -Force
+
+if (-not (Test-Path $linuxJarPath)) {
+    throw "Expected linux jar not found: $linuxJarPath"
+}
+Write-Host "Created $linuxJarPath"
+
+# 5. jlink rebuilds the custom runtime
 
 Write-Host "`n--- jlink ---"
 $runtimeDir = Join-Path $repoRoot "custom-runtime"
@@ -147,7 +165,7 @@ if (Test-Path $runtimeDir) { Remove-Item $runtimeDir -Recurse -Force }
     --strip-debug --no-header-files --no-man-pages --compress=2
 if ($LASTEXITCODE -ne 0) { throw "jlink failed." }
 
-# 5. jpackage
+# 6. jpackage
 
 Write-Host "`n--- jpackage ---"
 $distDir = Join-Path $repoRoot "dist"
@@ -163,7 +181,7 @@ if (Test-Path $distDir) { Remove-Item $distDir -Recurse -Force }
     --dest $distDir
 if ($LASTEXITCODE -ne 0) { throw "jpackage failed." }
 
-# 6. zips the app-image without double-nesting
+# 7. zips the app-image without double-nesting
 
 Write-Host "`n--- Packaging zip ---"
 $appImageDir = Join-Path $distDir "ComplexCalculator"
@@ -176,7 +194,7 @@ Compress-Archive -Path (Join-Path $appImageDir "*") -DestinationPath $zipPath
 
 Write-Host "Created $zipPath"
 
-# 7. publishes a github release with the jar and the zip
+# 8. publishes a github release with the jars and the zip
 
 Write-Host "`n--- Publishing release ---"
 
@@ -199,7 +217,7 @@ if (-not $ghAvailable) {
         Write-Host "Release $releaseTag already exists on GitHub."
         $overwrite = Read-Host "Overwrite its jar/zip assets? (y/N)"
         if ($overwrite -eq "y") {
-            gh release upload $releaseTag $jarPath $zipPath --clobber
+            gh release upload $releaseTag $jarPath $zipPath $linuxJarPath --clobber
             if ($LASTEXITCODE -ne 0) { throw "gh release upload failed." }
             Write-Host "Assets on $releaseTag updated."
 
@@ -225,14 +243,16 @@ if (-not $ghAvailable) {
             Write-Host "Skipped updating existing release. Artifacts are ready at:"
             Write-Host "  $jarPath"
             Write-Host "  $zipPath"
+            Write-Host "  $linuxJarPath"
         }
     } else {
-        $confirm = Read-Host "Publish GitHub release $releaseTag with $jarName and complex-calculator.zip? (y/N)"
+        $confirm = Read-Host "Publish GitHub release $releaseTag with $jarName, complex-calculator.zip, and $linuxJarName? (y/N)"
         if ($confirm -eq "y") {
             Write-Host "gh will now prompt you to confirm the title and open your editor for release notes..."
             gh release create $releaseTag `
                 $jarPath `
                 $zipPath `
+                $linuxJarPath `
                 --title $releaseTag
             if ($LASTEXITCODE -ne 0) { throw "gh release create failed." }
             Write-Host "Release $releaseTag published."
@@ -240,6 +260,7 @@ if (-not $ghAvailable) {
             Write-Host "Skipped publishing. Artifacts are ready at:"
             Write-Host "  $jarPath"
             Write-Host "  $zipPath"
+            Write-Host "  $linuxJarPath"
         }
     }
 }
