@@ -134,6 +134,9 @@
   <profiles>
     <profile>
       <id>linux</id>
+      <build>
+        <directory>${project.basedir}/target-linux</directory>
+      </build>
       <dependencies>
         <dependency>
           <groupId>org.openjfx</groupId>

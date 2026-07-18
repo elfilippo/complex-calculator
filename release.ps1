@@ -141,7 +141,7 @@ Write-Host "`n--- mvn package (linux) ---"
 $linuxTargetDir = Join-Path $repoRoot "target-linux"
 if (Test-Path $linuxTargetDir) { Remove-Item $linuxTargetDir -Recurse -Force }
 
-mvn clean package -P linux "-Dproject.build.directory=$linuxTargetDir"
+mvn clean package -P linux
 if ($LASTEXITCODE -ne 0) { throw "Linux jar build failed." }
 
 $linuxJarName = "complex-calculator-$newVersion-linux.jar"
