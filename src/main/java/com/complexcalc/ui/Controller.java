@@ -413,28 +413,29 @@ public class Controller {
             return;
         }
 
+        int pos = latexInput.getCaretPosition();
+
         if (event.getCharacter().hashCode() == 9) {
             latexInput.clear();
             previewEngine.reload();
             return;
         } else if (event.getCharacter().hashCode() == 27) {
             Platform.exit();
+        } else if (event.getCharacter().equals(" ")) {
+            String text = latexInput.getText().replace("=  ", "≈ ");
+            latexInput.setText(text);
+            if (pos > text.length()) pos--;
         }
 
-        int pos = latexInput.getCaretPosition();
         int equalsIndex;
-        if (latexInput.getText().contains(" = ")) equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
-        else equalsIndex = latexInput.getText().lastIndexOf(" ≈ ") + 3;
+        equalsIndex = latexInput.getText().lastIndexOf(" ≈ ") + 3;
         boolean beforeEquals = pos < equalsIndex && equalsIndex != 2;
         if ((event.getCharacter().hashCode() != 8 && event.getCharacter().hashCode() != 127) || beforeEquals) {
             if (beforeEquals) {
                 latexInput.deleteText(equalsIndex - 3, latexInput.getText().length());
                 latexInput.appendText(" ≈ ");
                 evaluateExpr();
-            } else if (
-                (latexInput.getText().endsWith(" = ") || latexInput.getText().endsWith(" ≈ ")) &&
-                event.getCharacter().hashCode() == 32
-            ) {
+            } else if ((latexInput.getText().contains(" ≈ ")) && event.getCharacter().equals(" ")) {
                 latexInput.deleteText(equalsIndex - 3, latexInput.getText().length());
                 latexInput.appendText(" ≈ ");
                 evaluateExpr();
@@ -448,17 +449,14 @@ public class Controller {
     private void autoEval(String text) {
         int pos = latexInput.getCaretPosition();
         int equalsIndex;
-        if (latexInput.getText().contains(" = ")) equalsIndex = latexInput.getText().lastIndexOf(" = ") + 3;
-        else equalsIndex = latexInput.getText().lastIndexOf(" ≈ ") + 3;
+        equalsIndex = latexInput.getText().lastIndexOf(" ≈ ") + 3;
         boolean beforeEquals = equalsIndex != 2 && pos < equalsIndex;
         if (beforeEquals) {
             latexInput.deleteText(equalsIndex - 3, latexInput.getText().length());
             latexInput.appendText(" ≈ ");
             evaluateExpr();
         }
-        if (
-            (latexInput.getText().endsWith(" = ") || latexInput.getText().endsWith(" ≈ ")) && text.equals("equals")
-        ) evaluateExpr();
+        if (latexInput.getText().endsWith(" ≈ ") && text.equals("equals")) evaluateExpr();
         latexInput.positionCaret(pos);
         previewRenderer.render(latexInput.getText());
     }
