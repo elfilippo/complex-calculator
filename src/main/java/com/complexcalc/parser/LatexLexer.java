@@ -17,13 +17,13 @@ public class LatexLexer {
 
             if (c == ' ') continue;
 
-            if (Character.isDigit(c) || c == '.') {
+            if (Character.isDigit(c) || c == '.' || c == ',') {
                 if (digitStart == -1) digitStart = i;
                 continue;
             }
 
             if (digitStart != -1) {
-                tokens.add(new valueToken(Token.NUM, Double.parseDouble(s.substring(digitStart, i))));
+                tokens.add(new valueToken(Token.NUM, Double.parseDouble(s.substring(digitStart, i).replace(',', '.'))));
                 digitStart = -1;
             }
             tokenMatching: switch (c) {

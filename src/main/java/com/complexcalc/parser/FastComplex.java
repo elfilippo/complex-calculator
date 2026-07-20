@@ -1,5 +1,9 @@
 package com.complexcalc.parser;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 /**
  * complex number class that saves computations by only calculating polar coordinates when needed <p>
  * only returns principal results since it doesn't preserve non-normalized argument information
@@ -745,42 +749,41 @@ public class FastComplex {
         return truncateWhole(a) + " + " + truncateWhole(Math.abs(b)) + "i";
     }
 
-    //TODO: make this actually return scientific notation
     /**
-     * returns a string in cartesian form specialized for latex results in scientific notation to 8 decimal places
+     * returns a string in cartesian form specialized for latex results in scientific notation to 6 decimal places
      */
     public String toLatexString() {
         String aStr;
         String bStr;
         boolean bNegative = b < 0.0;
+        double MAX_DEFAULT_SIZE = 1_000_000_000.0;
+        double MIN_DEFAULT_SIZE = 0.000_1;
+
+        DecimalFormatSymbols localeSymbols = DecimalFormatSymbols.getInstance(Locale.US);
+        DecimalFormat df = new DecimalFormat("0.##########", localeSymbols);
+        DecimalFormat sdf = new DecimalFormat("0.######E0", localeSymbols);
 
         if (Double.isInfinite(a)) aStr = a > 0.0 ? "\\infty" : "-\\infty";
-        else if (Math.abs(a) < 0.000001) aStr = "";
-        else if (Math.abs(Math.rint(a) - a) < 0.000001) aStr = String.format("%.0f", Math.rint(a));
-        else {
-            aStr = String.format("%.6f", a);
-            int i;
-            for (i = aStr.length() - 1; aStr.charAt(i) == '0'; i--);
-            aStr = aStr.substring(0, i + 1);
-        }
+        else if (a == 0.0) aStr = "";
+        else aStr = (a > MAX_DEFAULT_SIZE || Math.abs(0 - a) < MIN_DEFAULT_SIZE)
+            ? sdf.format(a).replace("E", "×10^{") + '}'
+            : df.format(a);
 
         if (Double.isInfinite(b)) bStr = "\\infty i";
-        else if (Math.abs(b) < 0.000001) bStr = "";
         else if (Math.abs(b) == 1.0) bStr = "i";
-        else if (Math.abs(Math.rint(b) - b) < 0.000001) bStr = String.format("%.0f", Math.abs(Math.rint(b))) + "i";
-        else {
-            bStr = String.format("%.6f", Math.abs(b));
-            int i;
-            for (i = bStr.length() - 1; bStr.charAt(i) == '0'; i--);
-            bStr = bStr.substring(0, i + 1) + "i";
-        }
+        else if (b == 0) bStr = "";
+        else bStr =
+            ((b > MAX_DEFAULT_SIZE || Math.abs(0 - b) < MIN_DEFAULT_SIZE)
+                ? sdf.format(Math.abs(b)).replace("E", "×10^{") + '}'
+                : df.format(b)) +
+            "i";
 
         if (aStr.equals("")) {
             if (bStr.equals("")) return "0";
-            else return ((bNegative ? "-" : "") + bStr).replace(',', '.');
+            else return ((bNegative ? "-" : "") + bStr);
         } else {
-            if (bStr.equals("")) return aStr.replace(',', '.');
-            else return (aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr).replace(',', '.');
+            if (bStr.equals("")) return aStr;
+            else return (aStr + (bStr.equals("") ? "" : (bNegative ? " - " : " + ")) + bStr);
         }
     }
 
@@ -794,7 +797,7 @@ public class FastComplex {
 
         if (Double.isInfinite(a)) aStr = a > 0.0 ? "\\infty" : "-\\infty";
         else if (Math.abs(a) < 0.000001) aStr = "";
-        else if (Math.abs(Math.rint(a) - a) < 0.000001) aStr = String.format("%.0f", Math.rint(a));
+        else if (Math.abs(0 - a) < 0.000001) aStr = String.format("%.0f", Math.rint(a));
         else {
             aStr = String.format("%.6f", a);
             int i;

@@ -18,7 +18,7 @@ function Find-JdkBin {
 
     $javaCmd = Get-Command java -ErrorAction SilentlyContinue
     if (-not $javaCmd) {
-        throw "No 'java' found on PATH. Install a JDK 21+ and try again."
+        throw "No 'java' found on PATH. Install a JDK 24+ and try again."
     }
 
     # resolves the real install dir even through oracle's javapath redirector
@@ -31,10 +31,10 @@ function Find-JdkBin {
     $bin = Join-Path $javaHome "bin"
 
     if (-not (Test-Path (Join-Path $bin "jlink.exe"))) {
-        throw "Java install at $javaHome has no jlink -- install a full JDK 21+ (not a JRE)."
+        throw "Java install at $javaHome has no jlink -- install a full JDK 24+ (not a JRE)."
     }
     if (-not (Test-Path (Join-Path $bin "jpackage.exe"))) {
-        throw "Java install at $javaHome has no jpackage -- install a full JDK 21+ (not a JRE)."
+        throw "Java install at $javaHome has no jpackage -- install a full JDK 24+ (not a JRE)."
     }
     return $bin
 }
