@@ -410,6 +410,7 @@ public class Controller {
 
     private void autoEval(KeyEvent event) {
         if (event.isControlDown() ^ event.isAltDown()) {
+            previewRenderer.render(latexInput.getText());
             return;
         }
 
@@ -500,7 +501,7 @@ public class Controller {
                 e.getMessage() != null && (e instanceof IllegalArgumentException || e instanceof IllegalStateException)
             ) {
                 if (e.getMessage().contains("fromIndex")) result = "argument of sum or prod has to be in braces";
-                else result = e.getMessage().replace(" ", " \\space ");
+                else result = e.getMessage().replace(" ", " ");
             } else result = "";
         }
         latexInput.appendText(result);

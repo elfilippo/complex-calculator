@@ -775,7 +775,7 @@ public class FastComplex {
         else bStr =
             ((b > MAX_DEFAULT_SIZE || Math.abs(0 - b) < MIN_DEFAULT_SIZE)
                 ? sdf.format(Math.abs(b)).replace("E", "×10^{") + '}'
-                : df.format(b)) +
+                : df.format(Math.abs(b))) +
             "i";
 
         if (aStr.equals("")) {
