@@ -532,7 +532,7 @@
                               </ImageView>
                             </graphic>
                           </Button>
-                          <Button fx:id="prodBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="e@prod_{}^{}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                          <Button fx:id="prodBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="e@prod_{}^{}{}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <font>
                               <Font name="Cambria Math" size="65.0" />
                             </font>
@@ -547,7 +547,7 @@
                               </ImageView>
                             </graphic>
                           </Button>
-                          <Button fx:id="sumBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="e@sum_{}^{}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                          <Button fx:id="sumBtn" alignment="CENTER" contentDisplay="BOTTOM" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="15.0" minWidth="20.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="120.0" styleClass="secondary-btn" textAlignment="CENTER" textOverrun="CLIP" userData="e@sum_{}^{}{}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                             <font>
                               <Font name="Cambria Math" size="65.0" />
                             </font>

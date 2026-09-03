@@ -2,6 +2,8 @@ package com.complexcalc.parser;
 
 import static com.complexcalc.parser.registry.Functions.*;
 
+import com.complexcalc.parser.registry.Functions.ValueToken;
+import com.complexcalc.parser.registry.Functions.VarValue;
 import com.complexcalc.parser.registry.Token;
 import java.util.Arrays;
 import java.util.List;
@@ -13,14 +15,14 @@ import java.util.List;
 public class LatexComplexEvaluator {
 
     //IS: list of tokens to be evaluated
-    private List<valueToken> tokens;
+    private List<ValueToken> tokens;
 
     //IS: current position
     private int pos = 0;
 
     //IS: array of variable - value pairs
     //INFO: initialized to length 0 if no variables are provided
-    private varValue[] variables;
+    private VarValue[] variables;
 
     /**
      * constructor that takes a String and automatically tokenizes it
@@ -34,23 +36,16 @@ public class LatexComplexEvaluator {
      * constructor that takes a list of valueTokens directly
      * @param tokens list of valueTokens (token-value pairs). must be correctly tokenized LaTeX.
      */
-    public LatexComplexEvaluator(List<valueToken> tokens) {
+    public LatexComplexEvaluator(List<ValueToken> tokens) {
         this.tokens = tokens;
     }
-
-    /**
-     * record of variable-value pairs
-     * @param var the char of the variable
-     * @param val the value of the variable
-     */
-    public record varValue(char var, FastComplex val) {}
 
     /**
      * evaluates the expression of the current object. takes an array of variable-value pairs
      * @param variables array of varValue records
      * @return FastComplex result
      */
-    public FastComplex eval(varValue[] variables) {
+    public FastComplex eval(VarValue[] variables) {
         this.variables = variables;
 
         pos = 0;
@@ -64,7 +59,7 @@ public class LatexComplexEvaluator {
      * @return FastComplex result
      */
     public FastComplex eval() {
-        return eval(new varValue[0]);
+        return eval(new VarValue[0]);
     }
 
     /**
@@ -75,7 +70,7 @@ public class LatexComplexEvaluator {
      * @return FastComplex result
      */
     public FastComplex eval(char var1, FastComplex var1val) {
-        return eval(new varValue[] { new varValue(var1, var1val) });
+        return eval(new VarValue[] { new VarValue(var1, var1val) });
     }
 
     /**
@@ -88,7 +83,7 @@ public class LatexComplexEvaluator {
      * @return FastComplex result
      */
     public FastComplex eval(char var1, FastComplex var1val, char var2, FastComplex var2val) {
-        return eval(new varValue[] { new varValue(var1, var1val), new varValue(var2, var2val) });
+        return eval(new VarValue[] { new VarValue(var1, var1val), new VarValue(var2, var2val) });
     }
 
     /**
@@ -111,7 +106,7 @@ public class LatexComplexEvaluator {
         FastComplex var3val
     ) {
         return eval(
-            new varValue[] { new varValue(var1, var1val), new varValue(var2, var2val), new varValue(var3, var3val) }
+            new VarValue[] { new VarValue(var1, var1val), new VarValue(var2, var2val), new VarValue(var3, var3val) }
         );
     }
 
@@ -139,11 +134,11 @@ public class LatexComplexEvaluator {
         FastComplex var4val
     ) {
         return eval(
-            new varValue[] {
-                new varValue(var1, var1val),
-                new varValue(var2, var2val),
-                new varValue(var3, var3val),
-                new varValue(var4, var4val),
+            new VarValue[] {
+                new VarValue(var1, var1val),
+                new VarValue(var2, var2val),
+                new VarValue(var3, var3val),
+                new VarValue(var4, var4val),
             }
         );
     }
@@ -156,7 +151,7 @@ public class LatexComplexEvaluator {
      * @return FastComplex result
      */
     public FastComplex eval(char var1, double var1val) {
-        return eval(new varValue[] { new varValue(var1, new FastComplex(var1val, 0)) });
+        return eval(new VarValue[] { new VarValue(var1, new FastComplex(var1val, 0)) });
     }
 
     /**
@@ -170,9 +165,9 @@ public class LatexComplexEvaluator {
      */
     public FastComplex eval(char var1, double var1val, char var2, double var2val) {
         return eval(
-            new varValue[] {
-                new varValue(var1, new FastComplex(var1val, 0)),
-                new varValue(var2, new FastComplex(var2val, 0)),
+            new VarValue[] {
+                new VarValue(var1, new FastComplex(var1val, 0)),
+                new VarValue(var2, new FastComplex(var2val, 0)),
             }
         );
     }
@@ -190,10 +185,10 @@ public class LatexComplexEvaluator {
      */
     public FastComplex eval(char var1, double var1val, char var2, double var2val, char var3, double var3val) {
         return eval(
-            new varValue[] {
-                new varValue(var1, new FastComplex(var1val, 0)),
-                new varValue(var2, new FastComplex(var2val, 0)),
-                new varValue(var3, new FastComplex(var3val, 0)),
+            new VarValue[] {
+                new VarValue(var1, new FastComplex(var1val, 0)),
+                new VarValue(var2, new FastComplex(var2val, 0)),
+                new VarValue(var3, new FastComplex(var3val, 0)),
             }
         );
     }
@@ -222,11 +217,11 @@ public class LatexComplexEvaluator {
         double var4val
     ) {
         return eval(
-            new varValue[] {
-                new varValue(var1, new FastComplex(var1val, 0)),
-                new varValue(var2, new FastComplex(var2val, 0)),
-                new varValue(var3, new FastComplex(var3val, 0)),
-                new varValue(var4, new FastComplex(var4val, 0)),
+            new VarValue[] {
+                new VarValue(var1, new FastComplex(var1val, 0)),
+                new VarValue(var2, new FastComplex(var2val, 0)),
+                new VarValue(var3, new FastComplex(var3val, 0)),
+                new VarValue(var4, new FastComplex(var4val, 0)),
             }
         );
     }
@@ -335,26 +330,16 @@ public class LatexComplexEvaluator {
         //DOES: evaluate numbers like i and e and variables (return the value given to the evaluator for the
         //DOES: variable)
         if (check(Token.VAR)) {
-            if (peek().value() == 'i') {
-                consume();
-                return new FastComplex(0, 1);
-            }
-            if (peek().value() == 'e') {
-                consume();
-                return new FastComplex(Math.E, 0);
-            }
-            if (peek().value() == 'π') {
-                consume();
-                return new FastComplex(Math.PI, 0);
-            }
-            if (peek().value() == 'τ') {
-                consume();
-                return new FastComplex(Math.TAU, 0);
-            }
-            for (varValue variable : variables) {
-                if (peek().value() == variable.var) {
+            for (VarValue varValue : defaultVariables) {
+                if (peek().value() == varValue.var()) {
                     consume();
-                    return variable.val;
+                    return varValue.val();
+                }
+            }
+            for (VarValue variable : variables) {
+                if (peek().value() == variable.var()) {
+                    consume();
+                    return variable.val();
                 }
             }
             throw new IllegalArgumentException("unknown variable: " + (char) peek().value());
@@ -436,14 +421,24 @@ public class LatexComplexEvaluator {
                     expect(Token.LBRACE);
 
                     //DOES: get variable to increment in sum or product
-                    if (!check(Token.VAR)) throw new IllegalArgumentException(
-                        "expected variable in lower bound of " + (isSum ? "sum" : "product")
-                    );
+                    if (!check(Token.VAR)) {
+                        throw new IllegalArgumentException(
+                            "expected valid variable in lower bound of " + (isSum ? "sum" : "product")
+                        );
+                    }
+                    char currentVar = (char) peek().value();
+                    for (VarValue valuePair : defaultVariables) {
+                        if (currentVar == valuePair.var()) throw new IllegalArgumentException(
+                            currentVar +
+                                " is not a valid variable for the lower bound of " +
+                                (isSum ? "sum" : "product")
+                        );
+                    }
                     var = (char) consume().value();
 
                     //DOES: check if variable in sum is the same as a provided variable
-                    for (varValue variables : variables) {
-                        if (var == variables.var) throw new IllegalArgumentException(
+                    for (VarValue variables : variables) {
+                        if (var == variables.var()) throw new IllegalArgumentException(
                             "variable provided for " + (isSum ? "sum" : "product") + "was already given"
                         );
                     }
@@ -495,17 +490,17 @@ public class LatexComplexEvaluator {
             LatexComplexEvaluator expression = new LatexComplexEvaluator(tokens.subList(bodyStart + 1, bodyEnd));
 
             //DOES: calculate sum or product
-            varValue[] innerVars = Arrays.copyOf(variables, variables.length + 1);
+            VarValue[] innerVars = Arrays.copyOf(variables, variables.length + 1);
             if (isSum) {
                 result = new FastComplex(0, 0);
                 for (double i = startingIndex; i <= finalIndex; i++) {
-                    innerVars[innerVars.length - 1] = new varValue(var, new FastComplex(i, 0));
+                    innerVars[innerVars.length - 1] = new VarValue(var, new FastComplex(i, 0));
                     result = FastComplex.add(result, expression.eval(innerVars));
                 }
             } else {
                 result = new FastComplex(1, 0);
                 for (double i = startingIndex; i <= finalIndex; i++) {
-                    innerVars[innerVars.length - 1] = new varValue(var, new FastComplex(i, 0));
+                    innerVars[innerVars.length - 1] = new VarValue(var, new FastComplex(i, 0));
                     result = FastComplex.mult(result, expression.eval(innerVars));
                 }
             }
@@ -563,17 +558,17 @@ public class LatexComplexEvaluator {
     }
 
     /**
-     * returns the valueToken at the current position
+     * returns the ValueToken at the current position
      */
-    private valueToken peek() {
+    private ValueToken peek() {
         return tokens.get(pos);
     }
 
     /**
-     * returns the valueToken at the current position and increments position
+     * returns the ValueToken at the current position and increments position
      * @return
      */
-    private valueToken consume() {
+    private ValueToken consume() {
         return tokens.get(pos++);
     }
 
@@ -591,7 +586,7 @@ public class LatexComplexEvaluator {
      * @param token the token to be expected
      */
     private void expect(Token token) {
-        if (!check(token)) throw new IllegalArgumentException("missing " + token);
+        if (!check(token)) throw new IllegalArgumentException("missing " + token + " or invalid function");
         consume();
     }
 

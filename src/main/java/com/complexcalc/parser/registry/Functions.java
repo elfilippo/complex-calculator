@@ -1,5 +1,6 @@
 package com.complexcalc.parser.registry;
 
+import com.complexcalc.parser.FastComplex;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -8,6 +9,20 @@ public final class Functions {
     private Functions() {}
 
     public static final Map<String, Token> wordOperations = new LinkedHashMap<>();
+
+    /**
+     * record of variable-value pairs
+     * @param var the char of the variable
+     * @param val the value of the variable
+     */
+    public record VarValue(char var, FastComplex val) {}
+
+    public static VarValue[] defaultVariables = {
+        new VarValue('i', new FastComplex(0, 1)),
+        new VarValue('e', new FastComplex(Math.E, 0)),
+        new VarValue('π', new FastComplex(Math.PI, 0)),
+        new VarValue('τ', new FastComplex(Math.TAU, 0)),
+    };
 
     static {
         //IS: word functions
@@ -82,5 +97,5 @@ public final class Functions {
     //INFO: only used for throwing errors when evaluating with non-complex numbers
     public static final Map<String, Token> complexOperations = new LinkedHashMap<>(Map.of("conj", Token.CONJ));
 
-    public record valueToken(Token type, double value) {}
+    public record ValueToken(Token type, double value) {}
 }

@@ -2,13 +2,13 @@ package com.complexcalc.parser;
 
 import static com.complexcalc.parser.registry.Functions.*;
 
-import com.complexcalc.parser.registry.Functions.valueToken;
+import com.complexcalc.parser.registry.Functions.ValueToken;
 import com.complexcalc.parser.registry.Token;
 import java.util.List;
 
 public class LatexEvaluator {
 
-    private List<valueToken> tokens;
+    private List<ValueToken> tokens;
     private int pos = 0;
 
     private char var1;
@@ -219,11 +219,11 @@ public class LatexEvaluator {
         throw new IllegalStateException("unexpected token: " + peek().type());
     }
 
-    private valueToken peek() {
+    private ValueToken peek() {
         return tokens.get(pos);
     }
 
-    private valueToken consume() {
+    private ValueToken consume() {
         return tokens.get(pos++);
     }
 
