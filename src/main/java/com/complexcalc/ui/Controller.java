@@ -223,7 +223,7 @@ public class Controller {
                 } else if (button == clearBtn) {
                     clearBtn.setOnAction(event -> {
                         latexInput.clear();
-                        previewRenderer.render(latexInput.getText());
+                        previewRenderer.render(latexInput.getText(), document.isOnTitle());
                     });
                     continue;
                 }
@@ -349,25 +349,24 @@ public class Controller {
         }
 
         upArrowBtn.setOnAction(event -> {
-            if (document.movedUp()) latexInput.setText(document.getCurrent());
+            if (document.movedUp()) {
+                latexInput.setText(document.getCurrent());
+                previewRenderer.render(latexInput.getText(), document.isOnTitle());
+            }
         });
         downArrowBtn.setOnAction(event -> {
-            if (document.movedDown()) latexInput.setText(document.getCurrent());
+            if (document.movedDown()) {
+                latexInput.setText(document.getCurrent());
+                previewRenderer.render(latexInput.getText(), document.isOnTitle());
+            }
         });
         docDeleteBtn.setOnAction(event -> {
             document.deleteCurrent();
             latexInput.setText(document.getCurrent());
+            previewRenderer.render(latexInput.getText(), document.isOnTitle());
         });
     }
 
-    /**
-     * MathJax's startup.ready() sets window.__mathJaxReady = true when it finishes
-     * initializing. Re-checked on every SUCCEEDED (not just the first), since the JS
-     * context is torn down and rebuilt on each navigation -- including the intentional
-     * previewEngine.reload() triggered by Tab in autoEval(). A bounded retry covers the
-     * (never actually observed, but possible) case where MathJax isn't ready yet at the
-     * instant the page finishes loading.
-     */
     private void installMathJaxReadyCheck(WebEngine engine, RenderService renderer) {
         engine
             .getLoadWorker()
@@ -410,7 +409,7 @@ public class Controller {
 
     private void autoEval(KeyEvent event) {
         if (event.isControlDown() ^ event.isAltDown()) {
-            previewRenderer.render(latexInput.getText());
+            previewRenderer.render(latexInput.getText(), document.isOnTitle());
             return;
         }
 
@@ -444,7 +443,7 @@ public class Controller {
             latexInput.positionCaret(pos);
         }
 
-        previewRenderer.render(latexInput.getText());
+        previewRenderer.render(latexInput.getText(), document.isOnTitle());
     }
 
     private void autoEval(String text) {
@@ -459,7 +458,7 @@ public class Controller {
         }
         if (latexInput.getText().endsWith(" ≈ ") && text.equals("equals")) evaluateExpr();
         latexInput.positionCaret(pos);
-        previewRenderer.render(latexInput.getText());
+        previewRenderer.render(latexInput.getText(), document.isOnTitle());
     }
 
     private EventHandler<? super ScrollEvent> zoom(WebView webView) {

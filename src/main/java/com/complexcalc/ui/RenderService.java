@@ -32,7 +32,8 @@ public class RenderService {
         maybeFlush();
     }
 
-    public void render(String expression) {
+    public void render(String expression, boolean bold) {
+        if (bold) expression = "\\textbf{" + expression + "}";
         if (!pageLoaded || !mathJaxReady) {
             pendingExpr = expression;
             return;
