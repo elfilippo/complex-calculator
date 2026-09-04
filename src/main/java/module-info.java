@@ -4,6 +4,7 @@ module com.complexcalc {
     requires javafx.graphics;
     requires javafx.web;
     requires FX.BorderlessScene;
+    requires java.desktop;
 
     opens com.complexcalc to javafx.fxml;
     opens com.complexcalc.ui to javafx.fxml;

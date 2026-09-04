@@ -71,10 +71,10 @@
                   <Font name="Arial Rounded MT Bold" size="25.0" />
                 </font>
               </Label>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="secondary-menu-button" text="File" textAlignment="CENTER" textFill="WHITE">
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="secondary-menu-button" text="File" textAlignment="CENTER" textFill="WHITE" fx:id="fileBtn">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Save" />
-                      <MenuItem mnemonicParsing="false" text="Load" />
+                      <MenuItem mnemonicParsing="false" text="Save" onAction="#onSave" />
+                      <MenuItem mnemonicParsing="false" text="Load" onAction="#onLoad" />
                     </items>
                      <font>
                         <Font name="Arial Rounded MT Bold" size="17.0" />

@@ -1,5 +1,13 @@
 package com.complexcalc.ui;
 
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,11 +16,15 @@ public class Document {
     private List<String> expressions = new LinkedList<>();
     private int currentIndex;
     private RenderService renderEngine;
+    private FileDialog dialog = new FileDialog((Frame) null, "Select an FSLF file", FileDialog.LOAD);
 
     public Document(RenderService renderEngine) {
+        this.renderEngine = renderEngine;
         expressions.add("Document X");
         currentIndex = 1;
-        this.renderEngine = renderEngine;
+        dialog.setFile("*.fslf");
+        File directory = new File("documents");
+        dialog.setDirectory(directory.getAbsolutePath());
         update();
     }
 
@@ -77,5 +89,34 @@ public class Document {
         return currentIndex == 0;
     }
 
-    public void save() {}
+    public void save() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("documents\\" + expressions.get(0) + ".fslf"))) {
+            for (String expression : expressions) {
+                writer.write(expression);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void load() {
+        dialog.setVisible(true);
+        if (dialog.getFile() != null) {
+            String path = dialog.getDirectory() + dialog.getFile();
+            try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+                expressions.clear();
+                String currentExpr;
+                do {
+                    currentExpr = reader.readLine();
+                    if (currentExpr != null) expressions.add(currentExpr);
+                } while (currentExpr != null);
+                currentIndex = 1;
+                update();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+        dialog.dispose();
+    }
 }

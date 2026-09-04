@@ -32,3 +32,4 @@ custom-runtime/
 hs_err_pid*
 replay_pid*
 dependency-reduced-pom.xml
+documents/

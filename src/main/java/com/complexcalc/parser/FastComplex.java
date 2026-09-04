@@ -396,6 +396,10 @@ public class FastComplex {
      * @param z complex radicand
      */
     public static FastComplex sqrt(FastComplex z) {
+        if (z.isReal()) {
+            if (z.a >= 0) return new FastComplex(Math.sqrt(z.a), 0);
+            else return new FastComplex(0, Math.sqrt(Math.abs(z.a)));
+        }
         return pow(z, 0.5);
     }
 

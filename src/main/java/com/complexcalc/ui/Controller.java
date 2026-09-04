@@ -85,6 +85,9 @@ public class Controller {
     private CustomMenuItem trigMenuItem;
 
     @FXML
+    private MenuButton fileBtn;
+
+    @FXML
     public void initialize() {
         String documentUrl = getClass().getResource("/com/complexcalc/document.html").toExternalForm();
         String previewUrl = getClass().getResource("/com/complexcalc/preview.html").toExternalForm();
@@ -554,5 +557,18 @@ public class Controller {
         latexInput.insertText(latexInput.getCaretPosition(), latex);
 
         trigMenuItem.getParentPopup().hide();
+    }
+
+    @FXML
+    private void onSave() {
+        document.save();
+    }
+
+    @FXML
+    private void onLoad() {
+        fileBtn.hide();
+        document.load();
+        latexInput.setText(document.getCurrent());
+        previewRenderer.render(latexInput.getText(), document.isOnTitle());
     }
 }
