@@ -433,7 +433,8 @@ public class FastComplex {
     /**
      * returns term k of the n-th complex root <p>
      * since complex roots are multi-valued, k is the distance of
-     * the term from the principal result (the principal result being k = 0)
+     * the term from the principal result (the principal result being k = 0) <p>
+     * wraps around (mod degree)
      * @param z complex radicand
      * @param n real degree
      */
@@ -445,7 +446,8 @@ public class FastComplex {
     /**
      * returns term k of the n-th complex root <p>
      * since complex roots are multi-valued, k is the distance of
-     * the term from the principal result (the principal result being k = 0)
+     * the term from the principal result (the principal result being k = 0) <p>
+     * wraps around (mod degree)
      * @param z complex radicand
      * @param n complex degree
      */
