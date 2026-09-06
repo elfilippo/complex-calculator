@@ -567,7 +567,7 @@ public class Controller {
     @FXML
     private void onLoad() {
         fileBtn.hide();
-        document.load();
+        if (!document.loadedFile()) return;
         latexInput.setText(document.getCurrent());
         previewRenderer.render(latexInput.getText(), document.isOnTitle());
     }

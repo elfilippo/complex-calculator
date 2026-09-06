@@ -100,23 +100,27 @@ public class Document {
         }
     }
 
-    public void load() {
+    public boolean loadedFile() {
+        boolean fileSelected = false;
         dialog.setVisible(true);
         if (dialog.getFile() != null) {
             String path = dialog.getDirectory() + dialog.getFile();
             try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
                 expressions.clear();
                 String currentExpr;
-                do {
+                currentExpr = reader.readLine();
+                while (currentExpr != null) {
+                    expressions.add(currentExpr);
                     currentExpr = reader.readLine();
-                    if (currentExpr != null) expressions.add(currentExpr);
-                } while (currentExpr != null);
+                }
                 currentIndex = 1;
                 update();
+                fileSelected = true;
             } catch (IOException e) {
                 System.out.println(e);
             }
         }
         dialog.dispose();
+        return fileSelected;
     }
 }

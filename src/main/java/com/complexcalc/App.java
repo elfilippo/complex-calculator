@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+//TODO: auto create documents folder, fix wrong popup scaling
+//TODO: fix file explorer pointing to project root instead of document folder, fix being able to see/select files other than fslf
 public class App extends Application {
 
     private static BorderlessScene scene;
